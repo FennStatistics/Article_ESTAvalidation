@@ -1,0 +1,11 @@
+# uploading to RPubs
+rsconnect/
+# environment variables
+.env
+
+**/API_key.py
+**/api_key.py
+**/__pycache__/
+
+
+**/zz_internalMaterials/
