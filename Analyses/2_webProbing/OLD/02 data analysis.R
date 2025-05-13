@@ -52,19 +52,7 @@ dat$comp_probe[nchar(x = dat$comp_probe_again) > 0] <-
 ################
 # functions
 ################
-cleanUp <- function(charvec = NULL){
-  charvec <- str_replace_all(string=charvec, pattern='_|-|:|,|!|;|\\"|\\*|&|\\?|>|<|=', repl="")
-  # charvec <- str_replace_all(string=charvec, pattern=" ", repl="")
-  charvec <- str_replace_all(string=charvec, pattern="[[:digit:]]", repl="")
-  charvec <- tolower(x = charvec)
-  ## particularity qdap::wfdf()
-  charvec <- str_remove_all(string = charvec, pattern = "[.]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[(]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[)]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[/]+")
 
-  return(charvec)
-}
 
 
 ############################################################################

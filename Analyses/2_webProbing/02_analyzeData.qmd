@@ -1,0 +1,367 @@
+---
+title: "Clean and prepare data"
+author: "Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This file contains the analysis step (confirmatory and exploratory analyses). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+Global variables to control output:
+```{r}
+## global variables
+
+```
+
+
+
+# get packages, raw data, functions
+
+
+```{r}
+#| echo: true
+#| warning: false
+#| label: get raw data
+
+### install and load packages
+#  if packages are not already installed, the function will install and activate them
+usePackage <- function(p) {
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = "http://cran.us.r-project.org")
+  require(p, character.only = TRUE)
+}
+
+usePackage("readxl") # read .xlsx files
+usePackage("writexl") # write .xlsx files
+
+usePackage("tidyverse") # data cleaning and summarizing
+
+usePackage("jsonlite") # json files
+
+## process texts
+# usePackage("tidytext")
+
+
+## outputs
+usePackage("stargazer") # create tables
+usePackage("DT") # create dynmaic tables
+usePackage("report") # get reports of statistical tests in APA7
+
+
+rm(usePackage)
+
+
+### load data files
+## change working directory
+setwd("output")
+## load data
+dat <- read_rds(file = "loop.rds")
+
+### load functions
+# print(getwd())
+setwd("../functions")
+for(i in 1:length(dir())){
+  # print(dir()[i])
+  source(dir()[i], encoding = "utf-8")
+}
+
+rm(i)
+```
+
+
+
+# data preperation
+
+Add number of characters: 
+
+```{r}
+# dat$comp_probe[nchar(x = dat$comp_probe_again) > 0]
+# dat$category_probe[nchar(x = dat$category_probe_again) > 0]
+
+
+dat$category_probe[nchar(x = dat$category_probe_again) > 0] <- dat$category_probe_again[nchar(x = dat$category_probe_again) > 0]
+
+dat$comp_probe[nchar(x = dat$comp_probe_again) > 0] <- dat$comp_probe_again[nchar(x = dat$comp_probe_again) > 0]
+```
+
+
+
+# data analysis
+
+
+## for virtue ethics
+
+
+```{r}
+library(dplyr)
+library(stringr)
+# library(tidytext)
+library(ggplot2)
+
+# Clean input
+tokens <- tolower(whoResponsible_clean) %>%
+  gsub("[[:punct:]]", " ", .) %>%
+  gsub("\\s+", " ", .) %>%
+  strsplit(" ")
+
+words <- unlist(tokens)
+words <- words[!words %in% c("the", "and", "in", "of", "to", "a", "for", "with", "on", "that")]
+
+text_df <- tibble(word = words)
+
+# Approximate match substitution using base R (adist)
+threshold <- 0.2  # normalized edit distance (0 = exact match)
+unique_words <- unique(text_df$word)
+
+for (i in seq_along(unique_words)) {
+  current <- unique_words[i]
+  others <- unique_words[-i]
+  dists <- adist(current, others) / pmax(nchar(current), nchar(others))
+  
+  match_words <- others[dists < threshold]
+  if (length(match_words) > 0) {
+    cat(match_words, "\n")
+    cat("replaced by: ", current, "round:", i, "\n\n")
+    
+    whoResponsible_clean <- str_replace_all(
+      whoResponsible_clean,
+      pattern = paste0("\\b(", paste0(match_words, collapse = "|"), ")\\b"),
+      replacement = current
+    )
+    
+    unique_words <- unique(whoResponsible_clean %>%
+                             tolower() %>%
+                             gsub("[[:punct:]]", " ", .) %>%
+                             gsub("\\s+", " ", .) %>%
+                             strsplit(" ") %>%
+                             unlist())
+  }
+}
+
+# Tokenize and count
+text_df <- tibble(person = seq_along(whoResponsible_clean), text = whoResponsible_clean) %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words, by = "word") %>%
+  count(word, sort = TRUE)
+
+# Percent
+text_df$perc <- round((text_df$n / length(whoResponsible_clean)) * 100, 2)
+
+backup_df <- text_df
+
+# Plot
+text_df %>%
+  filter(perc > 2) %>%
+  mutate(word = reorder(word, perc)) %>%
+  ggplot(aes(perc, word)) +
+  geom_vline(xintercept = c(10, 20, 30), linetype = "dotted") +
+  geom_col() +
+  labs(y = NULL)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+### !!!!
+
+
+
+```{r}
+table(dat$ID)
+sort(table(dat$item))
+# unique(dat$questionComprehension[str_detect(string = dat$item, pattern = "virtue")])
+
+
+### only virtue item
+# "For the development of the technology  which <b>which people or groups of people</b> did you have in mind?"
+whoResponsible <- dat$comp_probe[str_detect(string = dat$item, pattern = "virtue")]
+
+whoResponsible_clean <- cleanUp(charvec = whoResponsible)
+head(whoResponsible_clean)
+```
+
+
+```{r}
+# Define stop words (can be expanded or replaced with a better list if needed)
+custom_stopwords <- c("the", "and", "or", "in", "of", "to", "a", "for", "with", "on", "that", "this", "as", "is", "was", "are", "I", "i")
+
+# Tokenize and clean
+tokenized_df <- tibble(
+  person = seq_along(whoResponsible_clean),
+  text = whoResponsible_clean
+) %>%
+  mutate(
+    text = tolower(text),
+    text = str_replace_all(text, "[[:punct:]]", " "),
+    text = str_replace_all(text, "\\s+", " ")
+  ) %>%
+  rowwise() %>%
+  mutate(word = list(unlist(str_split(text, " ")))) %>%
+  unnest(word) %>%
+  filter(!(word %in% custom_stopwords), word != "") %>%
+  count(word, sort = TRUE)
+
+print(tokenized_df)
+
+```
+
+
+
+```{r}
+nchar(whoResponsible_clean) == nchar(whoResponsible)
+t <- 5
+whoResponsible_clean[t]
+whoResponsible[t]
+
+
+text_df <- tokenized_df
+
+
+threshold <- .8
+# i <- 2
+for(i in 1:length(text_df$word)){
+ tmp <- stringdist::stringsim(a = text_df$word[i], text_df$word[-i])
+ if(any(tmp > threshold)){
+   tmp_match <- text_df$word[-i][tmp > threshold]
+   cat(tmp_match, "\n")
+   cat("replaced by: ", text_df$word[i], "round:", i, "\n\n")
+
+   whoResponsible_clean <- str_replace_all(string = whoResponsible_clean,
+                                           pattern = paste0(tmp_match, collapse = "|"),
+                                           replacement = text_df$word[i])
+
+   # paste0("^", tmp_match, "$", collapse = "|")
+ }
+}
+
+text_df <- tibble(person = 1:length(whoResponsible_clean), text = whoResponsible_clean)
+
+text_df <- text_df %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+
+text_df <- text_df %>%
+  count(word, sort = TRUE)
+
+
+
+text_df$perc <- round(x = text_df$n / length(whoResponsible_clean), digits = 2)*100
+text_df
+
+backup_df <- text_df
+
+text_df %>%
+  filter(perc > 2) %>%
+  mutate(word = reorder(word, perc)) %>%
+  ggplot(aes(perc, word)) +
+  geom_vline(xintercept = 10, linetype="dotted") +
+  geom_vline(xintercept = 20, linetype="dotted") +
+  geom_vline(xintercept = 30, linetype="dotted") +
+  geom_col() +
+  labs(y = NULL)
+
+```
+
+## for utilitarian ethics
+
+```{r}
+unique(dat$questionComprehension[str_detect(string = dat$item, pattern = "utilitarian")])
+
+whichUtilities <- dat$comp_probe[str_detect(string = dat$item, pattern = "utilitarian")]
+
+whichUtilities_clean <- cleanUp(charvec = whichUtilities)
+whichUtilities_clean
+
+nchar(whichUtilities_clean) == nchar(whichUtilities)
+t <- 1
+whichUtilities_clean[t]
+whichUtilities[t]
+
+
+
+text_df <- tibble(person = 1:length(whichUtilities_clean), text = whichUtilities_clean)
+
+text_df <- text_df %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+
+text_df <- text_df %>%
+  count(word, sort = TRUE)
+
+
+threshold <- .8
+# i <- 2
+for(i in 1:length(text_df$word)){
+  tmp <- stringdist::stringsim(a = text_df$word[i], text_df$word[-i])
+  if(any(tmp > threshold)){
+    tmp_match <- text_df$word[-i][tmp > threshold]
+    cat(tmp_match, "\n")
+    cat("replaced by: ", text_df$word[i], "round:", i, "\n\n")
+
+    whichUtilities_clean <- str_replace_all(string = whichUtilities_clean,
+                                            pattern = paste0(tmp_match, collapse = "|"),
+                                            replacement = text_df$word[i])
+
+    # paste0("^", tmp_match, "$", collapse = "|")
+  }
+}
+
+text_df <- tibble(person = 1:length(whichUtilities_clean), text = whichUtilities_clean)
+
+text_df <- text_df %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+
+text_df <- text_df %>%
+  count(word, sort = TRUE)
+
+
+
+text_df$perc <- round(x = text_df$n / length(whoResponsible_clean), digits = 2)*100
+text_df
+
+
+
+text_df %>%
+  filter(perc > 2) %>%
+  mutate(word = reorder(word, perc)) %>%
+  ggplot(aes(perc, word)) +
+  geom_vline(xintercept = 10, linetype="dotted") +
+  geom_vline(xintercept = 20, linetype="dotted") +
+  geom_vline(xintercept = 30, linetype="dotted") +
+  geom_col() +
+  labs(y = NULL)
+
+
+```
+
+
+
+
+
+# References
+
