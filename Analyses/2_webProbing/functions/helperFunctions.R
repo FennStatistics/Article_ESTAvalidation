@@ -40,16 +40,30 @@ questionnairetype <- function(dataset,
 
 
 
-cleanUp <- function(charvec = NULL){
-  charvec <- str_replace_all(string=charvec, pattern='_|-|:|,|!|;|\\"|\\*|&|\\?|>|<|=', repl="")
-  # charvec <- str_replace_all(string=charvec, pattern=" ", repl="")
-  charvec <- str_replace_all(string=charvec, pattern="[[:digit:]]", repl="")
-  charvec <- tolower(x = charvec)
-  ## particularity qdap::wfdf()
-  charvec <- str_remove_all(string = charvec, pattern = "[.]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[(]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[)]+")
-  charvec <- str_remove_all(string = charvec, pattern = "[/]+")
-  
-  return(charvec)
+cleanUp <- function(charvec) {
+  sapply(charvec, function(x) {
+    # Remove unwanted characters
+    x <- str_replace_all(x, "_|-|:|,|!|;|\\\"|\\*|&|\\?|>|<|=", "")
+    x <- str_replace_all(x, "[[:digit:]]", "")
+    x <- tolower(x)
+    x <- str_remove_all(x, "[.]+|[(]+|[)]+|[/]+")
+    
+    # Tokenize and remove stopwords
+    words <- unlist(str_split(x, "\\s+"))
+    words <- words[!words %in% stopwords("en")]
+    
+    # Reconstruct cleaned sentence and trim whitespace
+    cleaned <- paste(words, collapse = " ")
+    str_trim(cleaned)
+  }, USE.NAMES = FALSE)
+}
+
+# Custom similarity function (Jaccard similarity on character sets)
+jaccard_sim <- function(a, b) {
+  a_set <- unique(strsplit(a, "")[[1]])
+  b_set <- unique(strsplit(b, "")[[1]])
+  intersect_len <- length(intersect(a_set, b_set))
+  union_len <- length(union(a_set, b_set))
+  if (union_len == 0) return(0)
+  return(intersect_len / union_len)
 }
