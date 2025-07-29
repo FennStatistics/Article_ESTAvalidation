@@ -1,0 +1,332 @@
+---
+title: "Clean, prepare and transform data"
+author: "Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This file contains the pre-processing step (clean, prepare and transform data). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+Global variables to control output:
+```{r}
+## global variables
+
+```
+
+
+# get packages, raw data, functions
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+### install and load packages
+#  if packages are not already installed, the function will install and activate them
+usePackage <- function(p) {
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = "http://cran.us.r-project.org")
+  require(p, character.only = TRUE)
+}
+
+usePackage("readxl") # read .xlsx files
+usePackage("writexl") # write .xlsx files
+
+usePackage("tidyverse") # data cleaning and summarizing
+
+usePackage("jsonlite") # json files
+
+## outputs
+usePackage("stargazer") # create tables
+usePackage("DT") # create dynmaic tables
+usePackage("report") # get reports of statistical tests in APA7
+
+
+rm(usePackage)
+
+
+### load data files
+## change working directory
+setwd("data")
+## load JATOS data
+read_file('jatos_results_20221003075820.txt') %>%
+  # ... split it into lines ...
+  str_split('\n') %>% first() %>%
+  # ... filter empty rows ...
+  discard(function(x) x == '') %>%
+  # ... parse JSON into a data.frame
+  map_dfr(fromJSON, flatten=TRUE) -> dat
+
+
+## load ESTA data, to match probes, questions:
+esta <- readxl::read_excel(path = "items ESTA readable.xlsx", sheet = 1)
+esta <- esta[nchar(esta$probe) > 0 & !is.na(esta$probe), ]
+esta$scale <- str_replace_all(esta$scale, "[^[:alnum:]]", "")
+esta$left <- str_replace_all(esta$left, "[^[:alnum:]]", " ")
+esta$left <- str_trim(string = esta$left)
+esta$right <- str_replace_all(esta$right, "[^[:alnum:]]", " ")
+esta$right <- str_trim(string = esta$right)
+esta$probe <- str_replace_all(esta$probe, "[^[:alnum:]|</|>|\\?]", " ")
+esta$probe <- str_trim(string = esta$probe)
+
+
+
+### load functions
+setwd("../functions")
+for(i in 1:length(dir())){
+  # print(dir()[i])
+  source(dir()[i], encoding = "utf-8")
+}
+
+rm(i)
+```
+
+
+
+# data preperation
+
+add ID variable:
+
+```{r}
+sum(!is.na(dat$url.srid))
+sum(dat$sender_id == "0", na.rm = TRUE)
+
+### ID variable dat 1
+dat$ID <- NA
+tmp_IDcounter <- 0
+for(i in 1:nrow(dat)){
+  if(!is.na(dat$sender[i]) && dat$sender[i] == "Greetings"){
+    # tmp <- dat$prolific_pid[i]
+    tmp_IDcounter = tmp_IDcounter + 1
+  }
+  dat$ID[i] <- tmp_IDcounter
+}
+
+rm(i); rm(tmp_IDcounter)
+table(dat$ID); length(unique(dat$ID))
+sum(table(dat$ID) == max(table(dat$ID)))
+
+glimpse(dat)
+
+
+# dat[is.na(dat$sender),] # pseudo data?
+
+
+## keep only full datasets
+dat <- dat[dat$ID %in% names(table(dat$ID))[table(dat$ID) == max(table(dat$ID))],]
+```
+
+
+save feedback as Excel file:
+
+```{r}
+setwd("output")
+
+varsSingExcel <- "feedback_critic"
+tmp <- data.frame(ID = dat[, "ID"][!is.na(dat[, varsSingExcel]) & dat[, varsSingExcel] != ""],
+                           feedback = dat[, varsSingExcel][!is.na(dat[, varsSingExcel]) & dat[, varsSingExcel] != ""])
+writexl::write_xlsx(x = tmp,
+            path = paste0(varsSingExcel, ".xlsx"))
+write_rds(x = tmp, file = paste0(varsSingExcel, ".rds"))
+
+varsSingExcel <- c("knowSRM", "knowSRMdefinition")
+tmp <- data.frame(ID = dat[, "ID"][!is.na(dat[, varsSingExcel])],
+                           knowSRM = dat[, varsSingExcel[1]][!is.na(dat[, varsSingExcel][1])],
+                           knowSRMdefinition = dat[, varsSingExcel[2]][!is.na(dat[, varsSingExcel][2])])
+writexl::write_xlsx(x = tmp,
+            path = paste0("knowSRM", ".xlsx"))
+write_rds(x = tmp, file = paste0("knowSRM", ".rds"))
+```
+
+
+set up questionnaire:
+
+```{r}
+setwd("output")
+
+
+colnames(dat)
+
+# treat "index_ESTA" special
+ques_mixed <- c("PROLIFIC_PID",
+                "dummy_informedconsent",
+                str_subset(string = colnames(dat), pattern = "^R"),
+                str_subset(string = colnames(dat), pattern = "^affImg"),
+                "knowSRM", "knowSRMdefinition",
+                "index_ESTA", "feedback_critic")
+
+
+vec_notNumeric = c("PROLIFIC_PID", str_subset(string = colnames(dat), pattern = "^R"),
+                   "knowSRM", "knowSRMdefinition", "feedback_critic")
+
+
+questionnaire <- questionnairetype(dataset = dat, listvars = ques_mixed)
+head(questionnaire)
+dim(questionnaire)
+
+
+### save
+writexl::write_xlsx(x = questionnaire,
+            path = paste0("questionnaire", ".xlsx"))
+write_rds(x = questionnaire, file = paste0("questionnaire", ".rds"))
+```
+
+
+loop over probes:
+
+function:
+
+```{r}
+# dataset = dat_loop
+loopType <- function(dataset, estadat){
+
+  vars_sorted <- sort(unique(dat_loop$p_item))
+  dat_out <- data.frame(ID = NA, item = NA,
+                        questionItem = NA,
+                        value = NA,
+                        category_probe = NA, category_probe_again = NA,
+                        questionComprehension = NA,
+                        comp_probe = NA, comp_probe_again = NA)
+  checkRound = 1
+
+  for(i in unique(dat_loop$ID)){
+    tmp_dat_person <- dat_loop[dat_loop$ID == i,c("ID", "p_item", vars_sorted,
+                                               "category_probe", "category_probe_again",
+                                               "comp_probe", "comp_probe_again"
+                                               )]
+    for(v in unique(tmp_dat_person$p_item)){
+      tmp_dat <- tmp_dat_person[tmp_dat_person$p_item == v,c("ID", "p_item", v,
+                                                 "category_probe", "category_probe_again",
+                                                 "comp_probe", "comp_probe_again")]
+
+      tmp_estadat <- estadat[estadat$scale == v,]
+
+      ## NA if value is missing
+      tmp_category_probe_again <- tmp_dat[,"category_probe_again"][!is.na(tmp_dat[, "category_probe_again"])]
+      if(identical(tmp_category_probe_again, character(0))){
+        tmp_category_probe_again <- NA
+      }
+      tmp_comp_probe_again <- tmp_dat[,"comp_probe_again"][!is.na(tmp_dat[, "comp_probe_again"])]
+      if(identical(tmp_comp_probe_again, character(0))){
+        tmp_comp_probe_again <- NA
+      }
+
+
+      tmp_dat_out <- c(i,
+                       unique(tmp_dat[,"p_item"][!is.na(tmp_dat[, "p_item"])]),
+                       paste0(c(tmp_estadat$left, tmp_estadat$right), collapse = "..."),
+                       tmp_dat[,v][!is.na(tmp_dat[, v])],
+                       tmp_dat[,"category_probe"][!is.na(tmp_dat[, "category_probe"])],
+                       tmp_category_probe_again,
+                       tmp_estadat$probe,
+                       tmp_dat[,"comp_probe"][!is.na(tmp_dat[, "comp_probe"])],
+                       tmp_comp_probe_again)
+
+      if(checkRound == 1){
+        dat_out[checkRound,] <- tmp_dat_out
+      }else{
+        dat_out <- rbind(dat_out, tmp_dat_out)
+      }
+
+      checkRound = checkRound + 1
+    }
+  }
+
+
+
+  return(dat_out)
+}
+```
+
+
+```{r}
+setwd("output")
+
+
+dat_loop <- dat
+dat_loop <- dat_loop[!is.na(dat_loop$counter),]
+
+for(i in 1:nrow(dat_loop)){
+  if(!is.na(dat_loop$p_item[i])){
+    ## fill up item i-1
+    dat_loop$p_item[i-1] <- dat_loop$p_item[i]
+  }
+}
+
+for(i in 1:nrow(dat_loop)){
+  if(!is.na(dat_loop$p_item[i])){
+    ## fill up missing items
+    tmp <- dat_loop$p_item[i]
+  }else{
+    dat_loop$p_item[i] <- tmp
+  }
+}
+# dat_loop$p_item
+table(dat_loop$p_item)
+
+
+
+
+
+loop <- loopType(dataset = dat_loop, estadat = esta)
+
+
+### save
+writexl::write_xlsx(x = loop,
+            path = paste0("loop", ".xlsx"))
+write_rds(x = loop, file = paste0("loop", ".rds"))
+```
+
+some descriptives:
+
+```{r}
+loop$ID <- as.numeric(loop$ID)
+loop$value <- as.numeric(loop$value)
+
+DT::datatable(data = loop)
+
+
+vec_id <- c()
+vec_mean <- c()
+vec_sd <- c()
+counter = 1
+for(i in unique(loop$ID)){
+  tmp <- loop$value[loop$ID == i]
+  vec_id[counter] <- i
+  vec_mean[counter] <- mean(tmp)
+  vec_sd[counter] <- sd(tmp)
+  counter = counter + 1
+
+}
+hist(vec_mean); summary(vec_mean)
+hist(vec_sd); summary(vec_sd)
+
+plot(vec_mean, vec_sd)
+
+
+
+vec_id[vec_sd > 2]
+
+
+DT::datatable(data = loop[loop$ID %in% vec_id[vec_sd > 2], ])
+```
+
+
+
+# References
+
