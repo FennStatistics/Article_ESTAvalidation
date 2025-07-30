@@ -11,6 +11,7 @@ Online Study Files:
 - [3_factor_IRT_Analyses](https://github.com/FennStatistics/Article_ESTAvalidation/tree/main/Online%20Study%20Files/3_factor_IRT_Analyses) - Investigating the dimensionality and response structure of ESTA regarding three different technologies.
 - [4_SEM](https://github.com/FennStatistics/Article_ESTAvalidation/tree/main/Online%20Study%20Files/4_SEM) - Test for construct validity regarding one technology.
 
+***
 
 ## To run/adapt these studies locally
 
