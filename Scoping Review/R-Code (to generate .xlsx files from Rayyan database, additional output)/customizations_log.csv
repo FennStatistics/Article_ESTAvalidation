@@ -1,0 +1,1059 @@
+created_at,user_id,user_email,article_id,key,value
+2022-03-29T10:03:58.962Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531167,included,1
+2022-03-29T10:04:50.714Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531196,included,1
+2022-03-29T10:05:14.322Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531400,included,1
+2022-03-29T10:05:51.541Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531227,included,1
+2022-03-29T10:07:04.963Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531181,included,1
+2022-03-29T10:09:42.182Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531241,included,1
+2022-03-29T10:09:52.745Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531270,included,1
+2022-03-29T10:10:22.964Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531947,included,1
+2022-03-29T10:10:41.636Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531169,included,1
+2022-03-29T10:12:22.308Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531198,included,1
+2022-03-29T10:12:56.042Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,included,1
+2022-03-29T10:13:56.293Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531866,included,1
+2022-03-29T10:14:27.496Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531813,included,1
+2022-03-29T10:16:29.044Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531167,note-1501292,1
+2022-03-29T10:16:35.653Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531167,note-1501292,deleted
+2022-03-29T10:20:45.670Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__primary""",1
+2022-03-29T10:20:45.701Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,-1
+2022-03-29T10:20:47.983Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,1
+2022-03-29T10:21:02.358Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__background article""",1
+2022-03-29T10:21:02.389Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,-1
+2022-03-29T10:21:05.654Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,1
+2022-03-29T10:21:10.826Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__background article""",deleted
+2022-03-29T10:21:15.233Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__primary""",deleted
+2022-03-29T10:21:30.639Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__primary""",1
+2022-03-29T10:21:30.686Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,-1
+2022-03-29T10:21:33.873Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__primary""",deleted
+2022-03-29T10:21:35.389Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,1
+2022-03-29T10:21:37.608Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__background article""",1
+2022-03-29T10:21:37.670Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,-1
+2022-03-29T10:21:47.873Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""__EXR__background article""",deleted
+2022-03-29T10:21:49.983Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,included,1
+2022-03-29T10:22:09.467Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""Validation R&R""",1
+2022-03-29T10:23:12.295Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531225,"""New Scale""",1
+2022-03-29T10:23:13.420Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531225,included,1
+2022-03-29T10:23:22.233Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531219,"""New Scale""",1
+2022-03-29T10:23:22.999Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531219,included,1
+2022-03-29T10:24:03.077Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531446,"""Validation R&R""",1
+2022-03-29T10:24:04.124Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531446,included,1
+2022-03-29T10:25:05.749Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531515,included,-1
+2022-03-29T10:25:13.123Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531517,included,-1
+2022-03-29T10:25:21.780Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531807,included,-1
+2022-03-29T10:25:55.874Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,"""New Scale""",1
+2022-03-29T10:25:56.842Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,included,1
+2022-03-29T10:26:02.499Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531445,included,0
+2022-03-29T10:26:12.124Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531284,included,-1
+2022-03-29T10:27:03.343Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,included,0
+2022-03-29T10:27:21.499Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531247,included,-1
+2022-03-29T10:27:34.515Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531255,included,-1
+2022-03-29T10:27:42.734Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531267,included,0
+2022-03-29T10:27:56.999Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531171,included,-1
+2022-03-29T10:28:00.031Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531214,included,-1
+2022-03-29T10:28:01.734Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531228,included,-1
+2022-03-29T10:28:08.609Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531321,included,-1
+2022-03-29T10:28:10.234Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531331,included,-1
+2022-03-29T10:28:14.843Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531360,included,-1
+2022-03-29T10:28:16.718Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531416,included,-1
+2022-03-29T10:28:54.031Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531491,included,-1
+2022-03-29T10:28:55.437Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531461,included,-1
+2022-03-29T10:29:05.453Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531673,included,0
+2022-03-29T10:29:17.765Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531889,included,-1
+2022-03-29T10:30:16.859Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531947,"""CAN(E)""",1
+2022-03-29T10:31:24.157Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531181,"""CAN(E)""",1
+2022-03-29T12:17:22.058Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531198,"""CAN(E)""",1
+2022-03-29T12:17:28.433Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531227,"""CAN(E)""",1
+2022-03-29T12:17:33.917Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,"""CAN(E)""",1
+2022-03-29T12:17:38.730Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531270,"""CAN(E)""",1
+2022-03-29T12:18:30.105Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531161,included,-1
+2022-03-29T12:19:26.340Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531257,included,-1
+2022-03-29T12:19:40.559Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531312,included,-1
+2022-03-29T12:20:27.434Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531423,included,-1
+2022-03-29T12:20:28.699Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531910,included,-1
+2022-03-29T12:21:46.637Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531184,included,1
+2022-03-29T12:22:54.543Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531315,included,0
+2022-03-29T12:23:02.262Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531170,included,0
+2022-03-29T12:23:41.731Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531201,included,-1
+2022-03-29T12:24:28.700Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531282,included,-1
+2022-03-29T12:24:32.981Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531379,included,-1
+2022-03-29T12:25:15.903Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531183,"""Social Entrepreneurship""",1
+2022-03-29T12:25:21.262Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531183,included,0
+2022-03-29T12:25:26.965Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531397,"""Social Entrepreneurship""",1
+2022-03-29T12:25:28.106Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531397,included,0
+2022-03-29T12:28:33.326Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531548,"""MES""",1
+2022-03-29T12:28:36.294Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531548,included,1
+2022-03-29T12:28:39.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,"""MES""",1
+2022-03-29T12:28:40.326Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,included,1
+2022-03-29T12:28:56.326Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""MES""",1
+2022-03-29T12:28:57.185Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,included,1
+2022-03-29T12:29:05.216Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531422,"""MES""",1
+2022-03-29T12:29:06.295Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531422,included,1
+2022-03-29T12:29:24.435Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531862,"""MES""",1
+2022-03-29T12:29:25.232Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531862,included,1
+2022-03-29T12:29:30.623Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532017,"""MES""",1
+2022-03-29T12:29:31.842Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532017,included,1
+2022-03-29T12:32:05.577Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531349,"""OVERVIEW""",1
+2022-03-29T12:32:06.624Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531349,included,1
+2022-03-29T12:32:48.483Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""MES""",deleted
+2022-03-29T12:32:51.687Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""MES""",1
+2022-03-29T12:34:09.343Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531412,included,1
+2022-03-29T12:34:11.921Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531412,"""MES""",1
+2022-03-29T12:35:01.172Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,"""Validation R&R""",1
+2022-03-29T12:35:02.312Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,included,1
+2022-03-29T12:43:19.407Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531545,"""OVERVIEW""",1
+2022-03-29T12:43:20.423Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531545,included,1
+2022-03-29T12:44:53.423Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531245,"""New Scale""",1
+2022-03-29T12:44:54.486Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531245,included,1
+2022-03-29T12:45:05.892Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531291,"""New Scale""",1
+2022-03-29T12:45:06.705Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531291,included,1
+2022-03-29T12:45:16.752Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531300,included,-1
+2022-03-29T12:45:22.595Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531172,included,-1
+2022-03-29T12:45:28.970Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531287,included,-1
+2022-03-29T12:45:39.377Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531333,included,-1
+2022-03-29T12:45:43.002Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531370,"""New Scale""",1
+2022-03-29T12:45:43.845Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531370,included,1
+2022-03-29T12:45:49.908Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531383,included,-1
+2022-03-29T12:45:53.174Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531385,included,-1
+2022-03-29T12:46:15.424Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531434,"""MES""",1
+2022-03-29T12:46:16.721Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531434,included,1
+2022-03-29T12:46:21.658Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531440,included,-1
+2022-03-29T12:50:54.503Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531437,"""MES""",1
+2022-03-29T12:50:56.035Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531437,included,1
+2022-03-29T12:51:21.238Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531473,"""MES""",1
+2022-03-29T12:51:22.050Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531473,included,1
+2022-03-29T13:51:08.127Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531435,included,-1
+2022-03-29T13:51:09.142Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531435,included,-1
+2022-03-29T13:51:11.205Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531435,included,-1
+2022-03-31T08:58:37.191Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531241,"""CAN(E)""",1
+2022-03-31T09:13:00.508Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531451,"""MES""",1
+2022-03-31T09:13:01.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531451,included,1
+2022-03-31T09:14:01.055Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531459,included,-1
+2022-03-31T09:14:07.696Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531610,included,-1
+2022-03-31T09:15:17.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532006,included,-1
+2022-03-31T09:15:53.508Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531778,included,0
+2022-03-31T09:15:56.336Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531660,included,0
+2022-03-31T09:16:59.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531908,included,-1
+2022-03-31T09:17:11.180Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531952,included,-1
+2022-03-31T09:17:21.665Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531282,included,-1
+2022-03-31T09:17:59.040Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531932,included,-1
+2022-03-31T09:20:08.213Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531824,included,-1
+2022-03-31T09:20:13.884Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531802,included,-1
+2022-03-31T09:20:16.728Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531701,included,-1
+2022-03-31T09:20:30.494Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531519,included,-1
+2022-03-31T09:21:13.338Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531514,"""adds to relativism""",1
+2022-03-31T09:21:16.228Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531514,included,1
+2022-03-31T09:21:20.510Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531502,included,-1
+2022-03-31T09:21:28.916Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,"""New Scale""",1
+2022-03-31T09:21:29.979Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,included,1
+2022-03-31T09:21:51.510Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531495,included,-1
+2022-03-31T09:21:56.948Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531438,included,-1
+2022-03-31T09:22:07.807Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531325,included,-1
+2022-03-31T09:22:15.323Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531299,included,-1
+2022-03-31T09:22:34.276Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531285,included,-1
+2022-03-31T09:22:42.213Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531204,included,-1
+2022-03-31T09:23:19.635Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531903,included,-1
+2022-03-31T09:24:04.636Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531375,included,-1
+2022-03-31T09:24:07.120Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531708,included,-1
+2022-03-31T09:24:09.729Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531859,included,-1
+2022-03-31T09:24:11.370Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531337,included,-1
+2022-03-31T09:24:12.511Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531833,included,-1
+2022-03-31T09:24:16.901Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532002,included,-1
+2022-03-31T09:24:44.980Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531433,included,-1
+2022-03-31T09:24:59.964Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531263,"""adds to relativism""",1
+2022-03-31T09:25:00.886Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531263,included,1
+2022-03-31T09:25:04.761Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531389,included,-1
+2022-03-31T09:25:10.636Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531846,included,-1
+2022-03-31T09:25:23.886Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531733,included,-1
+2022-03-31T09:25:49.261Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531224,included,-1
+2022-03-31T09:26:28.074Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531781,included,-1
+2022-03-31T09:26:35.668Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531323,included,-1
+2022-03-31T09:26:37.590Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531279,included,-1
+2022-03-31T09:26:49.480Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531462,included,-1
+2022-03-31T09:26:56.699Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531831,included,-1
+2022-03-31T09:27:16.215Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531796,included,-1
+2022-03-31T09:27:35.262Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531439,"""adds to relativism""",1
+2022-03-31T09:27:36.731Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531439,included,1
+2022-03-31T09:27:42.403Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531895,included,-1
+2022-03-31T09:29:07.465Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531454,included,-1
+2022-03-31T09:29:09.450Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531865,included,-1
+2022-03-31T09:29:18.856Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531510,included,-1
+2022-03-31T09:29:34.544Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531428,included,-1
+2022-03-31T09:29:37.950Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531641,included,-1
+2022-03-31T09:29:49.841Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531384,included,-1
+2022-03-31T09:30:07.497Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531787,included,-1
+2022-03-31T09:30:13.434Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531450,included,-1
+2022-03-31T09:30:18.794Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531418,included,-1
+2022-03-31T09:30:32.778Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531485,included,-1
+2022-03-31T09:30:37.934Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531490,included,-1
+2022-03-31T09:34:44.544Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531819,"""OVERVIEW""",1
+2022-03-31T09:34:45.403Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531819,included,1
+2022-03-31T09:35:22.029Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531220,"""adds to relativism""",1
+2022-03-31T09:35:22.185Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531220,included,1
+2022-03-31T09:35:55.232Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531212,included,-1
+2022-03-31T09:35:59.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531516,included,-1
+2022-03-31T09:36:24.670Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531797,included,-1
+2022-03-31T09:36:27.623Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531309,included,-1
+2022-03-31T09:36:45.638Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531507,included,-1
+2022-03-31T09:37:40.592Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531938,included,-1
+2022-03-31T09:37:55.404Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531537,included,-1
+2022-03-31T09:38:09.389Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531281,included,-1
+2022-03-31T09:38:24.389Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531250,included,-1
+2022-03-31T09:38:31.155Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531538,included,-1
+2022-03-31T09:38:43.139Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531534,included,-1
+2022-03-31T09:38:52.592Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531205,included,-1
+2022-03-31T09:38:54.905Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531931,included,-1
+2022-03-31T09:39:09.264Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531302,included,-1
+2022-03-31T09:39:28.108Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531356,included,-1
+2022-03-31T09:39:38.061Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531463,included,-1
+2022-03-31T09:40:47.734Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531398,"""OVERVIEW""",1
+2022-03-31T09:40:48.343Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531398,included,1
+2022-03-31T13:45:50.606Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531862,included,-1
+2022-03-31T13:45:54.231Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531862,"""MES""",deleted
+2022-04-01T09:13:18.565Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531200,included,-1
+2022-04-01T09:14:44.488Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531549,"""MES""",1
+2022-04-01T09:14:44.894Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531549,included,1
+2022-04-01T09:15:14.222Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531165,included,-1
+2022-04-01T09:15:52.613Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531837,included,-1
+2022-04-01T09:47:45.308Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531173,included,-1
+2022-04-01T12:33:30.630Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531344,"""OVERVIEW""",1
+2022-04-01T12:33:31.802Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531344,included,1
+2022-04-01T12:34:42.099Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531366,included,-1
+2022-04-04T06:36:11.953Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531162,included,-1
+2022-04-04T06:36:14.844Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531163,included,-1
+2022-04-04T06:36:37.266Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531164,included,-1
+2022-04-04T06:37:54.094Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531168,included,-1
+2022-04-04T06:38:08.172Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531174,included,-1
+2022-04-04T06:38:13.579Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531175,included,-1
+2022-04-04T06:38:38.641Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531176,included,-1
+2022-04-04T06:38:49.672Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531178,included,-1
+2022-04-04T06:38:51.954Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531179,included,-1
+2022-04-04T06:38:53.313Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531180,included,-1
+2022-04-04T06:39:40.767Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,"""New Scale""",1
+2022-04-04T06:39:41.735Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,included,1
+2022-04-04T06:39:52.157Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531186,included,-1
+2022-04-04T06:39:54.220Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531187,included,-1
+2022-04-04T06:40:06.689Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531188,included,0
+2022-04-04T06:40:08.939Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531182,included,0
+2022-04-04T06:40:14.329Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531177,included,0
+2022-04-04T06:40:20.079Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531166,included,0
+2022-04-04T06:41:49.533Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531208,included,-1
+2022-04-04T06:43:03.736Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531226,included,-1
+2022-04-04T06:43:40.596Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531232,included,-1
+2022-04-04T06:43:56.877Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531233,included,-1
+2022-04-04T06:44:05.612Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531234,included,-1
+2022-04-04T06:44:19.596Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531235,included,-1
+2022-04-04T06:44:26.534Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531236,included,-1
+2022-04-04T06:44:38.487Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531237,included,-1
+2022-04-04T06:44:45.659Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531238,included,-1
+2022-04-04T06:45:14.378Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531240,included,-1
+2022-04-04T06:45:22.800Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531242,included,-1
+2022-04-04T06:45:36.862Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531246,included,-1
+2022-04-04T06:46:17.378Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531253,included,-1
+2022-04-04T06:46:42.738Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531258,included,-1
+2022-04-04T06:47:14.410Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531259,included,-1
+2022-04-04T06:48:40.707Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531269,included,-1
+2022-04-04T06:48:49.472Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531271,included,-1
+2022-04-04T06:49:28.253Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531275,included,-1
+2022-04-04T06:49:37.675Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531276,included,-1
+2022-04-04T06:49:56.628Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531277,included,0
+2022-04-04T06:50:07.582Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531278,included,-1
+2022-04-04T06:50:17.425Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531283,included,-1
+2022-04-04T06:50:35.253Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531286,included,-1
+2022-04-04T06:50:38.894Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531288,included,-1
+2022-04-04T06:50:54.332Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531289,included,-1
+2022-04-04T06:51:53.316Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531296,included,-1
+2022-04-04T06:52:05.488Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531298,included,-1
+2022-04-04T06:53:29.723Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531301,included,-1
+2022-04-04T06:53:37.863Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531303,included,-1
+2022-04-04T06:54:13.817Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531305,included,-1
+2022-04-04T06:54:18.817Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531306,included,-1
+2022-04-04T06:55:00.114Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531307,included,-1
+2022-04-04T06:55:31.036Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531308,included,-1
+2022-04-04T06:55:39.270Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531310,included,-1
+2022-04-04T06:56:14.942Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531313,included,-1
+2022-04-04T06:57:28.177Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531953,included,-1
+2022-04-04T06:58:02.318Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531369,included,-1
+2022-04-04T06:58:07.037Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531770,included,-1
+2022-04-04T06:58:57.021Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531504,included,-1
+2022-04-04T07:00:57.584Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531410,included,0
+2022-04-04T07:01:56.663Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531336,included,-1
+2022-04-04T07:01:59.866Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531254,included,-1
+2022-04-04T07:02:05.147Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531421,included,-1
+2022-04-04T07:02:28.569Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531414,included,-1
+2022-04-04T07:02:33.335Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531594,included,-1
+2022-04-04T07:03:57.164Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531343,included,-1
+2022-04-04T07:04:01.617Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531873,included,-1
+2022-04-04T07:04:19.945Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531892,included,-1
+2022-04-04T07:05:08.492Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531262,included,-1
+2022-04-04T07:06:05.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531341,included,-1
+2022-04-04T07:07:03.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531965,included,-1
+2022-04-04T07:07:05.429Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531503,included,-1
+2022-04-04T07:07:06.336Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531503,included,-1
+2022-04-04T07:07:40.523Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531427,included,-1
+2022-04-04T07:08:05.633Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531943,included,-1
+2022-04-04T14:10:30.203Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531544,"""MES""",1
+2022-04-04T14:10:30.828Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531544,included,1
+2022-04-05T06:36:17.065Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531500,included,-1
+2022-04-05T06:36:51.096Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531322,"""EDM""",1
+2022-04-05T06:36:52.581Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531322,included,1
+2022-04-05T06:36:58.097Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531455,included,-1
+2022-04-05T06:37:02.222Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531806,included,-1
+2022-04-05T06:38:32.222Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531478,"""adds to relativism""",1
+2022-04-05T06:38:33.128Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531478,included,1
+2022-04-05T06:39:00.316Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531728,"""adds to relativism""",1
+2022-04-05T06:39:01.066Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531728,included,1
+2022-04-05T06:39:03.910Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531960,"""adds to relativism""",1
+2022-04-05T06:39:04.769Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531960,included,1
+2022-04-05T06:39:11.379Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531405,included,-1
+2022-04-05T06:39:13.519Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531962,included,-1
+2022-04-05T06:39:22.175Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531658,included,-1
+2022-04-05T06:39:24.457Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531268,included,-1
+2022-04-05T06:39:41.472Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531513,included,-1
+2022-04-05T06:39:54.613Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531840,included,-1
+2022-04-05T06:40:06.582Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531508,included,-1
+2022-04-05T06:40:30.551Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531928,included,1
+2022-04-05T06:40:32.160Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531928,"""adds to relativism""",1
+2022-04-05T06:40:40.676Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531959,included,-1
+2022-04-05T06:41:11.973Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531901,included,-1
+2022-04-05T06:41:29.223Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531542,included,-1
+2022-04-05T06:41:55.942Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531191,included,0
+2022-04-05T06:43:30.426Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531749,included,-1
+2022-04-05T06:43:32.301Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531567,included,-1
+2022-04-05T06:44:00.770Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531424,"""adds to relativism""",1
+2022-04-05T06:44:01.832Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531424,included,1
+2022-04-05T06:44:05.270Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531688,included,-1
+2022-04-05T06:44:07.989Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531603,included,-1
+2022-04-05T06:44:09.317Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531681,included,-1
+2022-04-05T06:44:42.254Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531521,"""OVERVIEW""",1
+2022-04-05T06:44:43.098Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531521,included,1
+2022-04-05T06:44:57.614Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532005,included,-1
+2022-04-05T06:45:04.785Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531560,included,-1
+2022-04-05T06:45:12.754Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531429,included,-1
+2022-04-05T06:45:15.098Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531553,included,-1
+2022-04-05T06:45:42.129Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531368,included,-1
+2022-04-05T06:46:42.692Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531436,included,-1
+2022-04-05T06:46:45.676Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531933,included,-1
+2022-04-05T06:46:57.614Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,"""OVERVIEW""",1
+2022-04-05T06:47:05.614Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,"""EDM""",1
+2022-04-05T06:47:15.661Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,included,1
+2022-04-05T06:47:31.802Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,"""OVERVIEW""",deleted
+2022-04-05T06:47:47.349Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531316,included,-1
+2022-04-05T06:47:51.677Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531789,"""adds to relativism""",1
+2022-04-05T06:47:52.505Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531789,included,1
+2022-04-05T06:51:05.318Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531274,"""OVERVIEW""",1
+2022-04-05T06:51:06.068Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531274,included,1
+2022-04-05T06:51:11.850Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531536,included,0
+2022-04-05T06:51:15.428Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531696,included,-1
+2022-04-05T06:51:25.537Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531361,included,-1
+2022-04-05T06:51:39.756Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531197,included,-1
+2022-04-05T06:51:41.522Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,included,-1
+2022-04-05T06:51:50.272Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,included,-1
+2022-04-05T06:51:51.881Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,included,1
+2022-04-05T06:51:54.053Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,"""adds to relativism""",1
+2022-04-05T06:52:01.787Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531915,"""adds to relativism""",1
+2022-04-05T06:52:02.850Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531915,included,1
+2022-04-05T06:52:08.616Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531719,"""adds to relativism""",1
+2022-04-05T06:52:09.913Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531719,included,1
+2022-04-05T06:53:08.725Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531905,included,-1
+2022-04-05T06:53:14.288Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531882,included,-1
+2022-04-05T06:53:48.679Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531777,included,-1
+2022-04-05T06:53:55.726Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531357,included,-1
+2022-04-05T06:54:01.038Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,-1
+2022-04-05T06:54:11.507Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,-1
+2022-04-05T06:54:14.601Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,1
+2022-04-05T06:54:15.632Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,1
+2022-04-05T06:54:16.382Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,0
+2022-04-05T06:54:27.226Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531475,"""adds to relativism""",1
+2022-04-05T06:54:28.288Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531475,included,1
+2022-04-05T06:54:35.866Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531992,included,-1
+2022-04-05T06:54:58.663Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531231,included,-1
+2022-04-05T06:55:18.992Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531364,included,-1
+2022-04-05T06:55:38.914Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531575,included,-1
+2022-04-05T06:56:01.883Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531380,included,-1
+2022-04-05T06:56:04.789Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531636,included,-1
+2022-04-05T06:56:05.695Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531775,included,-1
+2022-04-05T06:56:11.633Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531215,"""adds to relativism""",1
+2022-04-05T06:56:12.383Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531215,included,1
+2022-04-05T06:56:13.711Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531584,included,-1
+2022-04-05T06:56:31.898Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531602,included,-1
+2022-04-05T06:56:53.039Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531493,included,-1
+2022-04-05T06:57:24.945Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531532,included,-1
+2022-04-05T06:57:28.446Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531655,included,-1
+2022-04-05T06:57:39.196Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531329,included,-1
+2022-04-05T06:57:54.133Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531750,included,-1
+2022-04-05T06:57:55.789Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531643,included,-1
+2022-04-05T06:58:16.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531705,included,-1
+2022-04-05T06:58:49.149Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531442,included,-1
+2022-04-05T06:59:18.430Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531243,included,0
+2022-04-05T06:59:20.071Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531887,included,-1
+2022-04-05T06:59:22.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531353,included,-1
+2022-04-05T06:59:25.508Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531209,included,0
+2022-04-05T06:59:41.868Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531458,"""adds to relativism""",1
+2022-04-05T06:59:42.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531458,included,1
+2022-04-05T06:59:49.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531193,included,-1
+2022-04-05T06:59:51.352Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531211,included,-1
+2022-04-05T07:00:11.477Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531998,included,-1
+2022-04-05T07:00:32.993Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531585,included,-1
+2022-04-05T07:00:47.508Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531327,included,-1
+2022-04-05T07:01:31.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531616,included,-1
+2022-04-05T07:01:41.149Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531342,included,-1
+2022-04-05T07:02:04.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531202,included,-1
+2022-04-05T07:02:42.055Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531376,"""OVERVIEW""",1
+2022-04-05T07:02:42.883Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531376,included,1
+2022-04-05T07:03:01.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531345,included,-1
+2022-04-05T07:03:03.649Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531248,included,-1
+2022-04-05T07:03:06.586Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532004,included,-1
+2022-04-05T07:03:11.821Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531471,included,-1
+2022-04-05T07:03:36.821Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531431,"""adds to relativism""",1
+2022-04-05T07:03:37.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531431,included,1
+2022-04-05T07:03:42.727Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531798,included,-1
+2022-04-05T07:03:50.821Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531620,included,-1
+2022-04-05T07:03:54.259Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531194,included,-1
+2022-04-05T07:04:01.774Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531417,included,-1
+2022-04-05T07:04:24.853Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,"""OVERVIEW""",1
+2022-04-05T07:04:25.712Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,included,1
+2022-04-05T07:04:31.087Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531229,included,-1
+2022-04-05T07:04:34.931Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531229,included,0
+2022-04-05T07:04:38.212Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531814,included,0
+2022-04-05T07:04:54.525Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531930,included,-1
+2022-04-05T07:04:56.743Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531386,included,-1
+2022-04-05T07:05:01.462Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531358,included,-1
+2022-04-05T07:05:07.165Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531476,included,-1
+2022-04-05T07:05:27.384Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531407,included,-1
+2022-04-05T07:05:39.775Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531352,included,-1
+2022-04-05T07:05:48.384Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531527,included,-1
+2022-04-05T07:05:52.181Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531394,included,-1
+2022-04-05T07:07:37.807Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531209,included,1
+2022-04-05T07:07:40.979Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531209,"""EDM""",1
+2022-04-05T07:08:13.744Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532011,"""EDM""",1
+2022-04-05T07:08:14.682Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532011,included,1
+2022-04-05T07:08:28.088Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531535,included,-1
+2022-04-05T07:08:31.994Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531663,included,-1
+2022-04-05T07:08:46.932Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531526,included,-1
+2022-04-05T07:09:18.120Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531320,"""EDM""",1
+2022-04-05T07:09:18.745Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531320,included,1
+2022-04-05T07:09:49.417Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531426,"""EDM""",1
+2022-04-05T07:09:49.932Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531426,included,1
+2022-04-05T07:09:52.073Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532010,included,-1
+2022-04-05T07:10:02.464Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531382,included,-1
+2022-04-05T07:10:22.120Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531280,included,-1
+2022-04-05T07:10:25.808Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531820,included,-1
+2022-04-05T07:10:28.433Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531448,included,-1
+2022-04-05T07:10:48.120Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531222,"""EDM""",1
+2022-04-05T07:10:48.729Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531222,included,1
+2022-04-05T07:10:53.730Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531923,included,-1
+2022-04-05T07:11:16.683Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531415,"""EDM""",1
+2022-04-05T07:11:17.292Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531415,included,1
+2022-04-05T07:11:36.886Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531973,included,0
+2022-04-05T07:11:56.652Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531857,included,-1
+2022-04-05T07:12:07.464Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531362,"""adds to relativism""",1
+2022-04-05T07:12:08.230Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531362,included,1
+2022-04-05T07:12:16.527Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531318,"""OVERVIEW""",1
+2022-04-05T07:12:17.464Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531318,included,1
+2022-04-05T07:12:47.558Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531914,included,-1
+2022-04-05T07:12:52.980Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531498,included,0
+2022-04-05T07:13:26.340Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531390,included,-1
+2022-04-05T07:13:31.637Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531449,included,-1
+2022-04-05T07:14:11.418Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531858,"""adds to relativism""",1
+2022-04-05T07:14:12.324Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531858,included,1
+2022-04-05T07:14:14.324Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531685,included,-1
+2022-04-05T07:14:43.262Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,"""adds to relativism""",1
+2022-04-05T07:14:49.106Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,"""adds to relativism""",deleted
+2022-04-05T07:14:55.278Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,included,0
+2022-04-05T07:15:06.606Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531221,included,-1
+2022-04-05T12:47:18.403Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531319,included,-1
+2022-04-05T12:47:39.513Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531687,included,-1
+2022-04-05T12:47:45.107Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531686,included,-1
+2022-04-05T12:47:59.638Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531444,included,0
+2022-04-05T12:48:03.247Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531404,included,-1
+2022-04-05T12:48:35.826Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531533,included,0
+2022-04-05T12:49:52.092Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,"""adds to relativism""",1
+2022-04-05T12:49:52.826Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,included,1
+2022-04-05T12:50:38.842Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531711,included,-1
+2022-04-05T12:50:41.686Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531994,included,-1
+2022-04-05T12:50:43.998Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531771,included,-1
+2022-04-05T12:50:55.670Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531190,included,-1
+2022-04-05T12:50:59.889Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531192,included,-1
+2022-04-05T12:51:16.624Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531217,included,-1
+2022-04-05T12:51:20.280Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531223,included,-1
+2022-04-05T12:51:23.592Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531829,included,-1
+2022-04-05T12:51:26.436Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531839,included,-1
+2022-04-05T12:51:42.764Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531911,included,-1
+2022-04-05T12:51:49.421Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531199,"""adds to relativism""",1
+2022-04-05T12:51:50.420Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531199,included,1
+2022-04-05T12:51:56.139Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531203,included,-1
+2022-04-05T12:51:59.827Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531957,included,-1
+2022-04-05T12:53:18.171Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531206,included,-1
+2022-04-05T12:53:43.077Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531207,included,-1
+2022-04-05T12:53:47.656Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531968,included,-1
+2022-04-05T12:54:17.953Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531213,included,-1
+2022-04-05T12:54:22.843Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531878,included,-1
+2022-04-05T12:54:51.562Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,"""environmentFriendly""",1
+2022-04-05T12:54:52.922Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,included,1
+2022-04-05T12:55:14.422Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531230,included,-1
+2022-04-05T12:55:15.719Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531765,included,-1
+2022-04-05T12:55:26.312Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531828,included,-1
+2022-04-05T12:55:33.984Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531249,included,-1
+2022-04-05T12:55:42.031Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531251,included,-1
+2022-04-05T12:55:47.172Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531822,included,-1
+2022-04-05T12:55:52.594Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531252,included,-1
+2022-04-05T12:55:57.891Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531261,included,-1
+2022-04-05T12:56:29.766Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531264,included,-1
+2022-04-05T12:59:29.344Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531265,"""New Scale""",1
+2022-04-05T12:59:30.328Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531265,included,1
+2022-04-05T12:59:38.532Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531266,included,-1
+2022-04-05T12:59:40.000Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531767,included,-1
+2022-04-05T12:59:59.407Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,"""environmentFriendly""",1
+2022-04-05T13:00:01.125Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,included,1
+2022-04-05T13:00:01.719Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531272,included,-1
+2022-04-05T13:00:10.719Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532000,included,-1
+2022-04-05T13:00:11.703Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531929,included,-1
+2022-04-05T13:00:23.766Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531195,included,0
+2022-04-05T13:00:24.422Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531216,included,0
+2022-04-05T13:00:26.438Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531244,included,0
+2022-04-05T13:00:32.594Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531239,included,0
+2022-04-05T13:00:43.000Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531805,included,-1
+2022-04-05T13:00:45.329Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532003,included,-1
+2022-04-05T13:00:47.141Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531290,included,-1
+2022-04-05T13:00:48.579Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531967,included,-1
+2022-04-05T13:00:53.157Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531948,included,-1
+2022-04-05T13:01:11.172Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531292,included,-1
+2022-04-05T13:01:50.298Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531951,included,-1
+2022-04-05T13:01:52.282Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531295,included,-1
+2022-04-05T13:02:09.220Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531297,included,-1
+2022-04-05T13:03:19.095Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531729,"""New Scale""",1
+2022-04-05T13:03:20.408Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531729,included,1
+2022-04-05T13:03:44.830Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531774,included,-1
+2022-04-05T13:03:52.783Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531899,included,-1
+2022-04-05T13:04:13.408Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531294,"""adds to relativism""",1
+2022-04-05T13:04:14.705Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531294,included,1
+2022-04-05T13:04:23.658Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531304,included,0
+2022-04-05T13:04:59.330Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531811,included,-1
+2022-04-05T13:05:05.127Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531922,included,-1
+2022-04-05T13:05:08.143Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531964,included,-1
+2022-04-05T13:05:12.408Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532007,included,-1
+2022-04-05T13:05:15.846Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531744,included,-1
+2022-04-05T13:05:49.080Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531692,included,0
+2022-04-05T13:05:59.986Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531792,included,-1
+2022-04-05T13:06:01.112Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531589,included,-1
+2022-04-05T13:06:01.987Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531961,included,-1
+2022-04-05T13:06:21.080Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531825,included,-1
+2022-04-05T13:06:22.221Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531314,included,-1
+2022-04-05T13:06:23.096Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531972,included,-1
+2022-04-05T13:06:23.815Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531913,included,-1
+2022-04-05T13:06:41.924Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531317,"""Social Entrepreneurship""",1
+2022-04-05T13:06:42.752Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531317,included,1
+2022-04-05T13:08:28.300Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531737,included,1
+2022-04-05T13:08:33.097Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531737,"""MES""",1
+2022-04-05T13:12:29.864Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,"""OVERVIEW""",1
+2022-04-05T13:12:30.442Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,included,1
+2022-04-05T13:13:02.629Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531850,included,-1
+2022-04-05T13:16:10.192Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531801,included,-1
+2022-04-05T13:16:25.880Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531609,included,-1
+2022-04-05T13:16:26.786Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531328,included,-1
+2022-04-05T13:16:28.489Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531324,included,-1
+2022-04-05T13:16:51.395Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531983,included,-1
+2022-04-05T13:16:59.973Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531791,included,-1
+2022-04-05T13:19:24.708Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531330,"""Validation R&R""",1
+2022-04-05T13:19:25.724Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531330,included,1
+2022-04-05T13:19:56.552Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531334,"""adds to relativism""",1
+2022-04-05T13:19:57.427Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531334,included,1
+2022-04-05T13:19:59.896Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531635,included,-1
+2022-04-05T13:20:02.896Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531979,included,-1
+2022-04-05T13:20:04.646Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531335,included,-1
+2022-04-05T13:20:13.505Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532009,included,-1
+2022-04-05T13:20:22.990Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""environmentFriendly""",1
+2022-04-05T13:20:24.537Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,included,1
+2022-04-05T13:20:28.021Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531721,included,-1
+2022-04-05T13:20:51.568Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531339,included,-1
+2022-04-05T13:20:52.959Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531332,included,-1
+2022-04-05T13:22:11.381Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,"""OVERVIEW""",1
+2022-04-05T13:22:11.819Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,included,1
+2022-04-05T13:22:56.537Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531999,included,-1
+2022-04-05T13:23:00.850Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531966,included,-1
+2022-04-05T13:23:19.428Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531592,included,-1
+2022-04-05T13:23:24.725Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531876,included,-1
+2022-04-05T13:23:26.413Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531630,included,-1
+2022-04-05T13:23:30.944Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531975,included,-1
+2022-04-05T13:23:40.147Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531359,included,-1
+2022-04-05T13:23:44.632Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531347,included,-1
+2022-04-05T13:23:53.522Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531348,included,-1
+2022-04-05T13:24:06.600Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531350,included,-1
+2022-04-05T13:24:09.522Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531760,included,-1
+2022-04-05T13:24:32.476Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531351,included,-1
+2022-04-05T13:24:33.413Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531842,included,-1
+2022-04-05T13:25:23.757Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531715,"""socialContracts""",1
+2022-04-05T13:25:26.320Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531715,included,1
+2022-04-05T13:25:31.820Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531354,included,1
+2022-04-05T13:25:32.038Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531354,"""adds to relativism""",1
+2022-04-05T13:26:08.414Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531355,included,-1
+2022-04-05T13:26:54.992Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531576,included,1
+2022-04-05T13:26:56.023Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531576,"""OVERVIEW""",1
+2022-04-05T13:27:29.086Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531808,included,-1
+2022-04-05T13:27:32.008Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531694,included,-1
+2022-04-05T13:27:36.430Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531732,included,-1
+2022-04-05T13:28:20.492Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531365,included,0
+2022-04-05T13:28:28.696Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531854,included,-1
+2022-04-05T13:28:30.289Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531372,included,-1
+2022-04-05T13:29:36.352Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531371,included,1
+2022-04-05T13:29:36.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531371,"""OVERVIEW""",1
+2022-04-05T13:29:43.196Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531363,included,-1
+2022-04-05T13:29:44.227Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531373,included,-1
+2022-04-05T13:29:49.430Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531374,included,-1
+2022-04-05T13:30:07.212Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531367,included,-1
+2022-04-05T13:30:17.227Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531752,included,-1
+2022-04-05T13:30:18.087Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531950,included,-1
+2022-04-05T13:30:21.837Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531985,included,-1
+2022-04-05T13:30:22.774Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531800,included,-1
+2022-04-05T13:30:24.540Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531381,included,-1
+2022-04-05T13:30:35.181Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531816,included,-1
+2022-04-05T13:30:54.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531835,included,-1
+2022-04-05T13:31:45.415Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531388,included,-1
+2022-04-05T13:31:46.743Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531391,included,-1
+2022-04-05T13:32:08.478Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531392,included,0
+2022-04-05T13:32:16.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531393,"""adds to relativism""",1
+2022-04-05T13:32:17.071Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531393,included,1
+2022-04-05T13:32:44.446Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531387,included,0
+2022-04-05T13:33:16.181Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531378,included,0
+2022-04-05T13:33:26.884Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531395,"""adds to relativism""",1
+2022-04-05T13:33:28.118Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531395,included,1
+2022-04-05T13:33:40.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531817,included,-1
+2022-04-05T13:33:42.415Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531396,included,-1
+2022-04-05T13:34:05.415Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531408,included,-1
+2022-04-05T13:34:06.978Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531399,included,-1
+2022-04-05T13:34:24.493Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531406,included,-1
+2022-04-05T13:34:30.103Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531625,included,-1
+2022-04-05T13:34:31.915Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531401,included,-1
+2022-04-05T13:34:52.821Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531420,included,-1
+2022-04-05T13:35:09.243Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531425,"""Social Entrepreneurship""",1
+2022-04-05T13:35:11.353Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531425,included,1
+2022-04-05T13:35:15.493Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531430,included,-1
+2022-04-05T13:35:17.290Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531885,included,-1
+2022-04-05T13:35:22.712Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531432,included,-1
+2022-04-05T13:36:16.728Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531531,included,-1
+2022-04-05T13:36:29.665Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531474,included,-1
+2022-04-05T13:36:34.712Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531466,included,-1
+2022-04-05T13:36:49.072Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531481,included,-1
+2022-04-05T13:54:17.045Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531403,"""Social Entrepreneurship""",1
+2022-04-05T13:54:17.842Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531403,included,1
+2022-04-05T13:54:24.092Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531413,included,-1
+2022-04-05T13:54:25.014Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531409,included,-1
+2022-04-05T13:54:27.123Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531411,included,-1
+2022-04-05T13:54:31.029Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531419,included,0
+2022-04-05T13:54:33.232Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531402,included,0
+2022-04-05T13:55:01.061Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531441,included,0
+2022-04-05T13:55:02.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531650,included,-1
+2022-04-05T13:55:03.201Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531640,included,-1
+2022-04-05T13:55:57.467Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531647,included,-1
+2022-04-05T13:56:03.108Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531443,included,0
+2022-04-05T13:56:19.670Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531443,"""adds to relativism""",1
+2022-04-05T13:56:20.514Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531443,included,1
+2022-04-06T07:15:05.170Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531447,included,-1
+2022-04-06T07:15:14.483Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531452,"""socialContracts""",1
+2022-04-06T07:15:15.420Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531452,included,1
+2022-04-06T07:15:37.186Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531453,"""adds to relativism""",1
+2022-04-06T07:15:38.420Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531453,included,1
+2022-04-06T07:15:46.717Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531456,included,-1
+2022-04-06T07:15:48.061Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531457,included,-1
+2022-04-06T07:15:52.280Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531460,included,-1
+2022-04-06T07:15:53.483Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531464,included,-1
+2022-04-06T07:15:58.077Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531465,included,-1
+2022-04-06T07:16:05.092Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531468,"""socialContracts""",1
+2022-04-06T07:16:05.952Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531468,included,1
+2022-04-06T07:16:18.655Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531472,included,-1
+2022-04-06T07:16:20.780Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531469,included,-1
+2022-04-06T07:16:32.608Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531470,"""adds to relativism""",1
+2022-04-06T07:16:33.608Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531470,included,1
+2022-04-06T07:17:06.343Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531479,"""adds to relativism""",1
+2022-04-06T07:17:07.233Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531479,included,1
+2022-04-06T07:17:09.327Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531477,included,-1
+2022-04-06T07:17:16.390Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531480,included,-1
+2022-04-06T07:17:17.796Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531482,included,-1
+2022-04-06T07:17:35.874Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531484,included,0
+2022-04-06T07:17:57.437Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531486,"""New Scale""",1
+2022-04-06T07:17:58.437Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531486,included,1
+2022-04-06T07:18:02.890Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531487,included,-1
+2022-04-06T07:18:26.671Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531488,included,0
+2022-04-06T07:19:19.203Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531489,included,-1
+2022-04-06T07:19:19.953Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531492,included,-1
+2022-04-06T07:19:22.984Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531494,included,-1
+2022-04-06T07:20:04.484Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531496,included,-1
+2022-04-06T07:20:05.250Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531497,included,-1
+2022-04-06T07:20:15.015Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531499,included,-1
+2022-04-06T07:20:17.531Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531505,included,-1
+2022-04-06T07:20:25.469Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531509,included,-1
+2022-04-06T07:21:55.594Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531511,included,0
+2022-04-06T07:22:05.406Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531512,"""socialContracts""",1
+2022-04-06T07:22:06.219Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531512,included,1
+2022-04-06T07:22:14.016Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531518,included,-1
+2022-04-06T07:22:14.625Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531520,included,-1
+2022-04-06T07:22:52.500Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531523,included,-1
+2022-04-06T07:22:53.313Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531524,included,-1
+2022-04-06T07:23:03.656Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531528,included,-1
+2022-04-06T07:23:09.844Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531529,included,-1
+2022-04-06T07:23:12.500Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531530,included,-1
+2022-04-06T07:23:30.516Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531522,included,-1
+2022-04-06T07:24:43.203Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531525,"""OVERVIEW""",1
+2022-04-06T07:24:43.985Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531525,included,1
+2022-04-06T07:26:13.125Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531547,included,-1
+2022-04-06T07:26:33.219Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531572,"""adds to relativism""",1
+2022-04-06T07:26:33.954Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531572,included,1
+2022-04-06T07:26:56.751Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531581,included,-1
+2022-04-06T07:26:58.813Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531667,included,-1
+2022-04-06T07:27:02.501Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531794,included,-1
+2022-04-06T07:27:11.126Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531945,included,-1
+2022-04-06T07:27:15.845Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531969,included,-1
+2022-04-06T07:27:52.267Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531942,"""adds to relativism""",1
+2022-04-06T07:27:52.938Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531942,included,1
+2022-04-06T07:28:03.767Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531912,included,-1
+2022-04-06T07:28:16.657Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531909,"""adds to relativism""",1
+2022-04-06T07:28:17.548Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531909,included,1
+2022-04-06T07:28:24.392Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531632,included,0
+2022-04-06T07:29:21.189Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531540,included,0
+2022-04-06T07:30:37.877Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531539,"""Ethical Position Questionnaire""",1
+2022-04-06T07:30:39.189Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531539,included,1
+2022-04-06T07:31:26.815Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,"""Ethical Position Questionnaire""",1
+2022-04-06T07:31:30.502Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,"""New Scale""",deleted
+2022-04-06T07:32:36.081Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,"""Ethical Position Questionnaire""",1
+2022-04-06T07:32:38.534Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,"""New Scale""",deleted
+2022-04-06T07:33:35.050Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531515,"""Social Entrepreneurship""",1
+2022-04-06T07:33:36.690Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531515,included,1
+2022-04-06T07:38:26.536Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531188,"""example autonomous vehicle""",1
+2022-04-06T07:38:30.676Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531304,"""example autonomous vehicle""",1
+2022-04-06T07:38:31.739Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531304,included,1
+2022-04-06T07:38:33.083Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531188,included,1
+2022-04-06T07:41:54.379Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,"""New Scale""",1
+2022-04-06T07:41:55.223Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,included,1
+2022-04-06T07:44:55.614Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,"""example sustainability""",1
+2022-04-06T07:44:59.849Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,"""environmentFriendly""",deleted
+2022-04-06T07:45:04.661Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,"""example sustainability""",1
+2022-04-06T07:45:07.536Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,"""environmentFriendly""",deleted
+2022-04-06T07:45:12.536Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,"""example sustainability""",1
+2022-04-06T07:45:16.005Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""environmentFriendly""",deleted
+2022-04-06T07:45:20.427Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""example sustainability""",1
+2022-04-06T07:46:28.131Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531166,included,-1
+2022-04-06T07:47:49.584Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531182,included,1
+2022-04-06T07:47:56.053Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531191,included,-1
+2022-04-06T07:50:48.773Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531177,"""OVERVIEW""",1
+2022-04-06T07:50:49.929Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531177,included,1
+2022-04-06T08:39:56.315Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,"""New Scale""",deleted
+2022-04-06T08:40:07.019Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,"""example sustainability""",1
+2022-04-11T09:35:18.162Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531410,included,-1
+2022-04-12T14:20:27.320Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531349,"""incOverview""",1
+2022-04-12T14:20:30.914Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531349,"""OVERVIEW""",deleted
+2022-04-12T14:24:42.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,809374578,"""incOverview""",1
+2022-04-12T14:24:43.743Z,190162,julius.fenn@psychologie.uni-freiburg.de,809374578,included,1
+2022-04-12T14:30:42.463Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531525,"""incOverview""",1
+2022-04-12T14:30:44.932Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531525,"""OVERVIEW""",deleted
+2022-04-12T14:33:46.401Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531344,"""excOverview""",1
+2022-04-12T14:33:49.167Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531344,"""OVERVIEW""",deleted
+2022-04-12T14:33:54.870Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531177,"""excOverview""",1
+2022-04-12T14:33:56.979Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531177,"""OVERVIEW""",deleted
+2022-04-12T14:34:16.261Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531819,"""OVERVIEW""",deleted
+2022-04-12T14:34:17.058Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531819,included,-1
+2022-04-12T14:35:03.870Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531576,"""incOverview""",1
+2022-04-12T14:35:06.855Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531576,"""OVERVIEW""",deleted
+2022-04-12T14:40:54.451Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531410,"""excOverview""",1
+2022-04-12T14:40:55.404Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531410,included,1
+2022-04-12T14:43:01.513Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""incOverview""",1
+2022-04-12T14:43:23.044Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""incMESextension""",1
+2022-04-12T14:43:24.872Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531377,"""MES""",deleted
+2022-04-12T14:54:13.532Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531548,"""incOverview""",1
+2022-04-12T14:54:18.720Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531548,"""incMESextension""",1
+2022-04-12T14:54:20.657Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531548,"""MES""",deleted
+2022-04-12T14:59:36.018Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,"""incMESextension""",1
+2022-04-12T14:59:38.205Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,"""MES""",deleted
+2022-04-12T15:00:29.940Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531545,"""incOverview""",1
+2022-04-12T15:00:32.486Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531545,"""OVERVIEW""",deleted
+2022-04-12T15:03:48.378Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531540,included,1
+2022-04-12T15:03:53.784Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531540,"""incOverview""",1
+2022-04-12T15:09:18.614Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531378,"""incMESextension""",1
+2022-04-12T15:09:19.770Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531378,included,1
+2022-04-12T15:17:30.038Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531318,"""EDM""",1
+2022-04-12T15:17:34.616Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531318,"""OVERVIEW""",deleted
+2022-04-12T15:17:39.522Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531274,"""excOverview""",1
+2022-04-12T15:17:42.225Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531274,"""OVERVIEW""",deleted
+2022-04-12T15:17:55.382Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531376,"""excOverview""",1
+2022-04-12T15:17:58.116Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531376,"""OVERVIEW""",deleted
+2022-04-12T15:18:15.569Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,"""New Scale""",1
+2022-04-12T15:18:17.741Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,"""OVERVIEW""",deleted
+2022-04-12T15:19:04.694Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531521,"""incOverview""",1
+2022-04-12T15:19:06.491Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531521,"""OVERVIEW""",deleted
+2022-04-12T15:19:51.632Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531371,"""EDM""",1
+2022-04-12T15:19:52.741Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531371,"""OVERVIEW""",deleted
+2022-04-12T15:20:46.695Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,"""OVERVIEW""",deleted
+2022-04-12T15:20:47.163Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,included,-1
+2022-04-12T15:22:20.820Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531398,included,0
+2022-04-12T15:22:23.351Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531398,"""OVERVIEW""",deleted
+2022-04-12T15:23:17.008Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,"""incOverview""",1
+2022-04-12T15:23:18.945Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,"""OVERVIEW""",deleted
+2022-04-12T15:24:43.805Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,"""excOverview""",1
+2022-04-12T15:24:45.758Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531506,"""incOverview""",deleted
+2022-04-12T15:39:42.215Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,included,1
+2022-04-12T15:39:44.746Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,"""incOverview""",1
+2022-04-12T15:55:22.844Z,190162,julius.fenn@psychologie.uni-freiburg.de,809390123,"""incMESprimary""",1
+2022-04-12T15:55:25.891Z,190162,julius.fenn@psychologie.uni-freiburg.de,809390124,"""incMESprimary""",1
+2022-04-12T15:55:27.235Z,190162,julius.fenn@psychologie.uni-freiburg.de,809390124,included,1
+2022-04-12T15:55:28.688Z,190162,julius.fenn@psychologie.uni-freiburg.de,809390123,included,1
+2022-04-13T10:41:49.211Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652393,"""incDIT""",1
+2022-04-13T10:41:49.242Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652394,"""incDIT""",1
+2022-04-13T10:41:50.461Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652393,included,1
+2022-04-13T10:41:50.492Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652394,included,1
+2022-04-13T10:56:48.730Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,"""incEPQ""",1
+2022-04-13T10:56:52.480Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531185,"""Ethical Position Questionnaire""",deleted
+2022-04-13T10:57:02.014Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,"""incEPQ""",1
+2022-04-13T10:57:03.684Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531501,"""Ethical Position Questionnaire""",deleted
+2022-04-13T10:57:13.777Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531515,included,-1
+2022-04-13T10:57:16.418Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531515,"""Social Entrepreneurship""",deleted
+2022-04-13T10:59:19.903Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652704,"""incEPQ""",1
+2022-04-13T10:59:20.950Z,190162,julius.fenn@psychologie.uni-freiburg.de,809652704,included,1
+2022-04-13T11:01:43.841Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531539,"""incEPQ""",1
+2022-04-13T11:01:47.623Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531539,"""Ethical Position Questionnaire""",deleted
+2022-04-13T11:09:45.219Z,190162,julius.fenn@psychologie.uni-freiburg.de,809657027,"""incMJI""",1
+2022-04-13T11:09:45.250Z,190162,julius.fenn@psychologie.uni-freiburg.de,809657026,"""incMJI""",1
+2022-04-13T11:09:46.078Z,190162,julius.fenn@psychologie.uni-freiburg.de,809657027,included,1
+2022-04-13T11:09:46.109Z,190162,julius.fenn@psychologie.uni-freiburg.de,809657026,included,1
+2022-04-13T11:33:27.334Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531245,"""incMixedScales""",1
+2022-04-13T11:33:32.568Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531245,"""New Scale""",deleted
+2022-04-13T11:33:59.240Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531486,"""incMixedScales""",1
+2022-04-13T11:34:01.256Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531486,"""New Scale""",deleted
+2022-04-13T11:34:31.771Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531225,"""incMixedScales""",1
+2022-04-13T11:34:34.412Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531225,"""New Scale""",deleted
+2022-04-13T11:39:12.523Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,"""excMixedScales""",1
+2022-04-13T11:39:17.945Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532008,"""New Scale""",deleted
+2022-04-13T11:40:20.977Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531729,"""excMixedScales""",1
+2022-04-13T11:40:24.555Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531729,"""New Scale""",deleted
+2022-04-13T11:42:41.524Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,"""incMixedScales""",1
+2022-04-13T11:42:43.587Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,"""New Scale""",deleted
+2022-04-13T11:54:49.933Z,190162,julius.fenn@psychologie.uni-freiburg.de,809672509,"""excMixedScales""",1
+2022-04-13T11:54:50.792Z,190162,julius.fenn@psychologie.uni-freiburg.de,809672509,included,1
+2022-04-13T11:58:28.809Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531370,"""excMixedScales""",1
+2022-04-13T11:58:28.856Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531291,"""excMixedScales""",1
+2022-04-13T11:58:31.137Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531370,"""New Scale""",deleted
+2022-04-13T11:58:31.184Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531291,"""New Scale""",deleted
+2022-04-13T12:00:43.513Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531265,"""excMixedScales""",1
+2022-04-13T12:00:46.325Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531265,"""New Scale""",deleted
+2022-04-13T12:03:21.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531219,"""excMixedScales""",1
+2022-04-13T12:03:25.216Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531219,"""New Scale""",deleted
+2022-04-13T12:17:58.205Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531270,"""incApplication""",1
+2022-04-13T12:18:02.220Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531270,"""CAN(E)""",deleted
+2022-04-13T14:51:25.338Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531227,"""incApplication""",1
+2022-04-13T14:51:27.494Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531227,"""CAN(E)""",deleted
+2022-04-13T14:51:43.229Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531198,"""incApplication""",1
+2022-04-13T14:51:45.291Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531198,"""CAN(E)""",deleted
+2022-04-13T14:53:08.307Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531181,"""incApplication""",1
+2022-04-13T14:53:10.244Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531181,"""CAN(E)""",deleted
+2022-04-13T14:53:31.916Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531241,"""CAN(E)""",deleted
+2022-04-13T14:53:32.541Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531241,included,-1
+2022-04-13T14:58:45.777Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,"""incApplication""",1
+2022-04-13T14:58:50.011Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,"""CAN(E)""",deleted
+2022-04-13T14:59:18.167Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,"""excApplication""",1
+2022-04-13T14:59:21.183Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531256,"""incApplication""",deleted
+2022-04-13T14:59:26.558Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531947,"""excApplication""",1
+2022-04-13T14:59:28.746Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531947,"""CAN(E)""",deleted
+2022-04-13T15:04:06.481Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531188,"""incApplication""",1
+2022-04-13T15:04:08.778Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531188,"""example autonomous vehicle""",deleted
+2022-04-13T15:04:11.013Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531304,"""incApplication""",1
+2022-04-13T15:04:13.403Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531304,"""example autonomous vehicle""",deleted
+2022-04-13T15:07:32.748Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,included,-1
+2022-04-13T15:07:34.342Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531189,"""example sustainability""",deleted
+2022-04-13T15:12:35.936Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,"""excApplication""",1
+2022-04-13T15:12:38.655Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531273,"""example sustainability""",deleted
+2022-04-13T15:18:17.391Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,"""incApplication""",1
+2022-04-13T15:18:19.469Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531218,"""example sustainability""",deleted
+2022-04-13T15:18:23.688Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""incApplication""",1
+2022-04-13T15:18:27.204Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""example sustainability""",deleted
+2022-04-13T15:24:19.846Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531715,included,-1
+2022-04-13T15:24:23.066Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531715,"""socialContracts""",deleted
+2022-04-13T15:28:51.362Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531468,"""socialContracts""",deleted
+2022-04-13T15:28:52.316Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531468,included,-1
+2022-04-13T15:28:55.566Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531512,included,-1
+2022-04-13T15:28:56.034Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531512,"""socialContracts""",deleted
+2022-04-13T15:29:06.300Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531452,"""incOverview""",1
+2022-04-13T15:29:07.831Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531452,included,1
+2022-04-13T15:29:14.144Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531452,"""socialContracts""",deleted
+2022-04-13T15:48:27.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531183,"""Social Entrepreneurship""",deleted
+2022-04-13T15:48:28.664Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531183,included,-1
+2022-04-13T15:48:30.649Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531397,"""Social Entrepreneurship""",deleted
+2022-04-13T15:48:32.289Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531397,included,-1
+2022-04-13T15:48:34.696Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531317,"""Social Entrepreneurship""",deleted
+2022-04-13T15:48:35.165Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531317,included,-1
+2022-04-13T15:48:37.696Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531425,"""Social Entrepreneurship""",deleted
+2022-04-13T15:48:38.399Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531425,included,-1
+2022-04-13T15:48:40.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531403,"""Social Entrepreneurship""",deleted
+2022-04-13T15:48:41.586Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531403,included,-1
+2022-04-13T15:49:42.821Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,included,-1
+2022-04-13T15:49:59.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,included,1
+2022-04-13T15:51:08.572Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531322,included,-1
+2022-04-13T15:51:10.134Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531346,included,-1
+2022-04-13T15:51:12.322Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531371,included,-1
+2022-04-13T15:51:13.353Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531318,included,-1
+2022-04-13T15:51:32.947Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531415,included,-1
+2022-04-13T15:51:57.838Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531222,included,-1
+2022-04-13T15:52:19.056Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531426,included,-1
+2022-04-13T15:52:28.713Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531426,note-1566536,1
+2022-04-13T15:52:36.197Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531320,"""EDM""",deleted
+2022-04-13T15:52:37.306Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531320,included,-1
+2022-04-13T15:52:41.400Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532011,included,-1
+2022-04-13T15:53:19.900Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531209,included,-1
+2022-04-13T15:54:13.401Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531536,included,-1
+2022-04-13T15:54:29.166Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531624,included,-1
+2022-04-13T15:54:34.323Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531498,"""EDM""",1
+2022-04-13T15:54:34.901Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531498,included,-1
+2022-04-13T15:54:51.698Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531267,included,-1
+2022-04-13T15:54:52.120Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531267,included,-1
+2022-04-13T15:54:53.713Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531692,included,-1
+2022-04-13T15:56:11.683Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531392,"""EDM""",1
+2022-04-13T15:56:12.589Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531392,included,-1
+2022-04-13T15:56:18.917Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531387,included,-1
+2022-04-13T15:56:21.667Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531315,included,-1
+2022-04-13T15:57:31.152Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531216,included,-1
+2022-04-13T15:57:52.168Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531239,included,-1
+2022-04-13T15:58:39.215Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531484,included,-1
+2022-04-13T15:58:40.105Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531660,included,-1
+2022-04-13T15:58:48.637Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531778,included,-1
+2022-04-13T15:58:55.746Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531195,included,-1
+2022-04-13T15:59:14.059Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531244,included,-1
+2022-04-13T15:59:17.949Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531533,included,-1
+2022-04-13T15:59:22.246Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531488,included,-1
+2022-04-13T15:59:23.293Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531365,included,-1
+2022-04-13T15:59:25.090Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531973,included,-1
+2022-04-13T15:59:29.027Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531445,included,-1
+2022-04-13T15:59:45.762Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531398,included,-1
+2022-04-13T15:59:58.324Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531441,included,-1
+2022-04-13T15:59:59.105Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531229,included,-1
+2022-04-13T15:59:59.793Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531170,included,-1
+2022-04-13T16:00:02.949Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531814,included,-1
+2022-04-13T16:00:30.559Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531419,included,-1
+2022-04-13T16:00:31.559Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531511,included,-1
+2022-04-13T16:00:32.543Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531673,included,-1
+2022-04-13T16:00:35.871Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531277,included,-1
+2022-04-13T16:00:37.152Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531243,included,-1
+2022-04-13T16:02:08.652Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531478,"""excRelativism""",1
+2022-04-13T16:02:10.934Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531478,"""adds to relativism""",deleted
+2022-04-13T16:02:18.105Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531728,"""excRelativism""",1
+2022-04-13T16:02:21.637Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531728,"""adds to relativism""",deleted
+2022-04-13T16:02:25.715Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531960,"""excRelativism""",1
+2022-04-13T16:02:28.215Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531960,"""adds to relativism""",deleted
+2022-04-13T16:02:36.559Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531184,included,-1
+2022-04-13T16:02:54.184Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531928,"""adds to relativism""",deleted
+2022-04-13T16:02:55.074Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531928,included,-1
+2022-04-13T16:03:10.121Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531424,"""excRelativism""",1
+2022-04-13T16:03:12.621Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531424,"""adds to relativism""",deleted
+2022-04-13T16:04:28.278Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531789,"""excFemaleEthics""",1
+2022-04-13T16:04:32.278Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531789,"""adds to relativism""",deleted
+2022-04-13T16:05:42.653Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531167,included,-1
+2022-04-13T16:05:49.497Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531196,included,-1
+2022-04-13T16:05:58.653Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,included,-1
+2022-04-13T16:06:00.888Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531483,"""adds to relativism""",deleted
+2022-04-13T16:06:04.138Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531915,"""adds to relativism""",deleted
+2022-04-13T16:06:05.028Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531915,included,-1
+2022-04-13T16:06:24.231Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531719,"""excRelativism""",1
+2022-04-13T16:06:27.841Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531719,"""adds to relativism""",deleted
+2022-04-13T16:06:33.685Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531475,included,-1
+2022-04-13T16:06:35.419Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531475,"""adds to relativism""",deleted
+2022-04-13T16:07:37.560Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531400,"""EDM""",1
+2022-04-13T16:07:38.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531400,included,-1
+2022-04-13T16:08:16.935Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531215,"""excRelativism""",1
+2022-04-13T16:08:20.248Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531215,"""adds to relativism""",deleted
+2022-04-13T16:08:41.639Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531220,"""adds to relativism""",deleted
+2022-04-13T16:08:42.326Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531220,included,-1
+2022-04-13T16:08:48.185Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531942,"""excFemaleEthics""",1
+2022-04-13T16:08:51.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531942,"""adds to relativism""",deleted
+2022-04-13T16:08:58.185Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531334,"""adds to relativism""",deleted
+2022-04-13T16:09:08.857Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531393,"""excFemaleEthics""",1
+2022-04-13T16:09:12.639Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531393,"""adds to relativism""",deleted
+2022-04-13T16:09:19.045Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531334,included,-1
+2022-04-13T16:09:34.779Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531263,"""adds to relativism""",deleted
+2022-04-13T16:09:35.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531263,included,-1
+2022-04-13T16:09:49.639Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531514,"""excRelativism""",1
+2022-04-13T16:09:52.529Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531514,"""adds to relativism""",deleted
+2022-04-13T16:09:57.155Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531909,"""adds to relativism""",deleted
+2022-04-13T16:09:57.920Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531909,included,-1
+2022-04-13T16:10:02.858Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531858,"""adds to relativism""",deleted
+2022-04-13T16:10:03.967Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531858,included,-1
+2022-04-13T16:10:09.858Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531354,"""adds to relativism""",deleted
+2022-04-13T16:10:10.623Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531354,included,-1
+2022-04-13T16:10:16.280Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531199,"""adds to relativism""",deleted
+2022-04-13T16:10:16.998Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531199,included,-1
+2022-04-13T16:10:30.186Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,"""excFemaleEthics""",1
+2022-04-13T16:10:33.280Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531467,"""adds to relativism""",deleted
+2022-04-13T16:10:48.436Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531572,"""excFemaleEthics""",1
+2022-04-13T16:10:50.983Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531572,"""adds to relativism""",deleted
+2022-04-13T16:10:58.577Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531395,"""adds to relativism""",deleted
+2022-04-13T16:10:59.217Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531395,included,-1
+2022-04-13T16:11:05.702Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531294,"""adds to relativism""",deleted
+2022-04-13T16:11:06.717Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531294,included,-1
+2022-04-13T16:11:21.514Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531443,"""excRelativism""",1
+2022-04-13T16:11:25.561Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531443,"""adds to relativism""",deleted
+2022-04-13T16:11:34.671Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531470,"""adds to relativism""",deleted
+2022-04-13T16:11:35.468Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531470,included,-1
+2022-04-13T16:11:57.749Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531362,"""excRelativism""",1
+2022-04-13T16:12:01.499Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531362,"""adds to relativism""",deleted
+2022-04-13T16:12:20.280Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531431,"""adds to relativism""",deleted
+2022-04-13T16:12:21.062Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531431,included,-1
+2022-04-13T16:12:35.405Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531453,"""excFemaleEthics""",1
+2022-04-13T16:12:37.327Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531453,"""adds to relativism""",deleted
+2022-04-13T16:13:16.953Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531479,"""excFemaleEthics""",1
+2022-04-13T16:13:19.999Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531479,"""adds to relativism""",deleted
+2022-04-13T16:13:46.703Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531458,"""adds to relativism""",deleted
+2022-04-13T16:13:47.484Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531458,included,-1
+2022-04-13T16:13:56.937Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531439,"""adds to relativism""",deleted
+2022-04-13T16:13:57.718Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531439,included,-1
+2022-04-13T16:14:30.375Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531169,included,-1
+2022-04-13T16:15:23.031Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531866,included,-1
+2022-04-13T16:16:29.407Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531813,"""excApplication""",1
+2022-04-13T16:19:20.438Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531446,"""incMESstatisticalwise""",1
+2022-04-13T16:19:23.000Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531446,"""Validation R&R""",deleted
+2022-04-13T16:20:21.422Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531422,"""incMESstatisticalwise""",1
+2022-04-13T16:20:23.766Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531422,"""MES""",deleted
+2022-04-13T16:23:26.142Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531473,"""incMESstatisticalwise""",1
+2022-04-13T16:23:29.689Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531473,"""MES""",deleted
+2022-04-13T16:31:20.020Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,"""incMESstatisticalwise""",1
+2022-04-13T16:31:21.989Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,"""Validation R&R""",deleted
+2022-04-13T16:40:47.709Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532017,"""incMEScontentwise""",1
+2022-04-13T16:40:49.819Z,190162,julius.fenn@psychologie.uni-freiburg.de,800532017,"""MES""",deleted
+2022-04-13T16:41:57.803Z,190162,julius.fenn@psychologie.uni-freiburg.de,809807535,"""incMEScontentwise""",1
+2022-04-13T16:41:58.756Z,190162,julius.fenn@psychologie.uni-freiburg.de,809807535,included,1
+2022-04-13T16:45:24.914Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531330,included,-1
+2022-04-13T16:45:30.617Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531330,"""Validation R&R""",deleted
+2022-04-13T16:46:06.836Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""MES""",1
+2022-04-13T16:46:10.070Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""Validation R&R""",deleted
+2022-04-13T16:50:16.884Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""incMESextension""",1
+2022-04-13T16:50:18.900Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531546,"""MES""",deleted
+2022-04-13T16:52:06.040Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531412,"""incMESextension""",1
+2022-04-13T16:52:08.134Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531412,"""MES""",deleted
+2022-04-13T16:53:47.042Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531544,included,-1
+2022-04-13T16:53:48.712Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531544,"""MES""",deleted
+2022-04-13T16:54:13.244Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531549,"""MES""",deleted
+2022-04-13T16:54:14.509Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531549,included,-1
+2022-04-13T16:54:24.322Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531437,"""excRelativism""",1
+2022-04-13T16:54:26.384Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531437,"""MES""",deleted
+2022-04-13T16:54:40.322Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531451,"""excFemaleEthics""",1
+2022-04-13T16:54:42.478Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531451,"""MES""",deleted
+2022-04-13T16:54:50.978Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531737,"""MES""",deleted
+2022-04-13T16:54:51.931Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531737,included,-1
+2022-04-13T16:55:03.306Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531434,"""excFemaleEthics""",1
+2022-04-13T16:55:05.681Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531434,"""MES""",deleted
+2022-04-14T18:24:44.121Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""excApplication""",1
+2022-04-14T18:24:53.903Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531555,"""incApplication""",deleted
+2022-04-15T15:46:35.138Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,"""excOverview""",1
+2022-04-15T15:46:40.029Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531340,"""incOverview""",deleted
+2022-04-15T16:22:18.022Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,"""excMESstatisticalwise""",1
+2022-04-15T16:22:20.569Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531574,"""incMESstatisticalwise""",deleted
+2022-06-03T11:45:14.792Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,included,-1
+2022-06-03T11:45:17.011Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531541,"""incMESextension""",deleted
+2022-06-03T11:50:20.089Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531402,included,-1
+2022-06-03T11:50:58.417Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531444,included,-1
+2022-06-03T11:52:01.027Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531632,"""EDM""",1
+2022-06-03T11:52:01.511Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531632,included,-1
+2022-06-03T12:01:05.542Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531426,note-1566536,deleted
+2022-06-03T12:57:06.651Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531182,"""EDM""",1
+2022-06-03T12:57:08.135Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531182,included,-1
+2022-06-03T13:58:16.400Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,"""excMixedScales""",1
+2022-06-03T13:58:20.775Z,190162,julius.fenn@psychologie.uni-freiburg.de,800531311,"""incMixedScales""",deleted
+2022-06-03T14:04:06.869Z,190162,julius.fenn@psychologie.uni-freiburg.de,830711809,"""incDIT""",1
+2022-06-03T14:04:08.400Z,190162,julius.fenn@psychologie.uni-freiburg.de,830711809,included,1
+2022-06-03T14:10:34.181Z,190162,julius.fenn@psychologie.uni-freiburg.de,830712977,"""incOverview""",1
+2022-06-03T14:10:41.244Z,190162,julius.fenn@psychologie.uni-freiburg.de,830712977,"""incMESstatisticalwise""",1
+2022-06-03T14:10:42.556Z,190162,julius.fenn@psychologie.uni-freiburg.de,830712977,included,1
