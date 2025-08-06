@@ -566,6 +566,23 @@ For the descriptive representations, the following SAI texts were summarized. A 
 
 The **goal of these pilot studies** is to have scenario texts that are as neutral and understandable as possible (2.), to reconfirm understanding (3.), and to have the highest possible ambiguity measured through moral intensity (4.), as well as a "baseline affect" (measured using *affective imagery technique*) (5.).
 
+# Overall
+
+```{r echo=TRUE}
+nrow(questionnaire_NanoPat)
+nrow(questionnaire_SAIdes)
+nrow(questionnaire_SAInar)
+nrow(questionnaire_SocialRobots)
+
+
+nrow(questionnaire_NanoPat) +
+nrow(questionnaire_SAIdes) +
+nrow(questionnaire_SAInar) +
+nrow(questionnaire_SocialRobots)
+```
+
+
+
 # Clarity, Bias in the Scenario Texts
 
 > Scenario texts for SAI are too positive.
