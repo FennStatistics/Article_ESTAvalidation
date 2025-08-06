@@ -624,11 +624,7 @@ const LoopComponent = new lab.flow.Loop({
 
 const SequenceOuter = new lab.flow.Sequence({
   title: "SequenceOuter",
-  content: [
-    ESTAgeninfo_htmlForm,
-    LoopComponent,
-
-    
+  content: [  
     intermediateScreen,
     // > SAI
     //SAIpreKnowledge_htmlForm,
