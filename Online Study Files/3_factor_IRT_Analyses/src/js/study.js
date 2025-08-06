@@ -773,18 +773,7 @@ const study = new lab.flow.Sequence({
     // new lab.plugins.Debug(), // comment out finally
     //new lab.plugins.Download()
   ],
-  content: [
-        OuterLoopComponent, //
-
-    /*
-    Greetings_htmlForm, //
-    AttentionCheck_htmlForm,
-
-    
-    FeedbackScreen_htmlScreen, //
-    EndingScreen_htmlScreen, //
-*/
-    
+  content: [ 
     Greetings_htmlForm, //
     InformConsent_htmlForm, //
     InformConsentNO_htmlForm, //

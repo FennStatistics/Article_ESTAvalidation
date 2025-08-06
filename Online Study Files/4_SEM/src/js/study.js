@@ -1832,55 +1832,6 @@ const study = new lab.flow.Sequence({
     // new lab.plugins.Download()
   ],
   content: [
-        SAIpreKnowledge_htmlForm,
-        
-    ESTAgeninfo_htmlForm,
-    GenericEthicQuestion_htmlForm, // blocked for one minute
-
-
-
-    SAIpreKnowledge_htmlForm,
-    AffectiveImageryInst_htmlForm,
-    AffectiveImagery_htmlForm,
-    AffectiveImageryAffect_htmlForm,
-    
-    SAITextClimate_htmlForm,
-    SAITextTechnology_htmlForm,
-
-
-    AffectiveImageryInst_htmlForm,
-    AffectiveImagery_htmlForm,
-    AffectiveImageryAffect_htmlForm,
-    
-    InformCon_htmlForm,
-    /*
-    Greetings_htmlForm,
-    InformCon_htmlForm,
-
-    
-    GenericEthicQuestion_htmlForm,
-    ESTALoopComponent, 
-    MoralHarzardSAI_htmlForm,
-    
-    TamperingWithNature_htmlForm,
-
-    MoralHarzardSAI_htmlForm,
-
-
-
-
-
-    LikertTrust_htmlForm,
-    PANAS_sequence,
-
-
-    quesCertaintySAI_htmlForm,
-    
-    AffectiveImageryInst_htmlForm,
-    AffectiveImagery_htmlForm,
-    AffectiveImageryAffect_htmlForm,
-*/
-    
     // >>> introduction phase
     Greetings_htmlForm,
     InformCon_htmlForm,
