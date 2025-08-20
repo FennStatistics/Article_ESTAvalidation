@@ -1,0 +1,682 @@
+---
+title: "Analyze data"
+author: "Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 4
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This file contains the analysis step (confirmatory and exploratory analyses). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+Global variables to control output:
+
+```{r}
+## global variables
+
+```
+
+
+# get packages
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+### install and load packages
+#  if packages are not already installed, the function will install and activate them
+usePackage <- function(p) {
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = "http://cran.us.r-project.org")
+  require(p, character.only = TRUE)
+}
+
+usePackage("readxl") # read .xlsx files
+usePackage("writexl") # write .xlsx files
+
+usePackage("tidyverse") # data cleaning and summarizing
+
+## psychometric analysis
+usePackage("moments") # skewness, kurtosis
+usePackage("psych") # psychometric analysis (EFA), reliability measures
+
+usePackage("lavaan") # for CFA, SEM
+usePackage("regsem") # for regularizations -> local item dependencies
+
+usePackage("mirt") # for IRT
+
+usePackage("MplusAutomation") # to apply statistical software Mplus (LCA)
+
+
+usePackage("afex")
+usePackage("emmeans")
+
+usePackage("lme4")
+usePackage("lmerTest") # adds p-values to lmer models
+usePackage("performance") # convenience functions like ICC
+
+
+## outputs
+usePackage("stargazer") # create tables
+usePackage("report") # get reports of statistical tests in APA7
+
+
+rm(usePackage)
+```
+
+
+
+# data, functions
+
+```{r}
+#| echo: true
+#| warning: false
+
+
+### load functions
+# print(getwd())
+setwd("functions")
+for(i in 1:length(dir())){
+  # print(dir()[i])
+  source(dir()[i], encoding = "utf-8")
+}
+
+
+### load data files
+## change working directory
+setwd("../outputs_prepareData")
+## load data
+dat <- readRDS(file = "questionnaire.rds")
+
+rm(i)
+```
+
+
+## compute mean variables
+
+```{r}
+ethicTheories <- c("contractualist", "deontology", "hedonism", "relativist", "utilitarian", "virtue")
+
+(vars_tmp <- sort(colnames(dat)[str_detect(string = colnames(dat),
+                                                     "_NPP$")]))
+for(e in ethicTheories){
+  dat[[paste0("mean_", e, "NPP")]] <-
+    rowMeans(dat[, str_subset(string = vars_tmp, pattern = e)])
+}
+
+
+(vars_tmp <- sort(colnames(dat)[str_detect(string = colnames(dat),
+                                                     "_SAI$")]))
+for(e in ethicTheories){
+  dat[[paste0("mean_", e, "SAI")]] <-
+    rowMeans(dat[, str_subset(string = vars_tmp, pattern = e)])
+}
+
+(vars_tmp <- sort(colnames(dat)[str_detect(string = colnames(dat),
+                                                     "_SR$")]))
+for(e in ethicTheories){
+  dat[[paste0("mean_", e, "SR")]] <-
+    rowMeans(dat[, str_subset(string = vars_tmp, pattern = e)])
+}
+```
+
+# Descriptive Statistics
+
+**sample**
+
+```{r}
+table(dat$socio_sex)
+table(dat$socio_sex) / nrow(dat)
+
+table(dat$socio_ethnicity)
+table(dat$socio_student)
+table(dat$socio_employment)
+
+summary(dat$socio_age)
+```
+**mean variables**
+
+```{r}
+psych::cor.plot(r = cor(dat[, str_detect(string = colnames(dat),
+                                                   pattern = "^mean_")]
+                        , use = "pairwise.complete.obs"),
+                upper = FALSE, xlas = 2, main = "Overall")
+```
+
+Using the **stargazer** package you can create nice tables:
+
+```{r}
+# Descriptive stats for all mean_* variables
+mean_vars <- str_subset(names(dat), "^mean_")
+
+tmp_desc <- dat %>%
+  summarise(
+    N = n(),
+    across(all_of(mean_vars), list(mean = ~mean(.x, na.rm = TRUE),
+                                   sd = ~sd(.x, na.rm = TRUE)),
+           .names = "{.col}_{.fn}")
+  ) %>%
+  pivot_longer(
+    cols = -N,
+    names_to = c("variable", ".value"),
+    names_pattern = "(.*)_(mean|sd)"
+)
+
+
+DT::datatable(data = tmp_desc)
+
+# Save descriptive table as HTML
+setwd("outputs_analyzeData")
+tmp_desc$mean <- round(x = tmp_desc$mean, digits = 2)
+tmp_desc$sd <- round(x = tmp_desc$sd, digits = 2)
+stargazer(tmp_desc, type = "html", summary = FALSE, out = "summaryTable_meansSDs.html")
+```
+
+
+# EFA Overall
+
+## for NPP
+
+```{r}
+#### Overall EFA
+regExOverall <- "_NPP$"
+
+psych::cor.plot(r = cor(dat[, str_detect(string = colnames(dat),
+                                                   pattern = regExOverall)]
+                        , use = "pairwise.complete.obs"),
+                upper = FALSE, xlas = 2, main = "Overall")
+
+#> parallel analysis
+tmp_parallelAnalysis <- dimensionalityTest(label = "Overall",
+                             regEx = regExOverall, dataset = dat)
+```
+
+Remark: factors scores were computed using "tenBerge", which preserves correlation structure, but not as widely used in applied psych research (often "regression" used).
+
+```{r}
+#> EFA
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = tmp_parallelAnalysis$ncomp)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+
+
+## correlation factor scores
+psych::cor.plot(tmp_EFA_overall[[1]]$scores)
+```
+
+
+```{r}
+#> EFA (# of factors=5)
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = 5)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+```
+
+
+## for SR
+
+```{r}
+#### Overall EFA
+regExOverall <- "_SR$"
+
+psych::cor.plot(r = cor(dat[, str_detect(string = colnames(dat),
+                                                   pattern = regExOverall)]
+                        , use = "pairwise.complete.obs"),
+                upper = FALSE, xlas = 2, main = "Overall")
+
+#> parallel analysis
+tmp_parallelAnalysis <- dimensionalityTest(label = "Overall",
+                             regEx = regExOverall, dataset = dat)
+```
+
+Remark: factors scores were computed using "tenBerge", which preserves correlation structure, but not as widely used in applied psych research (often "regression" used).
+
+```{r}
+#> EFA
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = tmp_parallelAnalysis$ncomp)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+
+
+## correlation factor scores
+psych::cor.plot(tmp_EFA_overall[[1]]$scores)
+```
+
+```{r}
+#> EFA (# of factors=5)
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = 5)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+```
+
+## for SAI
+
+```{r}
+#### Overall EFA
+regExOverall <- "_SAI$"
+
+psych::cor.plot(r = cor(dat[, str_detect(string = colnames(dat),
+                                                   pattern = regExOverall)]
+                        , use = "pairwise.complete.obs"),
+                upper = FALSE, xlas = 2, main = "Overall")
+
+#> parallel analysis
+tmp_parallelAnalysis <- dimensionalityTest(label = "Overall",
+                             regEx = regExOverall, dataset = dat)
+```
+
+Remark: factors scores were computed using "tenBerge", which preserves correlation structure, but not as widely used in applied psych research (often "regression" used).
+
+```{r}
+#> EFA
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = tmp_parallelAnalysis$ncomp)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+
+
+## correlation factor scores
+psych::cor.plot(tmp_EFA_overall[[1]]$scores)
+```
+
+
+```{r}
+#> EFA (# of factors=5)
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = 5)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+```
+
+
+# Descriptives, correlation plot, EFA, CFA
+
+Here we could apply a self-written function for example to check the reliability and amount of explained variance for the first factor: 
+
+## for NPP
+
+```{r}
+tech <- "NPP"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+  nameVariable <- paste0(tech, "_", e)
+  
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+  tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                  showPlots = TRUE, 
+                  computeEFA = TRUE, 
+                  computeCFA = TRUE, 
+                  computeCFAMplus = FALSE)
+}
+```
+
+
+## for SR
+
+```{r}
+tech <- "SR"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+  nameVariable <- paste0(tech, "_", e)
+  
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+  tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                  showPlots = TRUE, 
+                  computeEFA = TRUE, 
+                  computeCFA = TRUE, 
+                  computeCFAMplus = FALSE)
+}
+```
+
+
+## for SAI
+
+```{r}
+tech <- "SAI"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+  nameVariable <- paste0(tech, "_", e)
+  
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+  tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                  showPlots = TRUE, 
+                  computeEFA = TRUE, 
+                  computeCFA = TRUE, 
+                  computeCFAMplus = FALSE)
+}
+```
+
+
+
+
+
+# Item Response Theory for "Attitude Towards Obese People Scale"
+
+
+Factor Loadings (F1) indicate how strongly each item is associated with the latent trait, rule of thumb:
+
++ 0.70 = strong
++ 0.40–0.69 = moderate
++ < 0.40 = weak
+    
+Communality (h²) is the proportion of variance in each item explained by the factor, rule of thumb:
++ h² > 0.40 → item is well represented
++ h² < 0.30 → potentially problematic item
+
+
+
+## for NPP
+
+```{r}
+tech <- "NPP"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  
+  # Filter variables matching the pattern
+  irt_items <- dat[, str_detect(colnames(dat), pattern = regEx)]
+  
+  # Drop rows with missing data (mirt requires complete cases)
+  irt_items <- na.omit(irt_items)
+  
+  # Ensure all items are treated as ordered factors
+  irt_items[] <- lapply(irt_items, function(x) as.numeric(as.character(x)))
+  # Fit Graded Response Model (1-factor)
+  mod_grm_1f <- mirt(data = irt_items, model = 1, itemtype = "graded", verbose = FALSE)
+  
+  # Summarize model
+  print(summary(mod_grm_1f))
+  
+  
+  # Plot Item Characteristic Curves (ICCs) for all items
+  print(plot(mod_grm_1f, type = "trace", facet_items = TRUE, main = "Item Characteristic Curves"))
+  
+  # Plot Test Information Curve
+  print(plot(mod_grm_1f, type = "info", main = "Test Information Curve"))
+}
+```
+
+
+## for SR
+
+```{r}
+tech <- "SR"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  
+  # Filter variables matching the pattern
+  irt_items <- dat[, str_detect(colnames(dat), pattern = regEx)]
+  
+  # Drop rows with missing data (mirt requires complete cases)
+  irt_items <- na.omit(irt_items)
+  
+  # Ensure all items are treated as ordered factors
+  irt_items[] <- lapply(irt_items, function(x) as.numeric(as.character(x)))
+  # Fit Graded Response Model (1-factor)
+  mod_grm_1f <- mirt(data = irt_items, model = 1, itemtype = "graded", verbose = FALSE)
+  
+  # Summarize model
+  print(summary(mod_grm_1f))
+  
+  
+  # Plot Item Characteristic Curves (ICCs) for all items
+  print(plot(mod_grm_1f, type = "trace", facet_items = TRUE, main = "Item Characteristic Curves"))
+  
+  # Plot Test Information Curve
+  print(plot(mod_grm_1f, type = "info", main = "Test Information Curve"))
+}
+```
+
+## for SAI
+
+```{r}
+tech <- "SAI"
+for(e in ethicTheories){
+  regEx <- paste0(e, ".*_", tech, "$")
+
+  tmp_numVars <- sum(str_detect(string = colnames(dat), pattern = regEx))
+  
+  cat("\n>>>", e, "of", tech, "(", tmp_numVars, "items )<<<\n\n")
+  
+  # Filter variables matching the pattern
+  irt_items <- dat[, str_detect(colnames(dat), pattern = regEx)]
+  
+  # Drop rows with missing data (mirt requires complete cases)
+  irt_items <- na.omit(irt_items)
+  
+  # Ensure all items are treated as ordered factors
+  irt_items[] <- lapply(irt_items, function(x) as.numeric(as.character(x)))
+  # Fit Graded Response Model (1-factor)
+  mod_grm_1f <- mirt(data = irt_items, model = 1, itemtype = "graded", verbose = FALSE)
+  
+  # Summarize model
+  print(summary(mod_grm_1f))
+  
+  
+  # Plot Item Characteristic Curves (ICCs) for all items
+  print(plot(mod_grm_1f, type = "trace", facet_items = TRUE, main = "Item Characteristic Curves"))
+  
+  # Plot Test Information Curve
+  print(plot(mod_grm_1f, type = "info", main = "Test Information Curve"))
+}
+```
+
+
+
+# ANOVAs
+
+## long data
+
+```{r}
+attach(dat)
+longdat <- data.frame(tech = c(rep(x = "SAI", times = nrow(dat)),
+                    rep(x = "NPP", times = nrow(dat)),
+                    rep(x = "SR", times = nrow(dat))),
+           PID = c(PROLIFIC_PID, PROLIFIC_PID, PROLIFIC_PID),
+           mean_hedonism = c(mean_hedonismSAI,
+                             mean_hedonismNPP,
+                             mean_hedonismSR),
+           mean_utilitarian = c(mean_utilitarianSAI,
+                             mean_utilitarianNPP,
+                             mean_utilitarianSR),
+           mean_contractualist = c(mean_contractualistSAI,
+                                mean_contractualistNPP,
+                                mean_contractualistSR),
+           mean_deontology = c(mean_deontologySAI,
+                                mean_deontologyNPP,
+                                mean_deontologySR),
+           mean_relativist = c(mean_relativistSAI,
+                                mean_relativistNPP,
+                                mean_relativistSR),
+           mean_virtue = c(mean_virtueSAI,
+                                mean_virtueNPP,
+                                mean_virtueSR))
+longdat$PID <- as.factor(longdat$PID)
+str(longdat)
+detach(dat)
+```
+
+
+## correlation between ethic theories
+
+
+```{r}
+psych::pairs.panels(x = longdat[, str_subset(string = colnames(longdat), pattern = "mean_")])
+```
+
+
+## between ANOVAs
+
+
+```{r}
+boxplot(longdat$mean_hedonism ~ longdat$tech, main = "hedonism")
+fit <- afex::aov_car(mean_hedonism ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+
+boxplot(longdat$mean_utilitarian ~ longdat$tech, main = "utilitarian")
+fit <- afex::aov_car(mean_utilitarian ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+longdat %>%
+  group_by(tech) %>%
+  summarise(N = n(),
+            mean = mean(mean_utilitarian),
+            median = median(mean_utilitarian),
+            SD = sd(mean_utilitarian))
+
+
+boxplot(longdat$mean_contractualist ~ longdat$tech, main = "contractualist")
+fit <- afex::aov_car(mean_contractualist ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+
+boxplot(longdat$mean_deontology ~ longdat$tech, main = "deontology")
+fit <- afex::aov_car(mean_deontology ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+
+boxplot(longdat$mean_relativist ~ longdat$tech, main = "relativist")
+fit <- afex::aov_car(mean_relativist ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+
+boxplot(longdat$mean_virtue ~ longdat$tech, main = "virtue")
+fit <- afex::aov_car(mean_virtue ~ tech + Error(PID/tech), data=longdat)
+fit
+EMMs <- emmeans::emmeans(fit, ~ tech)
+pairs(EMMs, adjust="bon")
+
+longdat %>%
+  group_by(tech) %>%
+  summarise(N = n(),
+            mean = mean(mean_virtue),
+            median = median(mean_virtue),
+            SD = sd(mean_virtue))
+```
+
+to get both effect sizes:
+
+```{r}
+fit1 <- afex::aov_car(mean_utilitarian ~ tech + Error(PID/tech), data=longdat)
+fit1a <- afex::aov_ez(id = "PID", dv = "mean_utilitarian",
+                      data = longdat, between=c("tech"), within = c("tech", "PID"))
+
+fit1_emmeans <-emmeans(fit1, ~tech)
+fit1_emmeans
+pairs(fit1_emmeans)
+
+# # partical eta squared
+anova(fit1, es = "pes")
+# # generalized eta squared
+fit1a
+```
+## overall
+
+```{r}
+# ---- 1. Reshape data to long format ----
+longdat_long <- longdat %>%
+  pivot_longer(
+    cols = starts_with("mean_"),
+    names_to = "theory",
+    values_to = "score"
+  ) %>%
+  mutate(theory = str_remove(theory, "^mean_"))
+
+# ---- 2. Grouped boxplot ----
+ggplot(longdat_long, aes(x = theory, y = score, fill = tech)) +
+  geom_boxplot(width = 0.6, position = position_dodge(0.8)) +
+  labs(
+    x = "Ethical Theory",
+    y = "Mean Rating",
+    fill = "Technology"
+  ) +
+  theme_classic() +
+  theme(
+    axis.text.x = element_text(angle = 30, hjust = 1, size = 12),
+    legend.position = "top"
+  )
+```
+
+```{r}
+# ANOVA with afex
+anova_res <- aov_ez(
+  id = "PID",              # subject identifier
+  dv = "score",            # dependent variable
+  data = longdat_long,     # reshaped data
+  within = c("theory", "tech")  # within-subject factors
+)
+
+anova_res
+
+# Pairwise comparisons
+emmeans(anova_res, ~ theory | tech, adjust = "bonferroni")
+```
+```{r}
+# Make sure theory is a factor and set "utilitarian" as reference
+longdat_long$theory <- factor(longdat_long$theory)
+longdat_long$theory <- relevel(longdat_long$theory, ref = "utilitarian")
+
+# Random intercept per subject
+m1 <- lmer(score ~ theory * tech + (1 | PID), data = longdat_long)
+icc(m1)
+summary(m1)   # fixed effects + significance tests
+anova(m1)     # Type I ANOVA table
+```
+
+
+# References
+

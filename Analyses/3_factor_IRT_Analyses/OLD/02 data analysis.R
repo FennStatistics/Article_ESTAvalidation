@@ -266,7 +266,7 @@ fit1a <- afex::aov_ez(id = "PID", dv = "mean_hedonism",
                       data = longdat, between=c("tech"), within = c("tech", "PID"))
 fit1a
 
-fit1_emmeans <-emmeans(fit1, ~tech)
+fit1_emmeans <- emmeans(fit1, ~tech)
 fit1_emmeans
 pairs(fit1_emmeans)
 
@@ -285,12 +285,10 @@ longdat %>%
 
 
 
-
+library(emmeans)
 fit1 <- afex::aov_car(mean_utilitarian ~ tech + Error(PID/tech), data=longdat)
-fit1
 fit1a <- afex::aov_ez(id = "PID", dv = "mean_utilitarian",
                       data = longdat, between=c("tech"), within = c("tech", "PID"))
-fit1a
 
 fit1_emmeans <-emmeans(fit1, ~tech)
 fit1_emmeans
@@ -307,7 +305,7 @@ fit1a
 colnames(questionnaire)
 
 
-fit <- lm(formula = mean_utilitarianSR ~ mean_virtueSR+mean_relativistSR+mean_hedonismSR+mean_deontologySR+mean_contractualistSR, data = questionnaire)
+fit <- lm(formula = mean_utilitarianSR ~ mean_virtueSR+mean_relativistSR+mean_hedonismSR+mean_deontologySR+mean_contractualistSR, data = dat)
 summary(fit)
 # plot(fit)
 fit <- lm(formula = mean_virtueSR ~ mean_utilitarianSR+mean_relativistSR+mean_hedonismSR+mean_deontologySR+mean_contractualistSR, data = questionnaire)

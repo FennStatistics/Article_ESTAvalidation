@@ -287,12 +287,14 @@ loop <- loopType(dataset = dat_loop, estadat = esta)
 
 
 ### save
-writexl::write_xlsx(x = loop,
-            path = paste0("loop", ".xlsx"))
+writexl::write_xlsx(x = loop, path = paste0("loop", ".xlsx"))
+write.csv2(x = loop, file = paste0("loop", ".csv"))
 write_rds(x = loop, file = paste0("loop", ".rds"))
 ```
 
 some descriptives:
+
+for persons:
 
 ```{r}
 loop$ID <- as.numeric(loop$ID)
@@ -326,7 +328,13 @@ vec_id[vec_sd > 2]
 DT::datatable(data = loop[loop$ID %in% vec_id[vec_sd > 2], ])
 ```
 
+```{r}
+tmp <- loop %>%
+  group_by(item) %>%
+  summarise(N = n(), mean = mean(value), SD = sd(value))
 
+DT::datatable(data = tmp)
+```
 
 # References
 

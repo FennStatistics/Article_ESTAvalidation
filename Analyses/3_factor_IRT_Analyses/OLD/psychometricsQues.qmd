@@ -1,0 +1,574 @@
+---
+title: "First analyses of weight bias scales"
+author: "Katja Pollak, Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document, whereby I am using the [Quarto](https://quarto.org/) framework. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018. When you execute code within the document, the results appear beneath the code. 
+
+This file contains the pre-processing step (clean, transform data), and the analysis step (test hypotheses and exploratory analyses). In larger projects you would split this file into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+
+
+Global variables to control output: 
+
+```{r}
+## global variables
+runMplusLCA <- FALSE
+## set to lower values to reduce compilation time: 
+nRep_def = 100 # 100
+n.lambda_def = 40 # 40
+LCArunsDef = 6 # 10
+```
+
+
+# get packages
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+### install and load packages
+#  if packages are not already installed, the function will install and activate them
+usePackage <- function(p) {
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE, repos = "http://cran.us.r-project.org")
+  require(p, character.only = TRUE)
+}
+
+usePackage("readxl") # read .xlsx files
+usePackage("writexl") # write .xlsx files
+
+usePackage("tidyverse") # data cleaning and summarizing
+
+## psychometric analysis
+usePackage("moments") # skewness, kurtosis
+usePackage("psych") # psychometric analysis (EFA), reliability measures
+
+usePackage("lavaan") # for CFA, SEM
+usePackage("regsem") # for regularizations -> local item dependencies
+
+usePackage("mirt") # for IRT
+
+usePackage("MplusAutomation") # to apply statistical software Mplus (LCA)
+
+
+## outputs
+usePackage("stargazer") # create tables
+usePackage("report") # get reports of statistical tests in APA7
+
+
+rm(usePackage)
+```
+
+# raw data, functions
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+
+### load functions
+# print(getwd())
+setwd("functions")
+for(i in 1:length(dir())){
+  # print(dir()[i])
+  source(dir()[i], encoding = "utf-8")
+}
+
+
+### load data files
+## change working directory
+setwd("../../dataPreperation/outputs/questionnaire")
+## load data
+dat <- readRDS(file = "ques_combined.rds")
+
+rm(i)
+```
+
+
+# compute mean variables
+
+However, multiple scales are **not undimensional**!
+
+```{r}
+dat$mean_pair <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^pair")])
+dat$mean_PathogenDisgus <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^PathogenDisgus")])
+dat$mean_GermAversion <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^GermAversion")])
+dat$mean_BeliefsAboutObesePersons <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^BeliefsAboutObesePersons")])
+dat$mean_AttitudeTowardsObesePeople <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^AttitudeTowardsObesePeople")])
+dat$mean_PerceivedCausesofObesity <- rowMeans(x = dat[,str_subset(string = colnames(dat), pattern = "^PerceivedCausesofObesity")])
+```
+
+
+# Descriptive Statistics
+
+**sample**
+
+```{r}
+table(dat$sociodemo_gender)
+psych::describe(dat[, c("sociodemo_age", "sociodemo_BMI", "weight_avatar_choice2")])
+```
+
+
+**mean variables**
+
+Using the **stargazer** package you can create nice tables:
+
+```{r}
+# Descriptive stats for all mean_* variables
+mean_vars <- str_subset(names(dat), "^mean_")
+
+tmp_desc <- dat %>%
+  summarise(
+    N = n(),
+    across(all_of(mean_vars), list(mean = ~mean(.x, na.rm = TRUE),
+                                   sd = ~sd(.x, na.rm = TRUE)),
+           .names = "{.col}_{.fn}")
+  ) %>%
+  pivot_longer(
+    cols = -N,
+    names_to = c("variable", ".value"),
+    names_pattern = "(.*)_(mean|sd)"
+)
+
+
+tmp_desc
+
+# Save descriptive table as HTML
+setwd("outputs")
+tmp_desc$mean <- round(x = tmp_desc$mean, digits = 2)
+tmp_desc$sd <- round(x = tmp_desc$sd, digits = 2)
+stargazer(tmp_desc, type = "html", summary = FALSE, out = "summaryTable_meansSDs.html")
+
+# Correlation plot of mean variables
+psych::cor.plot(
+  r = cor(dat[, c(mean_vars, "sociodemo_BMI")], use = "pairwise.complete.obs"),
+  main = "Correlation Plot of Mean Scales"
+)
+```
+
+**mean_PathogenDisgus between sources**
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+tmp_desc <- dat %>%
+  group_by(source) %>%
+  summarise(N = n(),
+            mean = mean(mean_PathogenDisgus, na.rm = TRUE),
+            sd = sd(mean_PathogenDisgus, na.rm = TRUE))
+tmp_desc
+
+
+# ! Individualism-Communitarianism is not unidimensional, as such not show here
+ggstatsplot::ggbetweenstats(data = dat, x = source, y = mean_PathogenDisgus, type = "parametric")
+
+
+#> output to html
+setwd("outputs")
+tmp_desc$mean <- round(x = tmp_desc$mean, digits = 2)
+tmp_desc$sd <- round(x = tmp_desc$sd, digits = 2)
+stargazer(tmp_desc, type = "html", summary = FALSE, out = "summaryTable_between.html")
+```
+
+
+
+
+
+# Inferential Statistics
+
+## Overall EFA
+
+
+```{r}
+#### Overall EFA
+regExOverall <- "^pair|^PathogenDisgus|^GermAversion|^BeliefsAboutObesePersons|^AttitudeTowardsObesePeople|^PerceivedCausesofObesity"
+
+
+psych::cor.plot(r = cor(dat[, str_detect(string = colnames(dat),
+                                                   pattern = regExOverall)]
+                        , use = "pairwise.complete.obs"),
+                upper = FALSE, xlas = 2, main = "Overall")
+
+#> parallel analysis
+tmp_parallelAnalysis <- dimensionalityTest(label = "Overall",
+                             regEx = regExOverall, dataset = dat)
+```
+Remark: factors scores were computed using "tenBerge", which preserves correlation structure, but not as widely used in applied psych research (often "regression" used).
+
+```{r}
+#> EFA (# of factors=5)
+tmp_EFA_overall <- explorativeFactorAnalysis(label = "Overall",
+                                 regEx = regExOverall,
+                                 dataset = dat, nfac = 8)
+tmp_EFA_overall[[1]]
+tmp_EFA_overall[[1]]$loadings
+
+
+## correlation factor scores
+psych::cor.plot(tmp_EFA_overall[[1]]$scores)
+```
+
+
+## Descriptives, correlation plot, EFA, CFA
+
+Here we could apply a self-written function for example to check the reliability and amount of explained variance for the first factor: 
+
+### Fat Phobia Scale
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^pair"
+nameVariable <- "FatPhobia"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+
+> check modification indices - one strong local item dependency
+
+
+### Subscale Pathogen Disgust
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^PathogenDisgus"
+nameVariable <- "PatDis"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+
+### Subscale Germ Aversion
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^GermAversion"
+nameVariable <- "GermAv"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+> item 4
+
+
+### Beliefs About Obese Persons Scale
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^BeliefsAboutObesePersons"
+nameVariable <- "BelAbObPe"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+
+> item 2
+
+
+
+### Attitude Towards Obese People Scale
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^AttitudeTowardsObesePeople"
+nameVariable <- "AttTowObPe"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+
+
+### Perceived Causes of Obesity Questionnaires
+
+```{r}
+#| echo: true
+#| warning: false
+
+regEx <- "^PerceivedCausesofObesity"
+nameVariable <- "PerCaOb"
+
+sum(str_detect(string = colnames(dat), pattern = regEx))
+
+tmp_dat <- na.omit(dat[,str_detect(string = colnames(dat), pattern = regEx)])
+
+
+tmp <- CFAstats(dataset = tmp_dat, regularExp = regEx, labelLatent = str_remove(string = nameVariable, pattern = "mean_"), 
+                showPlots = TRUE, 
+                computeEFA = TRUE, 
+                computeCFA = TRUE, 
+                computeCFAMplus = FALSE)
+```
+
+
+## Item Response Theory for "Attitude Towards Obese People Scale"
+
+
+Factor Loadings (F1) indicate how strongly each item is associated with the latent trait, rule of thumb:
+
++ 0.70 = strong
++ 0.40–0.69 = moderate
++ < 0.40 = weak
+    
+Communality (h²) is the proportion of variance in each item explained by the factor, rule of thumb:
++ h² > 0.40 → item is well represented
++ h² < 0.30 → potentially problematic item
+
+
+```{r}
+# regular expression
+regEx <- "^AttitudeTowardsObesePeople"
+
+# Filter variables matching the pattern
+irt_items <- dat[, str_detect(colnames(dat), pattern = regEx)]
+
+# Drop rows with missing data (mirt requires complete cases)
+irt_items <- na.omit(irt_items)
+
+# Ensure all items are treated as ordered factors
+irt_items[] <- lapply(irt_items, function(x) as.numeric(as.character(x)))
+# Fit Graded Response Model (1-factor)
+mod_grm_1f <- mirt(data = irt_items, model = 1, itemtype = "graded", verbose = FALSE)
+
+# Summarize model
+summary(mod_grm_1f)
+
+
+# Plot Item Characteristic Curves (ICCs) for all items
+plot(mod_grm_1f, type = "trace", facet_items = TRUE, main = "Item Characteristic Curves")
+
+# Plot Test Information Curve
+plot(mod_grm_1f, type = "info", main = "Test Information Curve: Individualism–Communitarianism")
+
+
+
+### compare results to:
+cor.plot(r = cor(irt_items))
+```
+> some items are uninformative (see ICCs)
+
+
+Compare 1-Factor vs. 2-Factor Models vs. 3-Factor Models:
+
+```{r}
+# mod_grm_2f <- mirt(data = irt_items, model = 2, itemtype = "graded", verbose = FALSE)
+# mod_grm_3f <- mirt(data = irt_items, model = 2, itemtype = "graded", verbose = FALSE)
+# anova(mod_grm_1f, mod_grm_2f, mod_grm_3f)
+# summary(mod_grm_3f)
+```
+
+> significant p-value (e.g., < .05) supports the X-factor model.
+
+
+## latent class analysis for factor scores
+
+Remark: after scale purification (setting up final CFAs), we could rerun this analyses to get interpretable results
+
+```{r}
+# options(Mplus_command = "C:/Program Files/Mplus/Mplus.exe")
+# getOption("Mplus_command")
+
+## run LCA
+setwd("outputs/LCA_factorScores")
+
+if(runMplusLCA){
+  ## add factor scores
+  dat_with_scores <- cbind(
+    dat,
+    tmp_EFA_overall[[1]]$scores
+  )
+
+  LCA_dat <- dat_with_scores[, c("PROLIFIC_PID",
+                                      str_subset(string = colnames(dat_with_scores), pattern = "^MR"))]
+  tmp <- str_subset(string = colnames(LCA_dat), pattern = "^MR")
+  # tmp <- str_remove_all(string = tmp, pattern = "^A_")
+  # cat(tmp)
+  # cat(paste0(tmp, "(", 1:length(tmp), ")"))
+
+  colnames(LCA_dat) <- c("ID", tmp)
+
+  # prepareMplusData(df = LCA_dat, filename = "LCA_dat.dat")
+
+
+  l = 1
+  list_lca <- list()
+  for(i in 2:LCArunsDef){
+    print(i)
+
+    numClasses <- i
+
+    LCA_mplus  <- mplusObject(
+
+      TITLE = paste0("Latent Class Analysis Factor Scores", " c=", numClasses),
+
+      VARIABLE =paste0("
+  usevariables = MR1 MR3 MR8 MR2 MR6 MR5 MR7 MR4;
+
+  classes      = c(", numClasses, ")"),
+
+  ANALYSIS =
+    "
+    Type=mixture; ! LCA analysis
+    STARTS= 500 100;
+    !LRTstarts=0 0 300 20;
+  ",
+
+  PLOT =
+    "
+    type = plot3;
+    series is MR1(1) MR3(2) MR8(3) MR2(4) MR6(5) MR5(6) MR7(7) MR4(8);
+  ",
+
+  SAVEDATA = paste0("file = lca_", numClasses, ".txt ;
+    save = cprob;
+    format = free;
+  "),
+
+  OUTPUT = "tech11 tech14;", rdata = LCA_dat)
+
+  list_lca[[l]] <- mplusModeler(LCA_mplus,
+                                modelout = paste0("lca_FCs", numClasses, ".inp"),
+                                run = 1L)
+
+    l = l + 1
+  }
+
+  # comment out to avoid overwriting LCA outputs
+  saveRDS(list_lca, file="list_lca.rds")
+
+}else{
+  list_lca <- readRDS("list_lca.rds" )
+}
+```
+get fit statistics LCA:
+
+```{r}
+getLCAfitstatistics(listMplusOutput = list_lca)
+```
+
+get profile plot:
+
+```{r}
+### number of classes
+num_classes <- 5 # index - 1
+
+# Step 1: Extract means
+params <- list_lca[[num_classes]]$results$parameters$unstandardized
+
+means_df <- params %>%
+  filter(paramHeader == "Means" & !grepl("^C#\\d$", param))
+
+# Step 2: Get class proportions
+class_counts <- table(list_lca[[num_classes]]$results$savedata$C)
+total_n <- sum(class_counts)
+class_props <- round(100 * class_counts / total_n, 1)
+
+# Create descriptive labels
+class_labels <- paste0("Class ", names(class_counts), " (", class_props, "%)")
+
+# Map class numbers to labels
+class_label_map <- setNames(class_labels, paste0("Class ", names(class_counts)))
+
+# Step 3: Prepare data for plotting
+means_long <- means_df %>%
+  mutate(Indicator = param,
+         Class = paste0("Class ", LatentClass)) %>%
+  select(Indicator, Class, est) %>%
+  pivot_wider(names_from = Class, values_from = est) %>%
+  pivot_longer(cols = starts_with("Class"), names_to = "Class", values_to = "Mean")
+
+# Apply the new labels
+means_long$Class <- class_label_map[means_long$Class]
+
+# Optional: Set indicator order
+means_long$Indicator <- factor(means_long$Indicator)
+
+# Step 4: Plot
+ggplot(means_long, aes(x = Indicator, y = Mean, group = Class, color = Class)) +
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  theme_minimal() +
+  labs(title = "Latent Class Profile Plot",
+       x = "Items",
+       y = "Estimated Means") +
+  theme(text = element_text(size = 14),
+        axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.title = element_blank())
+
+
+class_counts
+```
+
+
+# References

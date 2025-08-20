@@ -1,0 +1,394 @@
+---
+title: "Clean, prepare and transform data"
+author: "Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This file contains the pre-processing step (clean, prepare and transform data). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+Global variables to control output:
+
+```{r}
+## global variables
+
+```
+
+
+# get packages, raw data, functions
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+### install and load packages
+require(pacman)
+p_load('tidyverse', 'jsonlite', 'magrittr', 'xlsx',
+       'stargazer', 'psych', 'tm')
+
+
+### load data files
+## change working directory
+setwd("data")
+# #> load JATOS data
+read_file('jatos_results_20221025140620.txt') %>%
+  # ... split it into lines ...
+  str_split('\n') %>% first() %>%
+  # ... filter empty rows ...
+  discard(function(x) x == '') %>%
+  # ... parse JSON into a data.frame
+  map_dfr(fromJSON, flatten=TRUE) -> dat
+
+
+#> load demographic data
+prolific1 <- read.csv(file = "prolific_export_6356b951d4a85033b6f5a321.csv", header = TRUE)
+prolific2 <- read.csv(file = "prolific_export_63579c7eea182709b3626d06.csv", header = TRUE)
+
+prolific <- rbind(prolific1, prolific2)
+
+rm(prolific1); rm(prolific2)
+
+### load functions
+setwd("../functions")
+for(i in 1:length(dir())){
+  # print(dir()[i])
+  source(dir()[i], encoding = "utf-8")
+}
+
+rm(i)
+```
+
+
+
+# data preperation
+
+add ID variable:
+
+```{r}
+dat$ID <- cumsum(!is.na(dat$sender) & dat$sender == "Greetings")
+
+table(dat$ID); length(unique(dat$ID))
+sum(table(dat$ID) == max(table(dat$ID)))
+
+glimpse(dat)
+
+## keep only full datasets
+dat <- dat[dat$ID %in% names(table(dat$ID))[table(dat$ID) == max(table(dat$ID))],]
+```
+
+
+save feedback as Excel file:
+
+```{r}
+setwd("outputs_prepareData")
+
+varsSingExcel <- "feedback_critic"
+tmp <- data.frame(ID = dat[, "ID"][!is.na(dat[, varsSingExcel]) & dat[, varsSingExcel] != ""],
+                           feedback = dat[, varsSingExcel][!is.na(dat[, varsSingExcel]) & dat[, varsSingExcel] != ""])
+writexl::write_xlsx(x = tmp,
+            path = paste0(varsSingExcel, ".xlsx"))
+write_rds(x = tmp, file = paste0(varsSingExcel, ".rds"))
+```
+
+
+## set up questionnaire:
+
+```{r}
+setwd("outputs_prepareData")
+
+
+colnames(dat)
+
+tmp <- str_subset(string = colnames(dat), pattern = "^meta")
+tmp <- str_subset(string = tmp, pattern = "labjs|location", negate = TRUE)
+
+ques_mixed <- c("PROLIFIC_PID",
+
+                "dummy_informedconsent",
+                str_subset(string = colnames(dat), pattern = "_NPP$"),
+                str_subset(string = colnames(dat), pattern = "_SR$"),
+                str_subset(string = colnames(dat), pattern = "_SAI$"),
+
+                tmp,
+               "feedback_critic", "attCheck_text")
+
+
+vec_notNumeric = c("PROLIFIC_PID",
+                   str_subset(string = colnames(dat), pattern = "_NPP$"),
+                   str_subset(string = colnames(dat), pattern = "_SR$"),
+                   str_subset(string = colnames(dat), pattern = "_SAI$"),
+                   tmp,
+                   "feedback_critic", "attCheck_text")
+rm(tmp)
+
+
+
+# dataset = dat
+# listvars = ques_mixed
+# notNumeric = vec_notNumeric
+questionnairetype <- function(dataset,
+                              listvars = ques_mixed,
+                              notNumeric = vec_notNumeric){
+
+  datasetques <- data.frame(ID = unique(dataset$ID))
+
+  for(c in 1:length(listvars)){
+    print(c)
+    if(any(colnames(dataset) == listvars[c])){
+      print(listvars[c])
+      ## tmp IDs
+      tmpid <- dataset$ID[!is.na(dataset[, listvars[c]])]
+      ## tmp value variable
+      tmpvalue <- dataset[, listvars[c]][!is.na(dataset[, listvars[c]])]
+      datasetques[listvars[c]]  <- NA
+
+      if(listvars[c] %in% notNumeric){
+        datasetques[datasetques$ID %in% tmpid, listvars[c]] <- tmpvalue
+      }else if(is.list(tmpvalue)){
+        tmpvalue_tmp <- unique(tmpvalue)
+        tmpvalue <- c()
+        counter = 1
+        for(i in 1:length(tmpvalue_tmp)){
+          if(!is.null(tmpvalue_tmp[[i]])){
+            tmpvalue[counter] <- paste0(tmpvalue_tmp[[i]], collapse = " - ")
+            counter = counter + 1
+          }
+        }
+        datasetques[datasetques$ID %in% tmpid, listvars[c]] <- tmpvalue
+      }else{
+        datasetques[datasetques$ID %in% tmpid, listvars[c]] <- as.numeric(tmpvalue)
+      }
+    }
+  }
+  return(datasetques)
+}
+
+
+questionnaire <- questionnairetype(dataset = dat, listvars = ques_mixed)
+head(questionnaire)
+
+
+### for list add columns manually
+lapply(dat, class)
+
+
+# > add attCheck_array, techOrderTotal
+questionnaire$attCheck_array <- NA
+questionnaire$techOrderTotal <- NA
+for(i in 1:length(dat$techOrderTotal)){
+  if(!is.null(dat$techOrderTotal[[i]])){
+    questionnaire$techOrderTotal[questionnaire$ID == dat$ID[i]] <- paste0(dat$techOrderTotal[[i]], collapse = " ")
+  }
+
+  if(!is.null(dat$attCheck_array[[i]])){
+    questionnaire$attCheck_array[questionnaire$ID == dat$ID[i]] <- paste0(dat$attCheck_array[[i]], collapse = " ")
+  }
+
+}
+
+
+### add prolific data
+
+prolific <- prolific[prolific$Participant.id %in% questionnaire$PROLIFIC_PID,]
+prolific <- prolific %>%
+  arrange(sapply(Participant.id, function(y) which(y == questionnaire$PROLIFIC_PID)))
+prolific <- prolific[!duplicated(prolific$Participant.id), ]
+
+
+if(nrow(prolific) == nrow(questionnaire)){
+  questionnaire$socio_age <- prolific$Age
+  questionnaire$socio_sex <- prolific$Sex
+  questionnaire$socio_ethnicity <- prolific$Ethnicity.simplified
+  questionnaire$socio_student <- prolific$Student.status
+  questionnaire$socio_employment <- prolific$Employment.status
+  
+  
+  questionnaire$socio_age <- as.numeric(questionnaire$socio_age)
+  questionnaire$socio_sex <- factor(questionnaire$socio_sex)
+  questionnaire$socio_ethnicity <- factor(questionnaire$socio_ethnicity)
+  questionnaire$socio_student <- factor(questionnaire$socio_student)
+  questionnaire$socio_employment <- factor(questionnaire$socio_employment)
+}
+
+
+
+questionnaire[questionnaire == "DATA_EXPIRED"] <- NA
+questionnaire[questionnaire == ""] <- NA
+
+
+cols <- str_subset(colnames(questionnaire), "_NPP$")
+questionnaire[cols] <- lapply(questionnaire[cols], as.numeric)
+cols <- str_subset(colnames(questionnaire), "_SR$")
+questionnaire[cols] <- lapply(questionnaire[cols], as.numeric)
+cols <- str_subset(colnames(questionnaire), "_SAI$")
+questionnaire[cols] <- lapply(questionnaire[cols], as.numeric)
+
+
+## save files
+saveRDS(object = questionnaire, 
+        file = paste0("questionnaire", ".rds"))
+
+write.xlsx2(x = questionnaire,
+            file = paste0("questionnaire", ".xlsx"))
+
+haven::write_sav(data = questionnaire,
+                 path = paste0("questionnaire", ".sav"))
+```
+
+## set up data frames for paradata:
+
+for **defocus events**:
+
+```{r}
+setwd("outputs_prepareData")
+
+
+vec_ID <- NULL
+vec_PROLIFIC_PID <- NULL
+vec_durationblur <- NULL
+vec_senderblur <- NULL
+
+for(i in 1:length(dat$para_defocuscount)){
+  if(!is.null(dat$para_defocuscount[[i]])){
+    if(is.null(vec_durationblur)){
+      vec_durationblur <- dat$para_defocuscount[[i]]$durationblur
+      vec_senderblur <- dat$para_defocuscount[[i]]$senderblur
+
+      vec_ID <- rep(x = dat$ID[i], times = length(dat$para_defocuscount[[i]]$durationblur))
+      vec_PROLIFIC_PID <- rep(x = questionnaire$PROLIFIC_PID[questionnaire$ID == dat$ID[i]],
+                              times = length(dat$para_defocuscount[[i]]$durationblur))
+
+    }else{
+      vec_durationblur <-c(vec_durationblur, dat$para_defocuscount[[i]]$durationblur)
+      vec_senderblur <- c(vec_senderblur, dat$para_defocuscount[[i]]$senderblur)
+
+      vec_ID <-c(vec_ID, rep(x = dat$ID[i], times = length(dat$para_defocuscount[[i]]$durationblur)))
+      vec_PROLIFIC_PID <- c(vec_PROLIFIC_PID, rep(x = questionnaire$PROLIFIC_PID[questionnaire$ID == dat$ID[i]],
+                                                  times = length(dat$para_defocuscount[[i]]$durationblur)))
+    }
+  }
+}
+
+para_defocus <- data.frame(ID = vec_ID,
+                           PROLIFIC_PID = vec_PROLIFIC_PID,
+                           durationblur = vec_durationblur, senderblur = vec_senderblur)
+
+para_defocus <- para_defocus[!is.na(para_defocus$durationblur), ]
+
+
+write.xlsx2(x = para_defocus,
+            file = paste0("para_defocus", ".xlsx"))
+```
+
+
+```{r}
+tmp <- para_defocus %>%
+  group_by(ID) %>%
+  mutate(durationblur = durationblur / 1000 / 60) %>%
+  summarise(N = n(), sum_min = sum(durationblur), mean_min = mean(durationblur))
+
+tmp$sum_min <- round(x = tmp$sum_min, digits = 2)
+tmp$mean_min <- round(x = tmp$mean_min, digits = 2)
+
+DT::datatable(data = tmp)
+```
+
+
+
+for **clicks on ESTA**:
+
+```{r}
+setwd("outputs_prepareData")
+
+
+vec_ID <- NULL
+vec_PROLIFIC_PID <- NULL
+vec_ET_tech <- NULL
+vec_countclicks <- NULL
+
+vec_senderESTA <- NULL
+vec_durationESTA <- NULL
+
+vec_senderDefinition <- NULL
+vec_durationDefinition <- NULL
+
+
+for(i in 1:nrow(dat)){
+  if(!is.na(dat$para_ET_tech[i])){
+    if(is.null(vec_ET_tech)){
+
+      vec_ID <- dat$ID[i]
+      vec_PROLIFIC_PID <- questionnaire$PROLIFIC_PID[questionnaire$ID == dat$ID[i]]
+      vec_ET_tech <- dat$para_ET_tech[i]
+      vec_countclicks <- dat$para_countclicks[i]
+
+      vec_senderESTA <- dat$sender[i-1]
+      vec_durationESTA <- dat$duration[i-1]
+
+      vec_senderDefinition <- dat$sender[i-2]
+      vec_durationDefinition <- dat$duration[i-2]
+
+    }else{
+      vec_ID <- c(vec_ID, dat$ID[i])
+      vec_PROLIFIC_PID <- c(vec_PROLIFIC_PID, questionnaire$PROLIFIC_PID[questionnaire$ID == dat$ID[i]])
+      vec_ET_tech <- c(vec_ET_tech, dat$para_ET_tech[i])
+      vec_countclicks <- c(vec_countclicks, dat$para_countclicks[i])
+
+      vec_senderESTA <- c(vec_senderESTA,  dat$sender[i-1])
+      vec_durationESTA <- c(vec_durationESTA, dat$duration[i-1])
+
+      vec_senderDefinition <- c(vec_senderDefinition,  dat$sender[i-2])
+      vec_durationDefinition <- c(vec_durationDefinition, dat$duration[i-2])
+    }
+  }
+}
+
+para_clicksDurationESTA <- data.frame(ID = vec_ID,
+                           PROLIFIC_PID = vec_PROLIFIC_PID,
+                           durationblur = vec_ET_tech, senderblur = vec_countclicks,
+                           senderESTA = vec_senderESTA, durationESTA = vec_durationESTA,
+                           senderDefinition = vec_senderDefinition, durationDefinition = vec_durationDefinition)
+
+
+
+write.xlsx2(x = para_clicksDurationESTA,
+            file = paste0("para_clicksDurationESTA", ".xlsx"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# References
+

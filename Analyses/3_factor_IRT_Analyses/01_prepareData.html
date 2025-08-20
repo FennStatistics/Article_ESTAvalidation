@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Julius Fenn">
+<meta name="dcterms.date" content="2025-08-20">
+
+<title>Clean, prepare and transform data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="01_prepareData_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01_prepareData_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="01_prepareData_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="01_prepareData_files/libs/quarto-html/popper.min.js"></script>
+<script src="01_prepareData_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="01_prepareData_files/libs/quarto-html/anchor.min.js"></script>
+<link href="01_prepareData_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01_prepareData_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="01_prepareData_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="01_prepareData_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="01_prepareData_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="01_prepareData_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="01_prepareData_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="01_prepareData_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="01_prepareData_files/libs/datatables-binding-0.33/datatables.js"></script>
+
+<script src="01_prepareData_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="01_prepareData_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="01_prepareData_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="01_prepareData_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="01_prepareData_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="01_prepareData_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#background-information" id="toc-background-information" class="nav-link active" data-scroll-target="#background-information">Background Information</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#get-packages-raw-data-functions" id="toc-get-packages-raw-data-functions" class="nav-link" data-scroll-target="#get-packages-raw-data-functions">get packages, raw data, functions</a></li>
+  <li><a href="#data-preperation" id="toc-data-preperation" class="nav-link" data-scroll-target="#data-preperation">data preperation</a>
+  <ul class="collapse">
+  <li><a href="#set-up-questionnaire" id="toc-set-up-questionnaire" class="nav-link" data-scroll-target="#set-up-questionnaire">set up questionnaire:</a></li>
+  <li><a href="#set-up-data-frames-for-paradata" id="toc-set-up-data-frames-for-paradata" class="nav-link" data-scroll-target="#set-up-data-frames-for-paradata">set up data frames for paradata:</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clean, prepare and transform data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Julius Fenn </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 20, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="background-information" class="level1">
+<h1>Background Information</h1>
+<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> document. Instructions for writing these documents and background information can be found in the book written by <span class="citation" data-cites="xieMarkdownDefinitiveGuide2018">Xie, Allaire, and Grolemund (<a href="#ref-xieMarkdownDefinitiveGuide2018" role="doc-biblioref">2018</a>)</span> When you execute code within the document, the results appear beneath the code. This file contains the pre-processing step (clean, prepare and transform data). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline <span class="citation" data-cites="pengArtDataScience2016 wickhamDataScienceImport2017">(see <a href="#ref-pengArtDataScience2016" role="doc-biblioref">Peng and Matsui 2016</a>; <a href="#ref-wickhamDataScienceImport2017" role="doc-biblioref">Wickham and Grolemund 2017</a>)</span>.</p>
+</section>
+<section id="notes" class="level1">
+<h1>Notes</h1>
+<p>Global variables to control output:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## global variables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="get-packages-raw-data-functions" class="level1">
+<h1>get packages, raw data, functions</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### install and load packages</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(pacman)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">'tidyverse'</span>, <span class="st">'jsonlite'</span>, <span class="st">'magrittr'</span>, <span class="st">'xlsx'</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">'stargazer'</span>, <span class="st">'psych'</span>, <span class="st">'tm'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="do">### load data files</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">## change working directory</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"data"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># #&gt; load JATOS data</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">read_file</span>(<span class="st">'jatos_results_20221025140620.txt'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... split it into lines ...</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">'</span><span class="sc">\n</span><span class="st">'</span>) <span class="sc">%&gt;%</span> <span class="fu">first</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... filter empty rows ...</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">discard</span>(<span class="cf">function</span>(x) x <span class="sc">==</span> <span class="st">''</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ... parse JSON into a data.frame</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(fromJSON, <span class="at">flatten=</span><span class="cn">TRUE</span>) <span class="ot">-&gt;</span> dat</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; load demographic data</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>prolific1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"prolific_export_6356b951d4a85033b6f5a321.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>prolific2 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"prolific_export_63579c7eea182709b3626d06.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>prolific <span class="ot">&lt;-</span> <span class="fu">rbind</span>(prolific1, prolific2)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(prolific1); <span class="fu">rm</span>(prolific2)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="do">### load functions</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"../functions"</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">dir</span>())){</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(dir()[i])</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="fu">dir</span>()[i], <span class="at">encoding =</span> <span class="st">"utf-8"</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-preperation" class="level1">
+<h1>data preperation</h1>
+<p>add ID variable:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>sender) <span class="sc">&amp;</span> dat<span class="sc">$</span>sender <span class="sc">==</span> <span class="st">"Greetings"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat<span class="sc">$</span>ID); <span class="fu">length</span>(<span class="fu">unique</span>(dat<span class="sc">$</span>ID))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 
+ 88  88  88  88  88  88  88  88   2  88  88  88  88  88  88  88  88  88  88  88 
+ 21  22  23  24  25  26  27  28  29  30  31  32  33  34  35  36  37  38  39  40 
+ 88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88 
+ 41  42  43  44  45  46  47  48  49  50  51  52  53  54  55  56  57  58  59  60 
+ 88  88  88   2  88  88  88  88  88  88  88  88  88   2  88  88  88  88  88  88 
+ 61  62  63  64  65  66  67  68  69  70  71  72  73  74  75  76  77  78  79  80 
+ 88  29  88  88  88  88  88  88  88  88  88  88  88  88  88  55  88  88  88  88 
+ 81  82  83  84  85  86  87  88  89  90  91  92  93  94  95  96  97  98  99 100 
+ 88  88  88  88  88  88  88  88  88  88  88  88  88   2  88  88  88  88  88  88 
+101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 
+ 88  88  88  88  88  88   2  88  88  88  88  88  88  88  88  88  88  88  88  88 
+121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 
+ 88  88  88   2  88  88  88   2  88  88  88   2  88  88  88  88   2  88  88  88 
+141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 
+ 88  88  88  88  88  88  88  88  88  88  88  88   2  88  88  88  88  88  88  88 
+161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 
+ 88  88  88  88  88  88  88  88   2  88  88  88  88  88  88  88  88  88  88  88 
+181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 
+ 88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88 
+201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 
+ 88   2  88  88  88  88  88  88  88  88  88  88   2  88  88  88  88  88  88  88 
+221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 
+ 88  88  88  88  88  88  88  88  88  88  88  88  88  88   2  88  88  88  88  88 
+241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 
+ 88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88  88 
+261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 
+ 88  88  88  88   2  88  88  88  88  88  88  88  88  88  88  88  88   2  88   2 
+281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 
+ 88  88  88  88  88  88  88   2  88  88  88  88   2  88  88  88  88   2  88  88 
+301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 
+ 88  88  88  88  81  88  88  88  88  88  88  88  88  88  88  88  88  88   2  88 
+321 
+ 88 </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 321</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">table</span>(dat<span class="sc">$</span>ID) <span class="sc">==</span> <span class="fu">max</span>(<span class="fu">table</span>(dat<span class="sc">$</span>ID)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 297</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 26,343
+Columns: 183
+$ para_defocuscount       &lt;list&gt; [&lt;data.frame[1 x 2]&gt;], &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;…
+$ sender                  &lt;chr&gt; "Greetings", "InformedConsent", "InformedConse…
+$ sender_type             &lt;chr&gt; "html.Form", "html.Form", "html.Form", "html.F…
+$ sender_id               &lt;chr&gt; "0", "1", "2", "3", "4", "5", "6_0_0", "6_0_1"…
+$ ...5                    &lt;chr&gt; "", "", NA, "", NA, "", NA, NA, NA, NA, "", ""…
+$ ended_on                &lt;chr&gt; "form submission", "form submission", "skipped…
+$ duration                &lt;dbl&gt; 43851.809, 27939.678, NA, 6275.815, 27733.363,…
+$ time_run                &lt;dbl&gt; 8294.4, 52193.6, 80161.7, 80162.1, 86435.5, 11…
+$ time_render             &lt;dbl&gt; 8290.171, 52182.090, NA, 80142.319, 86432.771,…
+$ time_show               &lt;dbl&gt; 8339.991, 52215.422, NA, 80158.985, 86449.437,…
+$ time_end                &lt;dbl&gt; 52191.8, 80155.1, 80155.1, 86434.8, 114182.8, …
+$ time_commit             &lt;dbl&gt; 52192.6, 80155.4, 80162.0, 86435.1, 114183.0, …
+$ timestamp               &lt;chr&gt; "2022-10-25T12:46:23.850Z", "2022-10-25T12:46:…
+$ time_switch             &lt;dbl&gt; 52215.42, 80158.99, 80158.99, 86449.44, 114193…
+$ PROLIFIC_PID            &lt;chr&gt; NA, "55b237e6fdf99b19ea79d2f7", NA, NA, NA, NA…
+$ dummy_informedconsent   &lt;chr&gt; NA, "1", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ attCheck_array          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, "attC…
+$ attCheck_text           &lt;chr&gt; NA, NA, NA, NA, NA, "I read the instructions",…
+$ techOrderTotal          &lt;list&gt; &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL&gt;, &lt;NULL…
+$ notneeded               &lt;int&gt; NA, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0…
+$ counter_outer           &lt;int&gt; NA, NA, NA, NA, NA, NA, 0, 0, 0, 0, 0, 0, 0, 0…
+$ techOrder               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, "Nano-Pat-Parka", …
+$ counter_inner           &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist02_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist04_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist06_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist05_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist01_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist03_NPP    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ para_countclicks        &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ para_ET_tech            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian07_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian03_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian05_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian08_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian09_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian04_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian01_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian06_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian02_NPP       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist01_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist05_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist03_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist04_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist02_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology03_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology04_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology01_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology05_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology07_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology06_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology02_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology08_NPP        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism06_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism09_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism07_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism08_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism02_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism03_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism04_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism05_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism01_NPP          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue04_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue06_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue02_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue07_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue05_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue09_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue01_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue08_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue03_NPP            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism03_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism01_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism07_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism09_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism06_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism08_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism04_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism02_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism05_SAI          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist04_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist03_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist01_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist05_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist02_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology03_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology08_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology06_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology04_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology05_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology01_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology07_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology02_SAI        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist01_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist04_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist03_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist05_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist06_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist02_SAI    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian04_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian09_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian07_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian06_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian05_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian02_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian01_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian03_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian08_SAI       &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue06_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue07_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue01_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue04_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue05_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue03_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue09_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue08_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue02_SAI            &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology04_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology01_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology03_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology08_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology05_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology02_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology06_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ deontology07_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue06_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue07_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue09_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue01_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue08_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue05_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue03_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue02_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ virtue04_SR             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism02_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism04_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism05_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism08_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism06_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism01_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism07_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism03_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ hedonism09_SR           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian07_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian05_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian08_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian06_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian09_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian01_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian02_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian04_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ utilitarian03_SR        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist05_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist01_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist06_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist04_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist03_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ contractualist02_SR     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist01_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist04_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist02_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist05_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ relativist03_SR         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ feedback_critic         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ meta.labjs_version      &lt;chr&gt; "20.2.4", NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.location           &lt;chr&gt; "https://studien.psychologie.uni-freiburg.de/p…
+$ meta.userAgent          &lt;chr&gt; "Mozilla/5.0 (Windows NT 10.0; Win64; x64) App…
+$ meta.platform           &lt;chr&gt; "Win32", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ meta.language           &lt;chr&gt; "en-US", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ meta.locale             &lt;chr&gt; "en-US", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ meta.timeZone           &lt;chr&gt; "America/Chicago", NA, NA, NA, NA, NA, NA, NA,…
+$ meta.timezoneOffset     &lt;int&gt; 300, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ meta.screen_width       &lt;int&gt; 1920, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.screen_height      &lt;int&gt; 1200, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.scroll_width       &lt;int&gt; 1920, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.scroll_height      &lt;int&gt; 435, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ meta.window_innerWidth  &lt;int&gt; 1920, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.window_innerHeight &lt;int&gt; 1057, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.devicePixelRatio   &lt;dbl&gt; 1, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ meta.labjs_build.flavor &lt;chr&gt; "production", NA, NA, NA, NA, NA, NA, NA, NA, …
+$ meta.labjs_build.commit &lt;chr&gt; "f5b4a49f956347addd546a832a3327688c2c0fef", NA…
+$ ...4                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ ID                      &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## keep only full datasets</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> dat[dat<span class="sc">$</span>ID <span class="sc">%in%</span> <span class="fu">names</span>(<span class="fu">table</span>(dat<span class="sc">$</span>ID))[<span class="fu">table</span>(dat<span class="sc">$</span>ID) <span class="sc">==</span> <span class="fu">max</span>(<span class="fu">table</span>(dat<span class="sc">$</span>ID))],]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>save feedback as Excel file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs_prepareData"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>varsSingExcel <span class="ot">&lt;-</span> <span class="st">"feedback_critic"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> dat[, <span class="st">"ID"</span>][<span class="sc">!</span><span class="fu">is.na</span>(dat[, varsSingExcel]) <span class="sc">&amp;</span> dat[, varsSingExcel] <span class="sc">!=</span> <span class="st">""</span>],</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">feedback =</span> dat[, varsSingExcel][<span class="sc">!</span><span class="fu">is.na</span>(dat[, varsSingExcel]) <span class="sc">&amp;</span> dat[, varsSingExcel] <span class="sc">!=</span> <span class="st">""</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>writexl<span class="sc">::</span><span class="fu">write_xlsx</span>(<span class="at">x =</span> tmp,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">path =</span> <span class="fu">paste0</span>(varsSingExcel, <span class="st">".xlsx"</span>))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(<span class="at">x =</span> tmp, <span class="at">file =</span> <span class="fu">paste0</span>(varsSingExcel, <span class="st">".rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="set-up-questionnaire" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-questionnaire">set up questionnaire:</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs_prepareData"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "para_defocuscount"       "sender"                 
+  [3] "sender_type"             "sender_id"              
+  [5] "...5"                    "ended_on"               
+  [7] "duration"                "time_run"               
+  [9] "time_render"             "time_show"              
+ [11] "time_end"                "time_commit"            
+ [13] "timestamp"               "time_switch"            
+ [15] "PROLIFIC_PID"            "dummy_informedconsent"  
+ [17] "attCheck_array"          "attCheck_text"          
+ [19] "techOrderTotal"          "notneeded"              
+ [21] "counter_outer"           "techOrder"              
+ [23] "counter_inner"           "contractualist02_NPP"   
+ [25] "contractualist04_NPP"    "contractualist06_NPP"   
+ [27] "contractualist05_NPP"    "contractualist01_NPP"   
+ [29] "contractualist03_NPP"    "para_countclicks"       
+ [31] "para_ET_tech"            "utilitarian07_NPP"      
+ [33] "utilitarian03_NPP"       "utilitarian05_NPP"      
+ [35] "utilitarian08_NPP"       "utilitarian09_NPP"      
+ [37] "utilitarian04_NPP"       "utilitarian01_NPP"      
+ [39] "utilitarian06_NPP"       "utilitarian02_NPP"      
+ [41] "relativist01_NPP"        "relativist05_NPP"       
+ [43] "relativist03_NPP"        "relativist04_NPP"       
+ [45] "relativist02_NPP"        "deontology03_NPP"       
+ [47] "deontology04_NPP"        "deontology01_NPP"       
+ [49] "deontology05_NPP"        "deontology07_NPP"       
+ [51] "deontology06_NPP"        "deontology02_NPP"       
+ [53] "deontology08_NPP"        "hedonism06_NPP"         
+ [55] "hedonism09_NPP"          "hedonism07_NPP"         
+ [57] "hedonism08_NPP"          "hedonism02_NPP"         
+ [59] "hedonism03_NPP"          "hedonism04_NPP"         
+ [61] "hedonism05_NPP"          "hedonism01_NPP"         
+ [63] "virtue04_NPP"            "virtue06_NPP"           
+ [65] "virtue02_NPP"            "virtue07_NPP"           
+ [67] "virtue05_NPP"            "virtue09_NPP"           
+ [69] "virtue01_NPP"            "virtue08_NPP"           
+ [71] "virtue03_NPP"            "hedonism03_SAI"         
+ [73] "hedonism01_SAI"          "hedonism07_SAI"         
+ [75] "hedonism09_SAI"          "hedonism06_SAI"         
+ [77] "hedonism08_SAI"          "hedonism04_SAI"         
+ [79] "hedonism02_SAI"          "hedonism05_SAI"         
+ [81] "relativist04_SAI"        "relativist03_SAI"       
+ [83] "relativist01_SAI"        "relativist05_SAI"       
+ [85] "relativist02_SAI"        "deontology03_SAI"       
+ [87] "deontology08_SAI"        "deontology06_SAI"       
+ [89] "deontology04_SAI"        "deontology05_SAI"       
+ [91] "deontology01_SAI"        "deontology07_SAI"       
+ [93] "deontology02_SAI"        "contractualist01_SAI"   
+ [95] "contractualist04_SAI"    "contractualist03_SAI"   
+ [97] "contractualist05_SAI"    "contractualist06_SAI"   
+ [99] "contractualist02_SAI"    "utilitarian04_SAI"      
+[101] "utilitarian09_SAI"       "utilitarian07_SAI"      
+[103] "utilitarian06_SAI"       "utilitarian05_SAI"      
+[105] "utilitarian02_SAI"       "utilitarian01_SAI"      
+[107] "utilitarian03_SAI"       "utilitarian08_SAI"      
+[109] "virtue06_SAI"            "virtue07_SAI"           
+[111] "virtue01_SAI"            "virtue04_SAI"           
+[113] "virtue05_SAI"            "virtue03_SAI"           
+[115] "virtue09_SAI"            "virtue08_SAI"           
+[117] "virtue02_SAI"            "deontology04_SR"        
+[119] "deontology01_SR"         "deontology03_SR"        
+[121] "deontology08_SR"         "deontology05_SR"        
+[123] "deontology02_SR"         "deontology06_SR"        
+[125] "deontology07_SR"         "virtue06_SR"            
+[127] "virtue07_SR"             "virtue09_SR"            
+[129] "virtue01_SR"             "virtue08_SR"            
+[131] "virtue05_SR"             "virtue03_SR"            
+[133] "virtue02_SR"             "virtue04_SR"            
+[135] "hedonism02_SR"           "hedonism04_SR"          
+[137] "hedonism05_SR"           "hedonism08_SR"          
+[139] "hedonism06_SR"           "hedonism01_SR"          
+[141] "hedonism07_SR"           "hedonism03_SR"          
+[143] "hedonism09_SR"           "utilitarian07_SR"       
+[145] "utilitarian05_SR"        "utilitarian08_SR"       
+[147] "utilitarian06_SR"        "utilitarian09_SR"       
+[149] "utilitarian01_SR"        "utilitarian02_SR"       
+[151] "utilitarian04_SR"        "utilitarian03_SR"       
+[153] "contractualist05_SR"     "contractualist01_SR"    
+[155] "contractualist06_SR"     "contractualist04_SR"    
+[157] "contractualist03_SR"     "contractualist02_SR"    
+[159] "relativist01_SR"         "relativist04_SR"        
+[161] "relativist02_SR"         "relativist05_SR"        
+[163] "relativist03_SR"         "feedback_critic"        
+[165] "meta.labjs_version"      "meta.location"          
+[167] "meta.userAgent"          "meta.platform"          
+[169] "meta.language"           "meta.locale"            
+[171] "meta.timeZone"           "meta.timezoneOffset"    
+[173] "meta.screen_width"       "meta.screen_height"     
+[175] "meta.scroll_width"       "meta.scroll_height"     
+[177] "meta.window_innerWidth"  "meta.window_innerHeight"
+[179] "meta.devicePixelRatio"   "meta.labjs_build.flavor"
+[181] "meta.labjs_build.commit" "...4"                   
+[183] "ID"                     </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"^meta"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(<span class="at">string =</span> tmp, <span class="at">pattern =</span> <span class="st">"labjs|location"</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ques_mixed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PROLIFIC_PID"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"dummy_informedconsent"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_NPP$"</span>),</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_SR$"</span>),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_SAI$"</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                tmp,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>               <span class="st">"feedback_critic"</span>, <span class="st">"attCheck_text"</span>)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>vec_notNumeric <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"PROLIFIC_PID"</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_NPP$"</span>),</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_SR$"</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">str_subset</span>(<span class="at">string =</span> <span class="fu">colnames</span>(dat), <span class="at">pattern =</span> <span class="st">"_SAI$"</span>),</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                   tmp,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"feedback_critic"</span>, <span class="st">"attCheck_text"</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(tmp)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="co"># dataset = dat</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># listvars = ques_mixed</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="co"># notNumeric = vec_notNumeric</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>questionnairetype <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset,</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>                              <span class="at">listvars =</span> ques_mixed,</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>                              <span class="at">notNumeric =</span> vec_notNumeric){</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  datasetques <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="fu">unique</span>(dataset<span class="sc">$</span>ID))</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(c <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(listvars)){</span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(c)</span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">any</span>(<span class="fu">colnames</span>(dataset) <span class="sc">==</span> listvars[c])){</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">print</span>(listvars[c])</span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>      <span class="do">## tmp IDs</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>      tmpid <span class="ot">&lt;-</span> dataset<span class="sc">$</span>ID[<span class="sc">!</span><span class="fu">is.na</span>(dataset[, listvars[c]])]</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>      <span class="do">## tmp value variable</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>      tmpvalue <span class="ot">&lt;-</span> dataset[, listvars[c]][<span class="sc">!</span><span class="fu">is.na</span>(dataset[, listvars[c]])]</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>      datasetques[listvars[c]]  <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span>(listvars[c] <span class="sc">%in%</span> notNumeric){</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>        datasetques[datasetques<span class="sc">$</span>ID <span class="sc">%in%</span> tmpid, listvars[c]] <span class="ot">&lt;-</span> tmpvalue</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>      }<span class="cf">else</span> <span class="cf">if</span>(<span class="fu">is.list</span>(tmpvalue)){</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>        tmpvalue_tmp <span class="ot">&lt;-</span> <span class="fu">unique</span>(tmpvalue)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>        tmpvalue <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>        counter <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(tmpvalue_tmp)){</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(tmpvalue_tmp[[i]])){</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>            tmpvalue[counter] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(tmpvalue_tmp[[i]], <span class="at">collapse =</span> <span class="st">" - "</span>)</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>            counter <span class="ot">=</span> counter <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>        datasetques[datasetques<span class="sc">$</span>ID <span class="sc">%in%</span> tmpid, listvars[c]] <span class="ot">&lt;-</span> tmpvalue</span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>      }<span class="cf">else</span>{</span>
+<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>        datasetques[datasetques<span class="sc">$</span>ID <span class="sc">%in%</span> tmpid, listvars[c]] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(tmpvalue)</span>
+<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(datasetques)</span>
+<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>questionnaire <span class="ot">&lt;-</span> <span class="fu">questionnairetype</span>(<span class="at">dataset =</span> dat, <span class="at">listvars =</span> ques_mixed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] "PROLIFIC_PID"
+[1] 2
+[1] "dummy_informedconsent"
+[1] 3
+[1] "contractualist02_NPP"
+[1] 4
+[1] "contractualist04_NPP"
+[1] 5
+[1] "contractualist06_NPP"
+[1] 6
+[1] "contractualist05_NPP"
+[1] 7
+[1] "contractualist01_NPP"
+[1] 8
+[1] "contractualist03_NPP"
+[1] 9
+[1] "utilitarian07_NPP"
+[1] 10
+[1] "utilitarian03_NPP"
+[1] 11
+[1] "utilitarian05_NPP"
+[1] 12
+[1] "utilitarian08_NPP"
+[1] 13
+[1] "utilitarian09_NPP"
+[1] 14
+[1] "utilitarian04_NPP"
+[1] 15
+[1] "utilitarian01_NPP"
+[1] 16
+[1] "utilitarian06_NPP"
+[1] 17
+[1] "utilitarian02_NPP"
+[1] 18
+[1] "relativist01_NPP"
+[1] 19
+[1] "relativist05_NPP"
+[1] 20
+[1] "relativist03_NPP"
+[1] 21
+[1] "relativist04_NPP"
+[1] 22
+[1] "relativist02_NPP"
+[1] 23
+[1] "deontology03_NPP"
+[1] 24
+[1] "deontology04_NPP"
+[1] 25
+[1] "deontology01_NPP"
+[1] 26
+[1] "deontology05_NPP"
+[1] 27
+[1] "deontology07_NPP"
+[1] 28
+[1] "deontology06_NPP"
+[1] 29
+[1] "deontology02_NPP"
+[1] 30
+[1] "deontology08_NPP"
+[1] 31
+[1] "hedonism06_NPP"
+[1] 32
+[1] "hedonism09_NPP"
+[1] 33
+[1] "hedonism07_NPP"
+[1] 34
+[1] "hedonism08_NPP"
+[1] 35
+[1] "hedonism02_NPP"
+[1] 36
+[1] "hedonism03_NPP"
+[1] 37
+[1] "hedonism04_NPP"
+[1] 38
+[1] "hedonism05_NPP"
+[1] 39
+[1] "hedonism01_NPP"
+[1] 40
+[1] "virtue04_NPP"
+[1] 41
+[1] "virtue06_NPP"
+[1] 42
+[1] "virtue02_NPP"
+[1] 43
+[1] "virtue07_NPP"
+[1] 44
+[1] "virtue05_NPP"
+[1] 45
+[1] "virtue09_NPP"
+[1] 46
+[1] "virtue01_NPP"
+[1] 47
+[1] "virtue08_NPP"
+[1] 48
+[1] "virtue03_NPP"
+[1] 49
+[1] "deontology04_SR"
+[1] 50
+[1] "deontology01_SR"
+[1] 51
+[1] "deontology03_SR"
+[1] 52
+[1] "deontology08_SR"
+[1] 53
+[1] "deontology05_SR"
+[1] 54
+[1] "deontology02_SR"
+[1] 55
+[1] "deontology06_SR"
+[1] 56
+[1] "deontology07_SR"
+[1] 57
+[1] "virtue06_SR"
+[1] 58
+[1] "virtue07_SR"
+[1] 59
+[1] "virtue09_SR"
+[1] 60
+[1] "virtue01_SR"
+[1] 61
+[1] "virtue08_SR"
+[1] 62
+[1] "virtue05_SR"
+[1] 63
+[1] "virtue03_SR"
+[1] 64
+[1] "virtue02_SR"
+[1] 65
+[1] "virtue04_SR"
+[1] 66
+[1] "hedonism02_SR"
+[1] 67
+[1] "hedonism04_SR"
+[1] 68
+[1] "hedonism05_SR"
+[1] 69
+[1] "hedonism08_SR"
+[1] 70
+[1] "hedonism06_SR"
+[1] 71
+[1] "hedonism01_SR"
+[1] 72
+[1] "hedonism07_SR"
+[1] 73
+[1] "hedonism03_SR"
+[1] 74
+[1] "hedonism09_SR"
+[1] 75
+[1] "utilitarian07_SR"
+[1] 76
+[1] "utilitarian05_SR"
+[1] 77
+[1] "utilitarian08_SR"
+[1] 78
+[1] "utilitarian06_SR"
+[1] 79
+[1] "utilitarian09_SR"
+[1] 80
+[1] "utilitarian01_SR"
+[1] 81
+[1] "utilitarian02_SR"
+[1] 82
+[1] "utilitarian04_SR"
+[1] 83
+[1] "utilitarian03_SR"
+[1] 84
+[1] "contractualist05_SR"
+[1] 85
+[1] "contractualist01_SR"
+[1] 86
+[1] "contractualist06_SR"
+[1] 87
+[1] "contractualist04_SR"
+[1] 88
+[1] "contractualist03_SR"
+[1] 89
+[1] "contractualist02_SR"
+[1] 90
+[1] "relativist01_SR"
+[1] 91
+[1] "relativist04_SR"
+[1] 92
+[1] "relativist02_SR"
+[1] 93
+[1] "relativist05_SR"
+[1] 94
+[1] "relativist03_SR"
+[1] 95
+[1] "hedonism03_SAI"
+[1] 96
+[1] "hedonism01_SAI"
+[1] 97
+[1] "hedonism07_SAI"
+[1] 98
+[1] "hedonism09_SAI"
+[1] 99
+[1] "hedonism06_SAI"
+[1] 100
+[1] "hedonism08_SAI"
+[1] 101
+[1] "hedonism04_SAI"
+[1] 102
+[1] "hedonism02_SAI"
+[1] 103
+[1] "hedonism05_SAI"
+[1] 104
+[1] "relativist04_SAI"
+[1] 105
+[1] "relativist03_SAI"
+[1] 106
+[1] "relativist01_SAI"
+[1] 107
+[1] "relativist05_SAI"
+[1] 108
+[1] "relativist02_SAI"
+[1] 109
+[1] "deontology03_SAI"
+[1] 110
+[1] "deontology08_SAI"
+[1] 111
+[1] "deontology06_SAI"
+[1] 112
+[1] "deontology04_SAI"
+[1] 113
+[1] "deontology05_SAI"
+[1] 114
+[1] "deontology01_SAI"
+[1] 115
+[1] "deontology07_SAI"
+[1] 116
+[1] "deontology02_SAI"
+[1] 117
+[1] "contractualist01_SAI"
+[1] 118
+[1] "contractualist04_SAI"
+[1] 119
+[1] "contractualist03_SAI"
+[1] 120
+[1] "contractualist05_SAI"
+[1] 121
+[1] "contractualist06_SAI"
+[1] 122
+[1] "contractualist02_SAI"
+[1] 123
+[1] "utilitarian04_SAI"
+[1] 124
+[1] "utilitarian09_SAI"
+[1] 125
+[1] "utilitarian07_SAI"
+[1] 126
+[1] "utilitarian06_SAI"
+[1] 127
+[1] "utilitarian05_SAI"
+[1] 128
+[1] "utilitarian02_SAI"
+[1] 129
+[1] "utilitarian01_SAI"
+[1] 130
+[1] "utilitarian03_SAI"
+[1] 131
+[1] "utilitarian08_SAI"
+[1] 132
+[1] "virtue06_SAI"
+[1] 133
+[1] "virtue07_SAI"
+[1] 134
+[1] "virtue01_SAI"
+[1] 135
+[1] "virtue04_SAI"
+[1] 136
+[1] "virtue05_SAI"
+[1] 137
+[1] "virtue03_SAI"
+[1] 138
+[1] "virtue09_SAI"
+[1] 139
+[1] "virtue08_SAI"
+[1] 140
+[1] "virtue02_SAI"
+[1] 141
+[1] "meta.userAgent"
+[1] 142
+[1] "meta.platform"
+[1] 143
+[1] "meta.language"
+[1] 144
+[1] "meta.locale"
+[1] 145
+[1] "meta.timeZone"
+[1] 146
+[1] "meta.timezoneOffset"
+[1] 147
+[1] "meta.screen_width"
+[1] 148
+[1] "meta.screen_height"
+[1] 149
+[1] "meta.scroll_width"
+[1] 150
+[1] "meta.scroll_height"
+[1] 151
+[1] "meta.window_innerWidth"
+[1] 152
+[1] "meta.window_innerHeight"
+[1] 153
+[1] "meta.devicePixelRatio"
+[1] 154
+[1] "feedback_critic"
+[1] 155
+[1] "attCheck_text"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(questionnaire)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID             PROLIFIC_PID dummy_informedconsent contractualist02_NPP
+1  1 55b237e6fdf99b19ea79d2f7                     1                    3
+2  2 5f6067975552dc000aa21f2a                     1                    7
+3  3 62b07ac53b83bf0683eda6b6                     1                    5
+4  4 5ae0afd709eae20001131fb9                     1                    4
+5  5 5f6c102b6ec04317fc9a8127                     1                    5
+6  6 62c2e1dcee1194bef7151c26                     1                    4
+  contractualist04_NPP contractualist06_NPP contractualist05_NPP
+1                    3                    3                    2
+2                    7                    7                    6
+3                    6                    6                    5
+4                    4                    4                    3
+5                    3                    4                    4
+6                    2                    2                    3
+  contractualist01_NPP contractualist03_NPP utilitarian07_NPP utilitarian03_NPP
+1                    3                    3                 3                 5
+2                    7                    7                 7                 7
+3                    6                    4                 4                 5
+4                    4                    3                 2                 1
+5                    6                    4                 3                 3
+6                    3                    3                 1                 2
+  utilitarian05_NPP utilitarian08_NPP utilitarian09_NPP utilitarian04_NPP
+1                 4                 3                 4                 4
+2                 7                 7                 7                 7
+3                 5                 4                 5                 6
+4                 2                 1                 1                 2
+5                 3                 1                 1                 2
+6                 2                 1                 1                 2
+  utilitarian01_NPP utilitarian06_NPP utilitarian02_NPP relativist01_NPP
+1                 3                 4                 3                6
+2                 7                 6                 7                7
+3                 5                 5                 6                6
+4                 2                 1                 1                1
+5                 2                 3                 4                4
+6                 1                 1                 3                4
+  relativist05_NPP relativist03_NPP relativist04_NPP relativist02_NPP
+1                5                3                3                5
+2                7                7                7                7
+3                5                6                6                6
+4                1                1                1                1
+5                1                3                3                3
+6                2                2                1                2
+  deontology03_NPP deontology04_NPP deontology01_NPP deontology05_NPP
+1                2                2                5                2
+2                7                7                7                7
+3                4                5                3                7
+4                3                3                3                2
+5                3                4                4                4
+6                2                3                4                2
+  deontology07_NPP deontology06_NPP deontology02_NPP deontology08_NPP
+1                2                2                5                3
+2                7                7                6                7
+3                5                5                5                5
+4                2                2                3                2
+5                3                3                3                3
+6                2                3                1                3
+  hedonism06_NPP hedonism09_NPP hedonism07_NPP hedonism08_NPP hedonism02_NPP
+1              3              2              2              5              1
+2              7              7              6              7              7
+3              6              6              6              6              6
+4              1              1              1              1              1
+5              4              4              3              7              3
+6              4              3              2              3              2
+  hedonism03_NPP hedonism04_NPP hedonism05_NPP hedonism01_NPP virtue04_NPP
+1              5              2              5              1            1
+2              7              7              7              7            6
+3              5              6              6              6            6
+4              1              1              1              2            2
+5              1              3              5              4            4
+6              1              2              4              1            3
+  virtue06_NPP virtue02_NPP virtue07_NPP virtue05_NPP virtue09_NPP virtue01_NPP
+1            4            1            1            2            4            4
+2            7            7            7            7            7            7
+3            7            7            5            5            6            6
+4            3            3            2            2            3            3
+5            4            5            3            6            7            6
+6            6            5            1            3            6            2
+  virtue08_NPP virtue03_NPP deontology04_SR deontology01_SR deontology03_SR
+1            1            4               4               6               3
+2            7            7               7               7               7
+3            5            6               4               3               3
+4            3            3               5               4               3
+5            4            4               4               4               5
+6            6            4               3               5               4
+  deontology08_SR deontology05_SR deontology02_SR deontology06_SR
+1               3               3               2               4
+2               7               7               7               7
+3               2               3               3               2
+4               2               4               4               4
+5               2               3               3               5
+6               3               2               6               4
+  deontology07_SR virtue06_SR virtue07_SR virtue09_SR virtue01_SR virtue08_SR
+1               4           6           4           7           7           6
+2               7           7           7           7           7           7
+3               4           7           4           4           4           4
+4               4           6           4           6           6           6
+5               4           6           4           5           4           7
+6               4           7           4           6           6           6
+  virtue05_SR virtue03_SR virtue02_SR virtue04_SR hedonism02_SR hedonism04_SR
+1           5           6           7           6             6             6
+2           7           7           7           7             7             7
+3           4           4           4           5             4             5
+4           7           6           6           5             4             5
+5           5           3           5           6             3             3
+6           6           4           7           6             3             5
+  hedonism05_SR hedonism08_SR hedonism06_SR hedonism01_SR hedonism07_SR
+1             6             4             5             6             5
+2             7             7             7             7             6
+3             6             4             6             6             6
+4             4             6             5             5             5
+5             6             1             6             4             3
+6             6             7             6             6             6
+  hedonism03_SR hedonism09_SR utilitarian07_SR utilitarian05_SR
+1             6             6                5                4
+2             7             7                7                7
+3             6             7                5                4
+4             6             6                5                5
+5             7             5                3                5
+6             7             5                6                5
+  utilitarian08_SR utilitarian06_SR utilitarian09_SR utilitarian01_SR
+1                6                4                5                5
+2                7                7                7                7
+3                6                4                4                5
+4                6                5                5                5
+5                7                5                5                4
+6                6                4                5                5
+  utilitarian02_SR utilitarian04_SR utilitarian03_SR contractualist05_SR
+1                5                5                4                   4
+2                7                7                7                   7
+3                5                4                4                   5
+4                5                5                4                   7
+5                7                5                7                   4
+6                5                5                4                   2
+  contractualist01_SR contractualist06_SR contractualist04_SR
+1                   4                   5                   4
+2                   7                   6                   7
+3                   5                   5                   2
+4                   7                   7                   7
+5                   3                   3                   4
+6                   5                   6                   2
+  contractualist03_SR contractualist02_SR relativist01_SR relativist04_SR
+1                   4                   5               5               6
+2                   5                   7               7               7
+3                   5                   5               4               5
+4                   7                   7               6               5
+5                   3                   4               2               4
+6                   2                   6               4               3
+  relativist02_SR relativist05_SR relativist03_SR hedonism03_SAI hedonism01_SAI
+1               6               4               6              1              2
+2               7               7               7              6              7
+3               5               5               2              2              3
+4               5               4               3              3              3
+5               3               3               4              7              7
+6               2               2               1              2              3
+  hedonism07_SAI hedonism09_SAI hedonism06_SAI hedonism08_SAI hedonism04_SAI
+1              6              6              6              6              4
+2              7              7              7              7              7
+3              3              2              3              4              3
+4              2              3              3              3              2
+5              5              3              6              4              7
+6              5              2              6              4              5
+  hedonism02_SAI hedonism05_SAI relativist04_SAI relativist03_SAI
+1              4              6                5                5
+2              7              7                7                6
+3              4              3                2                2
+4              3              3                3                3
+5              5              7                7                6
+6              2              5                1                2
+  relativist01_SAI relativist05_SAI relativist02_SAI deontology03_SAI
+1                6                4                4                5
+2                7                7                7                7
+3                3                3                3                4
+4                2                3                3                3
+5                6                4                6                6
+6                3                2                2                4
+  deontology08_SAI deontology06_SAI deontology04_SAI deontology05_SAI
+1                6                6                5                6
+2                7                7                7                7
+3                4                3                4                4
+4                1                1                2                2
+5                5                4                4                7
+6                2                4                3                3
+  deontology01_SAI deontology07_SAI deontology02_SAI contractualist01_SAI
+1                6                6                4                    6
+2                7                7                7                    7
+3                4                2                3                    4
+4                4                1                4                    4
+5                7                6                7                    4
+6                4                5                1                    2
+  contractualist04_SAI contractualist03_SAI contractualist05_SAI
+1                    6                    6                    6
+2                    7                    7                    7
+3                    2                    3                    3
+4                    3                    3                    3
+5                    6                    4                    6
+6                    1                    2                    1
+  contractualist06_SAI contractualist02_SAI utilitarian04_SAI utilitarian09_SAI
+1                    6                    6                 5                 7
+2                    7                    7                 7                 7
+3                    2                    4                 3                 2
+4                    4                    4                 3                 3
+5                    3                    5                 7                 7
+6                    2                    2                 2                 1
+  utilitarian07_SAI utilitarian06_SAI utilitarian05_SAI utilitarian02_SAI
+1                 4                 4                 4                 6
+2                 7                 7                 7                 7
+3                 1                 3                 3                 4
+4                 3                 4                 2                 4
+5                 6                 6                 7                 7
+6                 4                 2                 3                 3
+  utilitarian01_SAI utilitarian03_SAI utilitarian08_SAI virtue06_SAI
+1                 5                 6                 5            6
+2                 7                 7                 7            7
+3                 3                 3                 4            5
+4                 3                 5                 2            6
+5                 7                 6                 5            7
+6                 4                 3                 2            4
+  virtue07_SAI virtue01_SAI virtue04_SAI virtue05_SAI virtue03_SAI virtue09_SAI
+1            7            7            6            6            4            7
+2            7            7            7            7            7            7
+3            4            5            5            4            4            5
+4            3            5            5            5            5            5
+5            7            6            7            7            6            7
+6            4            7            5            6            5            6
+  virtue08_SAI virtue02_SAI
+1            6            7
+2            7            7
+3            4            5
+4            4            5
+5            7            7
+6            3            6
+                                                                                                   meta.userAgent
+1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+2                                Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:106.0) Gecko/20100101 Firefox/106.0
+3 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+4 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+5 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+6 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36
+  meta.platform meta.language meta.locale    meta.timeZone meta.timezoneOffset
+1         Win32         en-US       en-US  America/Chicago                 300
+2         Win32         en-US       en-US America/New_York                 240
+3         Win32         en-US       en-US America/New_York                 240
+4         Win32         en-US       en-US America/New_York                 240
+5         Win32         en-US       en-US America/New_York                 240
+6         Win32         en-US       en-US America/New_York                 240
+  meta.screen_width meta.screen_height meta.scroll_width meta.scroll_height
+1              1920               1200              1920                435
+2              1093                614              1093                179
+3              1536                864              1536                436
+4              1920               1080               969                435
+5              2560               1440              1280                179
+6              1920               1080              1920                435
+  meta.window_innerWidth meta.window_innerHeight meta.devicePixelRatio
+1                   1920                    1057                  1.00
+2                   1093                     490                  1.25
+3                   1536                     746                  1.25
+4                    969                     968                  1.00
+5                   1280                    1336                  1.00
+6                   1920                     969                  1.00
+                                                                                                                                                                                                                                                                                                                                      feedback_critic
+1                                                                                                                                                                                                                                                                                                        Interesting topics to think about! Thank you
+2                                                                                                                                                                                                                                                                                                                                                    
+3                                                                                                                                                                                                                                                                                                                                                    
+4                                                                                                                                                                                                                                                                                                                 The study was simple and well made.
+5                                                                                                                                                                                                                                                                                                                                                    
+6 While I generally understood, terms such as "intrinsic value of nature" is open to some interpretation, so if this terms and others like it have a specific connotation/context, it may be worth describing for future studies.  This noted, I like to think that I interpreted them as intended. Thank you for the opportunity, interesting study!
+             attCheck_text
+1  I read the instructions
+2  I read the instructions
+3 I read the instructions 
+4  I read the instructions
+5  I read the instructions
+6  I read the instructions</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">### for list add columns manually</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(dat, class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$para_defocuscount
+[1] "list"
+
+$sender
+[1] "character"
+
+$sender_type
+[1] "character"
+
+$sender_id
+[1] "character"
+
+$...5
+[1] "character"
+
+$ended_on
+[1] "character"
+
+$duration
+[1] "numeric"
+
+$time_run
+[1] "numeric"
+
+$time_render
+[1] "numeric"
+
+$time_show
+[1] "numeric"
+
+$time_end
+[1] "numeric"
+
+$time_commit
+[1] "numeric"
+
+$timestamp
+[1] "character"
+
+$time_switch
+[1] "numeric"
+
+$PROLIFIC_PID
+[1] "character"
+
+$dummy_informedconsent
+[1] "character"
+
+$attCheck_array
+[1] "list"
+
+$attCheck_text
+[1] "character"
+
+$techOrderTotal
+[1] "list"
+
+$notneeded
+[1] "integer"
+
+$counter_outer
+[1] "integer"
+
+$techOrder
+[1] "character"
+
+$counter_inner
+[1] "integer"
+
+$contractualist02_NPP
+[1] "character"
+
+$contractualist04_NPP
+[1] "character"
+
+$contractualist06_NPP
+[1] "character"
+
+$contractualist05_NPP
+[1] "character"
+
+$contractualist01_NPP
+[1] "character"
+
+$contractualist03_NPP
+[1] "character"
+
+$para_countclicks
+[1] "integer"
+
+$para_ET_tech
+[1] "character"
+
+$utilitarian07_NPP
+[1] "character"
+
+$utilitarian03_NPP
+[1] "character"
+
+$utilitarian05_NPP
+[1] "character"
+
+$utilitarian08_NPP
+[1] "character"
+
+$utilitarian09_NPP
+[1] "character"
+
+$utilitarian04_NPP
+[1] "character"
+
+$utilitarian01_NPP
+[1] "character"
+
+$utilitarian06_NPP
+[1] "character"
+
+$utilitarian02_NPP
+[1] "character"
+
+$relativist01_NPP
+[1] "character"
+
+$relativist05_NPP
+[1] "character"
+
+$relativist03_NPP
+[1] "character"
+
+$relativist04_NPP
+[1] "character"
+
+$relativist02_NPP
+[1] "character"
+
+$deontology03_NPP
+[1] "character"
+
+$deontology04_NPP
+[1] "character"
+
+$deontology01_NPP
+[1] "character"
+
+$deontology05_NPP
+[1] "character"
+
+$deontology07_NPP
+[1] "character"
+
+$deontology06_NPP
+[1] "character"
+
+$deontology02_NPP
+[1] "character"
+
+$deontology08_NPP
+[1] "character"
+
+$hedonism06_NPP
+[1] "character"
+
+$hedonism09_NPP
+[1] "character"
+
+$hedonism07_NPP
+[1] "character"
+
+$hedonism08_NPP
+[1] "character"
+
+$hedonism02_NPP
+[1] "character"
+
+$hedonism03_NPP
+[1] "character"
+
+$hedonism04_NPP
+[1] "character"
+
+$hedonism05_NPP
+[1] "character"
+
+$hedonism01_NPP
+[1] "character"
+
+$virtue04_NPP
+[1] "character"
+
+$virtue06_NPP
+[1] "character"
+
+$virtue02_NPP
+[1] "character"
+
+$virtue07_NPP
+[1] "character"
+
+$virtue05_NPP
+[1] "character"
+
+$virtue09_NPP
+[1] "character"
+
+$virtue01_NPP
+[1] "character"
+
+$virtue08_NPP
+[1] "character"
+
+$virtue03_NPP
+[1] "character"
+
+$hedonism03_SAI
+[1] "character"
+
+$hedonism01_SAI
+[1] "character"
+
+$hedonism07_SAI
+[1] "character"
+
+$hedonism09_SAI
+[1] "character"
+
+$hedonism06_SAI
+[1] "character"
+
+$hedonism08_SAI
+[1] "character"
+
+$hedonism04_SAI
+[1] "character"
+
+$hedonism02_SAI
+[1] "character"
+
+$hedonism05_SAI
+[1] "character"
+
+$relativist04_SAI
+[1] "character"
+
+$relativist03_SAI
+[1] "character"
+
+$relativist01_SAI
+[1] "character"
+
+$relativist05_SAI
+[1] "character"
+
+$relativist02_SAI
+[1] "character"
+
+$deontology03_SAI
+[1] "character"
+
+$deontology08_SAI
+[1] "character"
+
+$deontology06_SAI
+[1] "character"
+
+$deontology04_SAI
+[1] "character"
+
+$deontology05_SAI
+[1] "character"
+
+$deontology01_SAI
+[1] "character"
+
+$deontology07_SAI
+[1] "character"
+
+$deontology02_SAI
+[1] "character"
+
+$contractualist01_SAI
+[1] "character"
+
+$contractualist04_SAI
+[1] "character"
+
+$contractualist03_SAI
+[1] "character"
+
+$contractualist05_SAI
+[1] "character"
+
+$contractualist06_SAI
+[1] "character"
+
+$contractualist02_SAI
+[1] "character"
+
+$utilitarian04_SAI
+[1] "character"
+
+$utilitarian09_SAI
+[1] "character"
+
+$utilitarian07_SAI
+[1] "character"
+
+$utilitarian06_SAI
+[1] "character"
+
+$utilitarian05_SAI
+[1] "character"
+
+$utilitarian02_SAI
+[1] "character"
+
+$utilitarian01_SAI
+[1] "character"
+
+$utilitarian03_SAI
+[1] "character"
+
+$utilitarian08_SAI
+[1] "character"
+
+$virtue06_SAI
+[1] "character"
+
+$virtue07_SAI
+[1] "character"
+
+$virtue01_SAI
+[1] "character"
+
+$virtue04_SAI
+[1] "character"
+
+$virtue05_SAI
+[1] "character"
+
+$virtue03_SAI
+[1] "character"
+
+$virtue09_SAI
+[1] "character"
+
+$virtue08_SAI
+[1] "character"
+
+$virtue02_SAI
+[1] "character"
+
+$deontology04_SR
+[1] "character"
+
+$deontology01_SR
+[1] "character"
+
+$deontology03_SR
+[1] "character"
+
+$deontology08_SR
+[1] "character"
+
+$deontology05_SR
+[1] "character"
+
+$deontology02_SR
+[1] "character"
+
+$deontology06_SR
+[1] "character"
+
+$deontology07_SR
+[1] "character"
+
+$virtue06_SR
+[1] "character"
+
+$virtue07_SR
+[1] "character"
+
+$virtue09_SR
+[1] "character"
+
+$virtue01_SR
+[1] "character"
+
+$virtue08_SR
+[1] "character"
+
+$virtue05_SR
+[1] "character"
+
+$virtue03_SR
+[1] "character"
+
+$virtue02_SR
+[1] "character"
+
+$virtue04_SR
+[1] "character"
+
+$hedonism02_SR
+[1] "character"
+
+$hedonism04_SR
+[1] "character"
+
+$hedonism05_SR
+[1] "character"
+
+$hedonism08_SR
+[1] "character"
+
+$hedonism06_SR
+[1] "character"
+
+$hedonism01_SR
+[1] "character"
+
+$hedonism07_SR
+[1] "character"
+
+$hedonism03_SR
+[1] "character"
+
+$hedonism09_SR
+[1] "character"
+
+$utilitarian07_SR
+[1] "character"
+
+$utilitarian05_SR
+[1] "character"
+
+$utilitarian08_SR
+[1] "character"
+
+$utilitarian06_SR
+[1] "character"
+
+$utilitarian09_SR
+[1] "character"
+
+$utilitarian01_SR
+[1] "character"
+
+$utilitarian02_SR
+[1] "character"
+
+$utilitarian04_SR
+[1] "character"
+
+$utilitarian03_SR
+[1] "character"
+
+$contractualist05_SR
+[1] "character"
+
+$contractualist01_SR
+[1] "character"
+
+$contractualist06_SR
+[1] "character"
+
+$contractualist04_SR
+[1] "character"
+
+$contractualist03_SR
+[1] "character"
+
+$contractualist02_SR
+[1] "character"
+
+$relativist01_SR
+[1] "character"
+
+$relativist04_SR
+[1] "character"
+
+$relativist02_SR
+[1] "character"
+
+$relativist05_SR
+[1] "character"
+
+$relativist03_SR
+[1] "character"
+
+$feedback_critic
+[1] "character"
+
+$meta.labjs_version
+[1] "character"
+
+$meta.location
+[1] "character"
+
+$meta.userAgent
+[1] "character"
+
+$meta.platform
+[1] "character"
+
+$meta.language
+[1] "character"
+
+$meta.locale
+[1] "character"
+
+$meta.timeZone
+[1] "character"
+
+$meta.timezoneOffset
+[1] "integer"
+
+$meta.screen_width
+[1] "integer"
+
+$meta.screen_height
+[1] "integer"
+
+$meta.scroll_width
+[1] "integer"
+
+$meta.scroll_height
+[1] "integer"
+
+$meta.window_innerWidth
+[1] "integer"
+
+$meta.window_innerHeight
+[1] "integer"
+
+$meta.devicePixelRatio
+[1] "numeric"
+
+$meta.labjs_build.flavor
+[1] "character"
+
+$meta.labjs_build.commit
+[1] "character"
+
+$...4
+[1] "character"
+
+$ID
+[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; add attCheck_array, techOrderTotal</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>questionnaire<span class="sc">$</span>attCheck_array <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>questionnaire<span class="sc">$</span>techOrderTotal <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dat<span class="sc">$</span>techOrderTotal)){</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(dat<span class="sc">$</span>techOrderTotal[[i]])){</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    questionnaire<span class="sc">$</span>techOrderTotal[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dat<span class="sc">$</span>techOrderTotal[[i]], <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(dat<span class="sc">$</span>attCheck_array[[i]])){</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    questionnaire<span class="sc">$</span>attCheck_array[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(dat<span class="sc">$</span>attCheck_array[[i]], <span class="at">collapse =</span> <span class="st">" "</span>)</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="do">### add prolific data</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>prolific <span class="ot">&lt;-</span> prolific[prolific<span class="sc">$</span>Participant.id <span class="sc">%in%</span> questionnaire<span class="sc">$</span>PROLIFIC_PID,]</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>prolific <span class="ot">&lt;-</span> prolific <span class="sc">%&gt;%</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">sapply</span>(Participant.id, <span class="cf">function</span>(y) <span class="fu">which</span>(y <span class="sc">==</span> questionnaire<span class="sc">$</span>PROLIFIC_PID)))</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>prolific <span class="ot">&lt;-</span> prolific[<span class="sc">!</span><span class="fu">duplicated</span>(prolific<span class="sc">$</span>Participant.id), ]</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">nrow</span>(prolific) <span class="sc">==</span> <span class="fu">nrow</span>(questionnaire)){</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_age <span class="ot">&lt;-</span> prolific<span class="sc">$</span>Age</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_sex <span class="ot">&lt;-</span> prolific<span class="sc">$</span>Sex</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_ethnicity <span class="ot">&lt;-</span> prolific<span class="sc">$</span>Ethnicity.simplified</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_student <span class="ot">&lt;-</span> prolific<span class="sc">$</span>Student.status</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_employment <span class="ot">&lt;-</span> prolific<span class="sc">$</span>Employment.status</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(questionnaire<span class="sc">$</span>socio_age)</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(questionnaire<span class="sc">$</span>socio_sex)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_ethnicity <span class="ot">&lt;-</span> <span class="fu">factor</span>(questionnaire<span class="sc">$</span>socio_ethnicity)</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_student <span class="ot">&lt;-</span> <span class="fu">factor</span>(questionnaire<span class="sc">$</span>socio_student)</span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>  questionnaire<span class="sc">$</span>socio_employment <span class="ot">&lt;-</span> <span class="fu">factor</span>(questionnaire<span class="sc">$</span>socio_employment)</span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs durch Umwandlung erzeugt</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>questionnaire[questionnaire <span class="sc">==</span> <span class="st">"DATA_EXPIRED"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>questionnaire[questionnaire <span class="sc">==</span> <span class="st">""</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(<span class="fu">colnames</span>(questionnaire), <span class="st">"_NPP$"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>questionnaire[cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(questionnaire[cols], as.numeric)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(<span class="fu">colnames</span>(questionnaire), <span class="st">"_SR$"</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>questionnaire[cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(questionnaire[cols], as.numeric)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">str_subset</span>(<span class="fu">colnames</span>(questionnaire), <span class="st">"_SAI$"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>questionnaire[cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(questionnaire[cols], as.numeric)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="do">## save files</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(<span class="at">object =</span> questionnaire, </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"questionnaire"</span>, <span class="st">".rds"</span>))</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx2</span>(<span class="at">x =</span> questionnaire,</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"questionnaire"</span>, <span class="st">".xlsx"</span>))</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>haven<span class="sc">::</span><span class="fu">write_sav</span>(<span class="at">data =</span> questionnaire,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">path =</span> <span class="fu">paste0</span>(<span class="st">"questionnaire"</span>, <span class="st">".sav"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="set-up-data-frames-for-paradata" class="level2">
+<h2 class="anchored" data-anchor-id="set-up-data-frames-for-paradata">set up data frames for paradata:</h2>
+<p>for <strong>defocus events</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs_prepareData"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>vec_ID <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>vec_PROLIFIC_PID <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>vec_durationblur <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>vec_senderblur <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(dat<span class="sc">$</span>para_defocuscount)){</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.null</span>(dat<span class="sc">$</span>para_defocuscount[[i]])){</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">is.null</span>(vec_durationblur)){</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>      vec_durationblur <span class="ot">&lt;-</span> dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>      vec_senderblur <span class="ot">&lt;-</span> dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>senderblur</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>      vec_ID <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x =</span> dat<span class="sc">$</span>ID[i], <span class="at">times =</span> <span class="fu">length</span>(dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur))</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>      vec_PROLIFIC_PID <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="at">x =</span> questionnaire<span class="sc">$</span>PROLIFIC_PID[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]],</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>                              <span class="at">times =</span> <span class="fu">length</span>(dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur))</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>    }<span class="cf">else</span>{</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>      vec_durationblur <span class="ot">&lt;-</span><span class="fu">c</span>(vec_durationblur, dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>      vec_senderblur <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_senderblur, dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>senderblur)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>      vec_ID <span class="ot">&lt;-</span><span class="fu">c</span>(vec_ID, <span class="fu">rep</span>(<span class="at">x =</span> dat<span class="sc">$</span>ID[i], <span class="at">times =</span> <span class="fu">length</span>(dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur)))</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>      vec_PROLIFIC_PID <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_PROLIFIC_PID, <span class="fu">rep</span>(<span class="at">x =</span> questionnaire<span class="sc">$</span>PROLIFIC_PID[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]],</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">times =</span> <span class="fu">length</span>(dat<span class="sc">$</span>para_defocuscount[[i]]<span class="sc">$</span>durationblur)))</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>para_defocus <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> vec_ID,</span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>                           <span class="at">PROLIFIC_PID =</span> vec_PROLIFIC_PID,</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>                           <span class="at">durationblur =</span> vec_durationblur, <span class="at">senderblur =</span> vec_senderblur)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>para_defocus <span class="ot">&lt;-</span> para_defocus[<span class="sc">!</span><span class="fu">is.na</span>(para_defocus<span class="sc">$</span>durationblur), ]</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx2</span>(<span class="at">x =</span> para_defocus,</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"para_defocus"</span>, <span class="st">".xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> para_defocus <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ID) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">durationblur =</span> durationblur <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">/</span> <span class="dv">60</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">N =</span> <span class="fu">n</span>(), <span class="at">sum_min =</span> <span class="fu">sum</span>(durationblur), <span class="at">mean_min =</span> <span class="fu">mean</span>(durationblur))</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>sum_min <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> tmp<span class="sc">$</span>sum_min, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>tmp<span class="sc">$</span>mean_min <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> tmp<span class="sc">$</span>mean_min, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(<span class="at">data =</span> tmp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-af868db06244c9aa4e19" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-af868db06244c9aa4e19">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92"],[1,2,4,7,10,14,17,21,23,24,25,29,40,41,45,55,61,64,65,73,77,80,83,85,89,90,95,97,99,101,110,111,118,126,127,129,130,131,133,138,139,140,141,144,145,147,150,155,158,159,160,164,165,170,172,175,176,179,190,192,198,205,211,218,219,220,224,226,229,233,234,237,238,239,249,250,253,257,258,259,262,267,275,279,284,291,297,301,302,308,314,316],[1,6,1,6,3,2,1,3,2,1,1,2,1,3,1,2,3,4,5,2,2,1,26,1,1,1,3,3,2,6,1,1,1,2,1,16,16,2,3,3,9,1,4,2,1,9,1,1,1,3,4,1,3,5,1,3,1,7,1,8,2,2,4,4,3,3,2,1,1,3,1,1,1,2,87,2,1,2,2,4,42,1,2,1,2,1,5,1,1,6,1,1],[0.02,56.4,0.06,16.79,7.67,0.01,0.12,0.2,0,2.33,0.08,0,0.05,0.19,0.05,0,1.37,0.01,22.88,2.62,0.02,0.04,89.06,0,7.63,0,0,0.08,9.9,0.13,0.06,0.01,0.08,0.33,0,3.03,1.68,0,3.33,4.19,20.94,0.06,0,0.1,0.68,1.11,0.12,0,0,0.12,8.73,0,0.44,3.72,0.05,0.33,0.03,1.13,0.6,0.6,0.04,2.06,16.61,0.09,1.44,16.5,14.71,0.16,0,0.77,0.03,2.07,0.95,1.11,9.460000000000001,0.07000000000000001,0.02,0,0,0.33,82.22,0.03,11.46,0.07000000000000001,0.06,0.04,0.73,0,0.05,3.1,0,0],[0.02,9.4,0.06,2.8,2.56,0,0.12,0.07000000000000001,0,2.33,0.08,0,0.05,0.06,0.05,0,0.46,0,4.58,1.31,0.01,0.04,3.43,0,7.63,0,0,0.03,4.95,0.02,0.06,0.01,0.08,0.17,0,0.19,0.1,0,1.11,1.4,2.33,0.06,0,0.05,0.68,0.12,0.12,0,0,0.04,2.18,0,0.15,0.74,0.05,0.11,0.03,0.16,0.6,0.07000000000000001,0.02,1.03,4.15,0.02,0.48,5.5,7.35,0.16,0,0.26,0.03,2.07,0.95,0.55,0.11,0.03,0.02,0,0,0.08,1.96,0.03,5.73,0.07000000000000001,0.03,0.04,0.15,0,0.05,0.52,0,0]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>ID<\/th>\n      <th>N<\/th>\n      <th>sum_min<\/th>\n      <th>mean_min<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"ID","targets":1},{"name":"N","targets":2},{"name":"sum_min","targets":3},{"name":"mean_min","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>for <strong>clicks on ESTA</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"outputs_prepareData"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>vec_ID <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>vec_PROLIFIC_PID <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>vec_ET_tech <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>vec_countclicks <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>vec_senderESTA <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>vec_durationESTA <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>vec_senderDefinition <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>vec_durationDefinition <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dat)){</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>para_ET_tech[i])){</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">is.null</span>(vec_ET_tech)){</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>      vec_ID <span class="ot">&lt;-</span> dat<span class="sc">$</span>ID[i]</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>      vec_PROLIFIC_PID <span class="ot">&lt;-</span> questionnaire<span class="sc">$</span>PROLIFIC_PID[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]]</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>      vec_ET_tech <span class="ot">&lt;-</span> dat<span class="sc">$</span>para_ET_tech[i]</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>      vec_countclicks <span class="ot">&lt;-</span> dat<span class="sc">$</span>para_countclicks[i]</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>      vec_senderESTA <span class="ot">&lt;-</span> dat<span class="sc">$</span>sender[i<span class="dv">-1</span>]</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>      vec_durationESTA <span class="ot">&lt;-</span> dat<span class="sc">$</span>duration[i<span class="dv">-1</span>]</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>      vec_senderDefinition <span class="ot">&lt;-</span> dat<span class="sc">$</span>sender[i<span class="dv">-2</span>]</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>      vec_durationDefinition <span class="ot">&lt;-</span> dat<span class="sc">$</span>duration[i<span class="dv">-2</span>]</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    }<span class="cf">else</span>{</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>      vec_ID <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_ID, dat<span class="sc">$</span>ID[i])</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>      vec_PROLIFIC_PID <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_PROLIFIC_PID, questionnaire<span class="sc">$</span>PROLIFIC_PID[questionnaire<span class="sc">$</span>ID <span class="sc">==</span> dat<span class="sc">$</span>ID[i]])</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>      vec_ET_tech <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_ET_tech, dat<span class="sc">$</span>para_ET_tech[i])</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>      vec_countclicks <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_countclicks, dat<span class="sc">$</span>para_countclicks[i])</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>      vec_senderESTA <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_senderESTA,  dat<span class="sc">$</span>sender[i<span class="dv">-1</span>])</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>      vec_durationESTA <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_durationESTA, dat<span class="sc">$</span>duration[i<span class="dv">-1</span>])</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>      vec_senderDefinition <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_senderDefinition,  dat<span class="sc">$</span>sender[i<span class="dv">-2</span>])</span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>      vec_durationDefinition <span class="ot">&lt;-</span> <span class="fu">c</span>(vec_durationDefinition, dat<span class="sc">$</span>duration[i<span class="dv">-2</span>])</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>para_clicksDurationESTA <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> vec_ID,</span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>                           <span class="at">PROLIFIC_PID =</span> vec_PROLIFIC_PID,</span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>                           <span class="at">durationblur =</span> vec_ET_tech, <span class="at">senderblur =</span> vec_countclicks,</span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>                           <span class="at">senderESTA =</span> vec_senderESTA, <span class="at">durationESTA =</span> vec_durationESTA,</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>                           <span class="at">senderDefinition =</span> vec_senderDefinition, <span class="at">durationDefinition =</span> vec_durationDefinition)</span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a><span class="fu">write.xlsx2</span>(<span class="at">x =</span> para_clicksDurationESTA,</span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">"para_clicksDurationESTA"</span>, <span class="st">".xlsx"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="references" class="level1 unnumbered">
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-pengArtDataScience2016" class="csl-entry" role="listitem">
+Peng, Roger D., and Elizabeth Matsui. 2016. <em>The Art of Data Science: A Guide for Anyone Who Works with Data</em>. Lulu.com. <a href="https://bookdown.org/rdpeng/artofdatascience/">https://bookdown.org/rdpeng/artofdatascience/</a>.
+</div>
+<div id="ref-wickhamDataScienceImport2017" class="csl-entry" role="listitem">
+Wickham, Hadley, and Garrett Grolemund. 2017. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. "O’Reilly Media, Inc.". <a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>.
+</div>
+<div id="ref-xieMarkdownDefinitiveGuide2018" class="csl-entry" role="listitem">
+Xie, Yihui, J. J. Allaire, and Garrett Grolemund. 2018. <em>R Markdown: The Definitive Guide</em>. New York: Chapman; Hall/<span>CRC</span>. <a href="https://doi.org/10.1201/9781138359444">https://doi.org/10.1201/9781138359444</a>.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
