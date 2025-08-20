@@ -1,0 +1,205 @@
+TITLE:
+SEM for scale final_ESTA_noVirtue
+DATA:
+FILE = "SEM_final_withTwN_f34ba24de460bf08be6f7040b2cf1667.dat";
+ LISTWISE=ON;
+VARIABLE:
+NAMES = bi01 gen01 bi02 genr02 bir03 gen03 bir04 genr04 bi05 gen05 bir06 bi07 bir08
+     bi09 b01 r01 b02 r02 b03 r03 b04 r04 b05 r05 n01 p01 n02 p02 n03 p03 n04 p04
+     n05 p05 n06 n07 p07 n08 p08 n09 p09 n10 p10 trust01 trust02 trust03 trust04
+     trust05 trust06 trust07 hed01 hed03 hed04 hed05 hed06 hed07 hed08 hed09 uti01
+     uti02 uti03 uti04 uti05 uti06 uti07 uti08 uti09 con01 con02 con03 con04 con05
+     con06 deo01 deo02 deo03 deo04 deo05 deo06 deo07 deo08 rel01 rel02 rel03 rel04
+     rel05; 
+ MISSING=.;
+ 
+  usevariables = bi01-rel05;
+  
+ANALYSIS:
+
+    estimator = MLR;
+  
+MODEL:
+
+    ! CFAs:
+    ! Acceptability
+Accept BY bi01*
+gen01
+bi02
+genr02
+bir03
+gen03
+bir04
+genr04
+bi05
+gen05
+bir06
+bi07
+bir08
+bi09
+;
+Accept@1;
+
+! Perc. Risk
+Risk BY r01*
+r02
+r03
+r04
+r05
+;
+Risk@1;
+
+! Perc. Benefit
+Benf BY b01*
+b02
+b03
+b04
+b05
+;
+Benf@1;
+
+b02 WITH b03; ! adjustment
+
+! negative Emotion
+negEmo BY n01*
+n02
+n03
+n04
+n05
+n06
+n07
+n08
+n09
+n10
+;
+negEmo@1;
+
+
+n03 WITH n07; ! adjustment
+n05 WITH n06; ! adjustment
+n04 WITH n10; ! adjustment
+! n08 WITH n09; ! adjustment
+
+
+! positive Emotion
+posEmo BY p01*
+p02
+p03
+p04
+p05
+p07
+p08
+p09
+p10
+;
+posEmo@1;
+
+p01 WITH p09; ! adjustment
+p09 WITH p10; ! adjustment
+p03 WITH p10; ! adjustment
+
+
+! trust
+Trust BY trust01*
+trust02
+trust03
+trust04
+trust05
+trust06
+trust07
+;
+Trust@1;
+
+
+trust02 WITH trust03; ! adjustment
+trust04 WITH trust05; ! adjustment
+trust06 WITH trust07; ! adjustment
+
+! Hedonism
+Hedo BY hed01*
+hed03
+hed04
+hed05
+hed06
+hed07
+hed08
+hed09
+;
+Hedo@1;
+
+
+! Utilitarianism
+Util BY uti01*
+uti02
+uti03
+uti04
+uti05
+uti06
+uti07
+uti08
+uti09
+;
+Util@1;
+
+
+! Contractualisism
+Cont BY con01*
+con02
+con03
+con04
+con05
+con06
+;
+Cont@1;
+
+
+! Deontology
+Deon BY deo01*
+deo02
+deo03
+deo04
+deo05
+deo06
+deo07
+deo08
+;
+Deon@1;
+
+
+! Relativism
+Rela BY rel01*
+rel02 
+rel03 
+rel04 
+rel05
+;
+Rela@1;
+
+
+! Second Order Factor ESTA
+  ESTA BY Hedo* Util Cont Deon Rela;
+ESTA@1;
+
+
+  ! SEM:
+  Accept ON Risk Benf negEmo posEmo ESTA;
+  Risk ON negEmo posEmo Trust ESTA;
+  Benf ON negEmo posEmo Trust ESTA;
+
+  negEmo ON Trust ESTA;
+  posEmo ON Trust ESTA;
+
+  Trust ON ESTA;
+
+  Risk WITH Benf (c1);
+  
+MODEL TEST:
+
+  0 = c1+1; ! not equal to -1
+  
+OUTPUT:
+sampstat standardized stdyx residual modindices;
+PLOT:
+
+    type = plot3;
+  
