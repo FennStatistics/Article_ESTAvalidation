@@ -833,6 +833,8 @@ const study = new lab.flow.Sequence({
     //new lab.plugins.Download()
   ],
   content: [ 
+        LoopComponent,
+
     Greetings_htmlForm,
     InformConsent_htmlForm,
     InformConsentNO_htmlForm,
