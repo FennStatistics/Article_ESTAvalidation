@@ -86,6 +86,9 @@ esta$probe <- str_trim(string = esta$probe)
 
 
 
+prolific <- read.csv(file = "prolific_export_633701e0393f071b4684db1e.csv")
+
+
 ### load functions
 setwd("../functions")
 for(i in 1:length(dir())){
@@ -178,6 +181,20 @@ vec_notNumeric = c("PROLIFIC_PID", str_subset(string = colnames(dat), pattern = 
 questionnaire <- questionnairetype(dataset = dat, listvars = ques_mixed)
 head(questionnaire)
 dim(questionnaire)
+
+
+
+prolific <- prolific[prolific$Participant.id %in% questionnaire$PROLIFIC_PID, ]
+# Ensure 'prolific' is ordered by 'PROLIFIC_PID' in the same order as 'questionnaire'
+prolific <- prolific[match(questionnaire$PROLIFIC_PID, prolific$Participant.id), ]
+
+if(all(prolific$Participant.id == questionnaire$PROLIFIC_PID)){
+  questionnaire$socio_sex <- prolific$Sex
+  questionnaire$socio_age <- prolific$Age
+  questionnaire$socio_timeTaken <- prolific$Time.taken
+}
+
+
 
 
 ### save
