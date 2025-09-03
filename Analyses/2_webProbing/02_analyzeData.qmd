@@ -72,6 +72,8 @@ rm(usePackage)
 ## change working directory
 setwd("output")
 ## load data
+dat_ques <- read_rds(file = "questionnaire.rds")
+
 dat <- read_rds(file = "loop.rds")
 
 ### load functions
@@ -85,7 +87,45 @@ for(i in 1:length(dir())){
 rm(i)
 ```
 
-# data analysis
+# data analysis descriptive
+
+```{r}
+table(dat_ques$socio_sex) / nrow(dat_ques)
+
+
+dat_ques$socio_timeTaken <- dat_ques$socio_timeTaken / 60
+dat_ques$socio_timeTaken[dat_ques$socio_timeTaken > 60] <- NA
+
+dat_ques$socio_age <- as.numeric(dat_ques$socio_age)
+psych::describe(x = dat_ques[, c("socio_age", "socio_timeTaken")])
+
+
+table(dat_ques$knowSRM) / nrow(dat_ques)
+```
+
+
+```{r}
+
+summary(nchar(dat$category_probe))
+dat$category_probe[!is.na(dat$category_probe_again)] <- dat$category_probe_again[!is.na(dat$category_probe_again)]
+summary(nchar(dat$category_probe))
+
+summary(nchar(dat$comp_probe))
+dat$comp_probe[!is.na(dat$comp_probe_again)] <- dat$comp_probe_again[!is.na(dat$comp_probe_again)]
+summary(nchar(dat$comp_probe))
+
+
+# "\\S+" matches non-whitespace characters (words)
+dat$wordCount_category_probe <- str_count(dat$category_probe, "\\S+")  
+dat$wordCount_comp_probe <- str_count(dat$comp_probe, "\\S+")  
+
+psych::describe(x = dat[, c("wordCount_category_probe", "wordCount_comp_probe")])
+```
+
+
+
+
+# data analysis exploratory
 
 
 ## for virtue ethics

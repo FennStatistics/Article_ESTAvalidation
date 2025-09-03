@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Julius Fenn">
-<meta name="dcterms.date" content="2025-07-29">
+<meta name="dcterms.date" content="2025-09-03">
 
 <title>Clean and prepare data</title>
 <style>
@@ -106,7 +106,8 @@ div.csl-indent {
   <li><a href="#background-information" id="toc-background-information" class="nav-link active" data-scroll-target="#background-information">Background Information</a></li>
   <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes</a></li>
   <li><a href="#get-packages-raw-data-functions" id="toc-get-packages-raw-data-functions" class="nav-link" data-scroll-target="#get-packages-raw-data-functions">get packages, raw data, functions</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">data analysis</a>
+  <li><a href="#data-analysis-descriptive" id="toc-data-analysis-descriptive" class="nav-link" data-scroll-target="#data-analysis-descriptive">data analysis descriptive</a></li>
+  <li><a href="#data-analysis-exploratory" id="toc-data-analysis-exploratory" class="nav-link" data-scroll-target="#data-analysis-exploratory">data analysis exploratory</a>
   <ul class="collapse">
   <li><a href="#for-virtue-ethics" id="toc-for-virtue-ethics" class="nav-link" data-scroll-target="#for-virtue-ethics">for virtue ethics</a></li>
   <li><a href="#for-utilitarian-ethics" id="toc-for-utilitarian-ethics" class="nav-link" data-scroll-target="#for-utilitarian-ethics">for utilitarian ethics</a></li>
@@ -136,7 +137,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 29, 2025</p>
+      <p class="date">September 3, 2025</p>
     </div>
   </div>
   
@@ -196,231 +197,303 @@ div.csl-indent {
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="do">## change working directory</span></span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"output"</span>)</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="do">## load data</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="at">file =</span> <span class="st">"loop.rds"</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>dat_ques <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="at">file =</span> <span class="st">"questionnaire.rds"</span>)</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="do">### load functions</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># print(getwd())</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"../functions"</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">dir</span>())){</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(dir()[i])</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="fu">dir</span>()[i], <span class="at">encoding =</span> <span class="st">"utf-8"</span>)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="at">file =</span> <span class="st">"loop.rds"</span>)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="do">### load functions</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># print(getwd())</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"../functions"</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(<span class="fu">dir</span>())){</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(dir()[i])</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="fu">dir</span>()[i], <span class="at">encoding =</span> <span class="st">"utf-8"</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(i)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data-analysis" class="level1">
-<h1>data analysis</h1>
+<section id="data-analysis-descriptive" class="level1">
+<h1>data analysis descriptive</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat_ques<span class="sc">$</span>socio_sex) <span class="sc">/</span> <span class="fu">nrow</span>(dat_ques)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     DATA_EXPIRED            Female              Male Prefer not to say 
+       0.01086957        0.45652174        0.52173913        0.01086957 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat_ques<span class="sc">$</span>socio_timeTaken <span class="ot">&lt;-</span> dat_ques<span class="sc">$</span>socio_timeTaken <span class="sc">/</span> <span class="dv">60</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dat_ques<span class="sc">$</span>socio_timeTaken[dat_ques<span class="sc">$</span>socio_timeTaken <span class="sc">&gt;</span> <span class="dv">60</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dat_ques<span class="sc">$</span>socio_age <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(dat_ques<span class="sc">$</span>socio_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs durch Umwandlung erzeugt</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(<span class="at">x =</span> dat_ques[, <span class="fu">c</span>(<span class="st">"socio_age"</span>, <span class="st">"socio_timeTaken"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                vars  n  mean    sd median trimmed  mad   min   max range skew
+socio_age          1 90 41.10 13.09  37.00   40.25 8.90 20.00 76.00  56.0 0.65
+socio_timeTaken    2 89 26.56 10.96  24.13   25.49 9.96  9.73 57.63  47.9 0.96
+                kurtosis   se
+socio_age          -0.61 1.38
+socio_timeTaken     0.44 1.16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dat_ques<span class="sc">$</span>knowSRM) <span class="sc">/</span> <span class="fu">nrow</span>(dat_ques)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+knowSRMlittle    knowSRMlot     knowSRMno 
+   0.14130435    0.02173913    0.83695652 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">nchar</span>(dat<span class="sc">$</span>category_probe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    8.0    67.0   107.5   138.7   180.0  1060.0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>category_probe[<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>category_probe_again)] <span class="ot">&lt;-</span> dat<span class="sc">$</span>category_probe_again[<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>category_probe_again)]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">nchar</span>(dat<span class="sc">$</span>category_probe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   8.00   70.75  110.00  140.67  180.25 1060.00 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">nchar</span>(dat<span class="sc">$</span>comp_probe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    5.0    48.0    81.0   108.1   131.2  1136.0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>comp_probe[<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>comp_probe_again)] <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe_again[<span class="sc">!</span><span class="fu">is.na</span>(dat<span class="sc">$</span>comp_probe_again)]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">nchar</span>(dat<span class="sc">$</span>comp_probe))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    3.0    62.0    87.0   116.3   137.2  1136.0 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "\\S+" matches non-whitespace characters (words)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>wordCount_category_probe <span class="ot">&lt;-</span> <span class="fu">str_count</span>(dat<span class="sc">$</span>category_probe, <span class="st">"</span><span class="sc">\\</span><span class="st">S+"</span>)  </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>wordCount_comp_probe <span class="ot">&lt;-</span> <span class="fu">str_count</span>(dat<span class="sc">$</span>comp_probe, <span class="st">"</span><span class="sc">\\</span><span class="st">S+"</span>)  </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(<span class="at">x =</span> dat[, <span class="fu">c</span>(<span class="st">"wordCount_category_probe"</span>, <span class="st">"wordCount_comp_probe"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                         vars   n  mean    sd median trimmed   mad min max
+wordCount_category_probe    1 644 25.37 19.62     20   22.40 11.86   1 192
+wordCount_comp_probe        2 644 20.65 18.58     16   17.47  8.90   1 201
+                         range skew kurtosis   se
+wordCount_category_probe   191 2.83    13.95 0.77
+wordCount_comp_probe       200 3.89    24.31 0.73</code></pre>
+</div>
+</div>
+</section>
+<section id="data-analysis-exploratory" class="level1">
+<h1>data analysis exploratory</h1>
 <section id="for-virtue-ethics" class="level2">
 <h2 class="anchored" data-anchor-id="for-virtue-ethics">for virtue ethics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">str_subset</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">str_subset</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 virtue01 virtue09 
       25       35 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tmp_first <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>)]</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe_again[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>)]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> tmp_second[<span class="sc">!</span><span class="fu">is.na</span>(tmp_second)]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>whoResponsible <span class="ot">&lt;-</span> <span class="fu">c</span>(tmp_first, tmp_second)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>whoResponsible_clean <span class="ot">&lt;-</span> <span class="fu">cleanUp</span>(<span class="at">charvec =</span> whoResponsible)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(whoResponsible_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tmp_first <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>)]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe_again[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"virtue"</span>)]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> tmp_second[<span class="sc">!</span><span class="fu">is.na</span>(tmp_second)]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>whoResponsible <span class="ot">&lt;-</span> <span class="fu">c</span>(tmp_first, tmp_second)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>whoResponsible_clean <span class="ot">&lt;-</span> <span class="fu">cleanUp</span>(<span class="at">charvec =</span> whoResponsible)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(whoResponsible_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "mind scientists engineers"                                       
+<pre><code>[1] "scientists engineers educated climate change know best solve"    
 [2] "scientists engineers creating utilitys tools help climate change"
-[3] "government"                                                      
-[4] "top business men"                                                
+[3] "ngo"                                                             
+[4] "government"                                                      
 [5] "support helpful us"                                              
 [6] "jack niles marty cooper"                                         </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Similarity-based normalization ---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>min_num_chars <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>unique_words <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(whoResponsible_clean, <span class="st">" "</span>)))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(unique_words)) {</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  current_word <span class="ot">&lt;-</span> unique_words[i]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(current_word)) <span class="cf">next</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nchar</span>(current_word) <span class="sc">&gt;=</span> min_num_chars){</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      others <span class="ot">&lt;-</span> unique_words[<span class="sc">-</span>i]</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  similarities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(others, <span class="cf">function</span>(w) <span class="fu">jaccard_sim</span>(current_word, w))</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(similarities <span class="sc">&gt;</span> threshold)) {</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    matched <span class="ot">&lt;-</span> others[similarities <span class="sc">&gt;</span> threshold]</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Replacing:"</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"→"</span>, current_word, <span class="st">"(round"</span>, i, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    whoResponsible_clean <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      whoResponsible_clean,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">pattern =</span> <span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b("</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">"|"</span>), <span class="st">")</span><span class="sc">\\</span><span class="st">b"</span>),</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">replacement =</span> current_word</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Similarity-based normalization ---</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>min_num_chars <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>unique_words <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(whoResponsible_clean, <span class="st">" "</span>)))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(unique_words)) {</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  current_word <span class="ot">&lt;-</span> unique_words[i]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(current_word)) <span class="cf">next</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nchar</span>(current_word) <span class="sc">&gt;=</span> min_num_chars){</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      others <span class="ot">&lt;-</span> unique_words[<span class="sc">-</span>i]</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  similarities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(others, <span class="cf">function</span>(w) <span class="fu">jaccard_sim</span>(current_word, w))</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(similarities <span class="sc">&gt;</span> threshold)) {</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    matched <span class="ot">&lt;-</span> others[similarities <span class="sc">&gt;</span> threshold]</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Replacing:"</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"→"</span>, current_word, <span class="st">"(round"</span>, i, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    whoResponsible_clean <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      whoResponsible_clean,</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">pattern =</span> <span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b("</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">"|"</span>), <span class="st">")</span><span class="sc">\\</span><span class="st">b"</span>),</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">replacement =</span> current_word</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Replacing: scientist → scientists (round 2 )
-Replacing: researcher, researchers → research (round 46 )
-Replacing: enviornment → environment (round 51 )
-Replacing: scientists → scientist (round 52 )
-Replacing: research, researchers → researcher (round 69 )
-Replacing: develop → developed (round 80 )
-Replacing: solutions → solution (round 98 )
-Replacing: research, researcher → researchers (round 107 )
-Replacing: sources, course → resources (round 177 )
-Replacing: latino → national (round 195 )
-Replacing: person → response (round 212 )
-Replacing: address → addressed (round 230 )
-Replacing: environment → enviornment (round 249 )
-Replacing: measure → measures (round 287 )
-Replacing: solution → solutions (round 315 )</code></pre>
+<pre><code>Replacing: scientist → scientists (round 1 )
+Replacing: environment → enviornment (round 29 )
+Replacing: develop → developed (round 40 )
+Replacing: researcher, researchers → research (round 59 )
+Replacing: enviornment → environment (round 63 )
+Replacing: scientists → scientist (round 64 )
+Replacing: research, researchers → researcher (round 86 )
+Replacing: solutions → solution (round 121 )
+Replacing: research, researcher → researchers (round 128 )
+Replacing: measure → measures (round 182 )
+Replacing: solution → solutions (round 227 )
+Replacing: course, sources → resources (round 238 )
+Replacing: latino → national (round 254 )
+Replacing: person → response (round 268 )
+Replacing: address → addressed (round 283 )</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>tokenized_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">seq_along</span>(whoResponsible_clean),</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> whoResponsible_clean</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">list</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(text, <span class="st">" "</span>)))) <span class="sc">%&gt;%</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(word) </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>tokenized_df_count <span class="ot">&lt;-</span> tokenized_df <span class="sc">%&gt;%</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tokenized_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">seq_along</span>(whoResponsible_clean),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> whoResponsible_clean</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">list</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(text, <span class="st">" "</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(word) </span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>tokenized_df_count <span class="ot">&lt;-</span> tokenized_df <span class="sc">%&gt;%</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 580 × 3
+<pre><code># A tibble: 717 × 3
    person text                                                            word  
     &lt;int&gt; &lt;chr&gt;                                                           &lt;chr&gt; 
- 1      1 mind scientist engineers                                        mind  
- 2      1 mind scientist engineers                                        scien…
- 3      1 mind scientist engineers                                        engin…
- 4      2 scientist engineers creating utilitys tools help climate change scien…
- 5      2 scientist engineers creating utilitys tools help climate change engin…
- 6      2 scientist engineers creating utilitys tools help climate change creat…
- 7      2 scientist engineers creating utilitys tools help climate change utili…
- 8      2 scientist engineers creating utilitys tools help climate change tools 
- 9      2 scientist engineers creating utilitys tools help climate change help  
-10      2 scientist engineers creating utilitys tools help climate change clima…
-# ℹ 570 more rows</code></pre>
+ 1      1 scientist engineers educated climate change know best solve     scien…
+ 2      1 scientist engineers educated climate change know best solve     engin…
+ 3      1 scientist engineers educated climate change know best solve     educa…
+ 4      1 scientist engineers educated climate change know best solve     clima…
+ 5      1 scientist engineers educated climate change know best solve     change
+ 6      1 scientist engineers educated climate change know best solve     know  
+ 7      1 scientist engineers educated climate change know best solve     best  
+ 8      1 scientist engineers educated climate change know best solve     solve 
+ 9      2 scientist engineers creating utilitys tools help climate change scien…
+10      2 scientist engineers creating utilitys tools help climate change engin…
+# ℹ 707 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 308 × 2
+<pre><code># A tibble: 286 × 2
    word           n
    &lt;chr&gt;      &lt;int&gt;
- 1 scientist     31
- 2 people        27
- 3 government    15
- 4 climate       11
- 5 mind          11
- 6 thinking       9
- 7 change         8
- 8 developed      8
- 9 global         7
-10 help           7
-# ℹ 298 more rows</code></pre>
+ 1 scientist     34
+ 2 people        28
+ 3 government    17
+ 4 climate       15
+ 5 thinking      14
+ 6 change        13
+ 7 developed     11
+ 8 mind          11
+ 9 technology    11
+10 involved      10
+# ℹ 276 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tokenized_df_count<span class="sc">$</span>perc <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(v <span class="cf">in</span> tokenized_df_count<span class="sc">$</span>word){</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  tokenized_df_count<span class="sc">$</span>perc [tokenized_df_count<span class="sc">$</span>word <span class="sc">==</span> v] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person[tokenized_df<span class="sc">$</span>word <span class="sc">==</span> v])) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person)), <span class="at">digits =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tokenized_df_count<span class="sc">$</span>perc <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(v <span class="cf">in</span> tokenized_df_count<span class="sc">$</span>word){</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  tokenized_df_count<span class="sc">$</span>perc [tokenized_df_count<span class="sc">$</span>word <span class="sc">==</span> v] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person[tokenized_df<span class="sc">$</span>word <span class="sc">==</span> v])) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person)), <span class="at">digits =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> tokenized_df_count <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perc <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, perc)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc, <span class="at">y =</span> word)) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>), <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> tokenized_df_count <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perc <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, perc)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc, <span class="at">y =</span> word)) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>), <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_analyzeData_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_analyzeData_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"output"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"virtue_word_frequency_plot.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"output"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"virtue_word_frequency_plot.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="for-utilitarian-ethics" class="level2">
 <h2 class="anchored" data-anchor-id="for-utilitarian-ethics">for utilitarian ethics</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">str_subset</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">str_subset</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 utilitarian01 
            28 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tmp_first <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>)]</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe_again[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>)]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> tmp_second[<span class="sc">!</span><span class="fu">is.na</span>(tmp_second)]</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>whichUtilities <span class="ot">&lt;-</span> <span class="fu">c</span>(tmp_first, tmp_second)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>whichUtilities_clean <span class="ot">&lt;-</span> <span class="fu">cleanUp</span>(<span class="at">charvec =</span> whichUtilities)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(whichUtilities_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tmp_first <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>)]</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> dat<span class="sc">$</span>comp_probe_again[<span class="fu">str_detect</span>(<span class="at">string =</span> dat<span class="sc">$</span>item, <span class="at">pattern =</span> <span class="st">"utilitarian"</span>)]</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>tmp_second <span class="ot">&lt;-</span> tmp_second[<span class="sc">!</span><span class="fu">is.na</span>(tmp_second)]</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>whichUtilities <span class="ot">&lt;-</span> <span class="fu">c</span>(tmp_first, tmp_second)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>whichUtilities_clean <span class="ot">&lt;-</span> <span class="fu">cleanUp</span>(<span class="at">charvec =</span> whichUtilities)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(whichUtilities_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "thinking utilities mitigate effects heating planet described text"
 [2] "thinking stratopsheric aerosol injection"                         
 [3] "aid prevention global warming participate protection human race"  
 [4] "value human beings"                                               
 [5] "thinking utilities like electric solar wind power mostly"         
-[6] "thinking change value"                                            </code></pre>
+[6] "thinking change value society"                                    </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Similarity-based normalization ---</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>min_num_chars <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>unique_words <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(whichUtilities_clean, <span class="st">" "</span>)))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(unique_words)) {</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  current_word <span class="ot">&lt;-</span> unique_words[i]</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(current_word)) <span class="cf">next</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nchar</span>(current_word) <span class="sc">&gt;=</span> min_num_chars){</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>      others <span class="ot">&lt;-</span> unique_words[<span class="sc">-</span>i]</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  similarities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(others, <span class="cf">function</span>(w) <span class="fu">jaccard_sim</span>(current_word, w))</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(similarities <span class="sc">&gt;</span> threshold)) {</span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    matched <span class="ot">&lt;-</span> others[similarities <span class="sc">&gt;</span> threshold]</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Replacing:"</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"→"</span>, current_word, <span class="st">"(round"</span>, i, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    whichUtilities_clean <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(</span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>      whichUtilities_clean,</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">pattern =</span> <span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b("</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">"|"</span>), <span class="st">")</span><span class="sc">\\</span><span class="st">b"</span>),</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">replacement =</span> current_word</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Similarity-based normalization ---</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>min_num_chars <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>unique_words <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(whichUtilities_clean, <span class="st">" "</span>)))</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(unique_words)) {</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  current_word <span class="ot">&lt;-</span> unique_words[i]</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(current_word)) <span class="cf">next</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">nchar</span>(current_word) <span class="sc">&gt;=</span> min_num_chars){</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>      others <span class="ot">&lt;-</span> unique_words[<span class="sc">-</span>i]</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  similarities <span class="ot">&lt;-</span> <span class="fu">sapply</span>(others, <span class="cf">function</span>(w) <span class="fu">jaccard_sim</span>(current_word, w))</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(similarities <span class="sc">&gt;</span> threshold)) {</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>    matched <span class="ot">&lt;-</span> others[similarities <span class="sc">&gt;</span> threshold]</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Replacing:"</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">", "</span>), <span class="st">"→"</span>, current_word, <span class="st">"(round"</span>, i, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>    whichUtilities_clean <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>      whichUtilities_clean,</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">pattern =</span> <span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">b("</span>, <span class="fu">paste</span>(matched, <span class="at">collapse =</span> <span class="st">"|"</span>), <span class="st">")</span><span class="sc">\\</span><span class="st">b"</span>),</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">replacement =</span> current_word</span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tokenized_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">seq_along</span>(whichUtilities_clean),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> whichUtilities_clean</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">list</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(text, <span class="st">" "</span>)))) <span class="sc">%&gt;%</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(word) </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>tokenized_df_count <span class="ot">&lt;-</span> tokenized_df <span class="sc">%&gt;%</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tokenize</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tokenized_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">person =</span> <span class="fu">seq_along</span>(whichUtilities_clean),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> whichUtilities_clean</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">list</span>(<span class="fu">unlist</span>(<span class="fu">str_split</span>(text, <span class="st">" "</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(word) </span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>tokenized_df_count <span class="ot">&lt;-</span> tokenized_df <span class="sc">%&gt;%</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 216 × 3
+<pre><code># A tibble: 230 × 3
    person text                                                             word 
     &lt;int&gt; &lt;chr&gt;                                                            &lt;chr&gt;
  1      1 thinking utilities mitigate effects heating planet described te… thin…
@@ -433,49 +506,49 @@ utilitarian01
  8      1 thinking utilities mitigate effects heating planet described te… text 
  9      2 thinking stratopsheric aerosol injection                         thin…
 10      2 thinking stratopsheric aerosol injection                         stra…
-# ℹ 206 more rows</code></pre>
+# ℹ 220 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tokenized_df_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 141 × 2
+<pre><code># A tibble: 130 × 2
    word         n
    &lt;chr&gt;    &lt;int&gt;
- 1 thinking    10
+ 1 thinking    12
  2 change       8
- 3 climate      6
- 4 effects      5
- 5 solar        5
+ 3 society      7
+ 4 climate      6
+ 5 effects      5
  6 electric     4
- 7 society      4
- 8 value        4
- 9 wind         4
-10 future       3
-# ℹ 131 more rows</code></pre>
+ 7 global       4
+ 8 planet       4
+ 9 solar        4
+10 value        4
+# ℹ 120 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tokenized_df_count<span class="sc">$</span>perc <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(v <span class="cf">in</span> tokenized_df_count<span class="sc">$</span>word){</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  tokenized_df_count<span class="sc">$</span>perc [tokenized_df_count<span class="sc">$</span>word <span class="sc">==</span> v] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person[tokenized_df<span class="sc">$</span>word <span class="sc">==</span> v])) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person)), <span class="at">digits =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tokenized_df_count<span class="sc">$</span>perc <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(v <span class="cf">in</span> tokenized_df_count<span class="sc">$</span>word){</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  tokenized_df_count<span class="sc">$</span>perc [tokenized_df_count<span class="sc">$</span>word <span class="sc">==</span> v] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="at">x =</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person[tokenized_df<span class="sc">$</span>word <span class="sc">==</span> v])) <span class="sc">/</span> <span class="fu">length</span>(<span class="fu">unique</span>(tokenized_df<span class="sc">$</span>person)), <span class="at">digits =</span> <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> tokenized_df_count <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perc <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, perc)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc, <span class="at">y =</span> word)) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>), <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> tokenized_df_count <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(perc <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">reorder</span>(word, perc)) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> perc, <span class="at">y =</span> word)) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>), <span class="at">linetype =</span> <span class="st">"dotted"</span>) <span class="sc">+</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_analyzeData_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_analyzeData_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"output"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"utilitarian_word_frequency_plot.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"output"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"utilitarian_word_frequency_plot.png"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
