@@ -139,6 +139,8 @@ for(e in ethicTheories){
 **sample**
 
 ```{r}
+head(dat)
+nrow(dat)
 table(dat$socio_sex)
 table(dat$socio_sex) / nrow(dat)
 
@@ -147,6 +149,10 @@ table(dat$socio_student)
 table(dat$socio_employment)
 
 summary(dat$socio_age)
+sd(dat$socio_age, na.rm = TRUE)
+
+summary(dat$total_min_prolific)
+sd(dat$total_min_prolific, na.rm = TRUE)
 ```
 **mean variables**
 
@@ -386,7 +392,7 @@ for(e in ethicTheories){
 
 
 
-# Item Response Theory for "Attitude Towards Obese People Scale"
+# Item Response Theory for ethical theories
 
 
 Factor Loadings (F1) indicate how strongly each item is associated with the latent trait, rule of thumb:

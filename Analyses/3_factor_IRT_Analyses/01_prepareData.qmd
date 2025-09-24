@@ -209,9 +209,11 @@ prolific <- prolific[prolific$Participant.id %in% questionnaire$PROLIFIC_PID,]
 prolific <- prolific %>%
   arrange(sapply(Participant.id, function(y) which(y == questionnaire$PROLIFIC_PID)))
 prolific <- prolific[!duplicated(prolific$Participant.id), ]
+prolific$total_min_prolific <- prolific$Time.taken / 60
 
 
 if(nrow(prolific) == nrow(questionnaire)){
+  print("added prolific data")
   questionnaire$socio_age <- prolific$Age
   questionnaire$socio_sex <- prolific$Sex
   questionnaire$socio_ethnicity <- prolific$Ethnicity.simplified
@@ -224,6 +226,9 @@ if(nrow(prolific) == nrow(questionnaire)){
   questionnaire$socio_ethnicity <- factor(questionnaire$socio_ethnicity)
   questionnaire$socio_student <- factor(questionnaire$socio_student)
   questionnaire$socio_employment <- factor(questionnaire$socio_employment)
+  
+  questionnaire$total_min_prolific <- as.numeric(prolific$total_min_prolific)
+
 }
 
 

@@ -20,6 +20,7 @@ getDescriptivesSurvey <- function(dataset = questionnaire, regEx,
     "Upper Quantile" = as.numeric(quantile(x,1)),
     "Skewness" = moments::skewness(x = x),
     "Kurtosis(-3)" = moments::kurtosis(x = x) -3,
+    "Shaprio-Test" = shapiro.test(x)$p.value,
     "KS-Test" = ks.test(x = x, y = "pnorm", mean(x), sd(x))$p.value
   )
   )
