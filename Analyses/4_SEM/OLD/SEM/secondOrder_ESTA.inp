@@ -1,0 +1,96 @@
+TITLE:
+SEM for scale final_ESTA_noVirtue
+DATA:
+FILE = "SEM_final_withTwN_f34ba24de460bf08be6f7040b2cf1667.dat";
+ LISTWISE=ON;
+VARIABLE:
+NAMES = bi01 gen01 bi02 genr02 bir03 gen03 bir04 genr04 bi05 gen05 bir06 bi07 bir08
+     bi09 b01 r01 b02 r02 b03 r03 b04 r04 b05 r05 n01 p01 n02 p02 n03 p03 n04 p04
+     n05 p05 n06 n07 p07 n08 p08 n09 p09 n10 p10 trust01 trust02 trust03 trust04
+     trust05 trust06 trust07 hed01 hed03 hed04 hed05 hed06 hed07 hed08 hed09 uti01
+     uti02 uti03 uti04 uti05 uti06 uti07 uti08 uti09 con01 con02 con03 con04 con05
+     con06 deo01 deo02 deo03 deo04 deo05 deo06 deo07 deo08 rel01 rel02 rel03 rel04
+     rel05; 
+ MISSING=.;
+ 
+  usevariables = hed01-rel05;
+  
+ANALYSIS:
+
+    estimator = MLR;
+  
+MODEL:
+
+    ! CFAs:
+! Hedonism
+Hedo BY hed01*
+hed03
+hed04
+hed05
+hed06
+hed07
+hed08
+hed09
+;
+Hedo@1;
+
+
+! Utilitarianism
+Util BY uti01*
+uti02
+uti03
+uti04
+uti05
+uti06
+uti07
+uti08
+uti09
+;
+Util@1;
+
+
+! Contractualisism
+Cont BY con01*
+con02
+con03
+con04
+con05
+con06
+;
+Cont@1;
+
+
+! Deontology
+Deon BY deo01*
+deo02
+deo03
+deo04
+deo05
+deo06
+deo07
+deo08
+;
+Deon@1;
+
+
+! Relativism
+Rela BY rel01*
+rel02 
+rel03 
+rel04 
+rel05
+;
+Rela@1;
+
+
+
+! Second Order Factor ESTA
+  ESTA BY Hedo* Util Cont Deon Rela;
+ESTA@1;
+ 
+OUTPUT:
+sampstat standardized stdyx residual modindices;
+PLOT:
+
+    type = plot3;
+  

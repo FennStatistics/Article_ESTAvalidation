@@ -1,0 +1,112 @@
+TITLE: second order CFA ESTA;
+DATA: FILE = "ESTA_CFA.dat";
+ LISTWISE=ON;
+VARIABLE: 
+  NAMES = hedonism01 hedonism02 hedonism03 hedonism04 hedonism05 hedonism06 hedonism07
+       hedonism08 hedonism09 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+       utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+       contractualist01 contractualist02 contractualist03 contractualist04
+       contractualist05 contractualist06 deontology01 deontology02 deontology03
+       deontology04 deontology05 deontology06 deontology07 deontology08 virtue01
+       virtue02 virtue03 virtue04 virtue05 virtue06 virtue07 virtue08 virtue09
+       relativist01 relativist02 relativist03 relativist04 relativist05;
+  MISSING=.;
+
+   ! remove:
+   ! Hedonism: hedonism02, hedonism03 hedonism09
+   ! Deontology: deontology01, deontology07
+   ! Virtue Ethics: virtue06, virtue07
+   USEVARIABLES = hedonism01 hedonism04 hedonism05 hedonism06 hedonism07
+       hedonism08 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+       utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+       contractualist01 contractualist02 contractualist03 contractualist04
+       contractualist05 contractualist06 deontology02 deontology03
+       deontology04 deontology05 deontology06 deontology08 virtue01
+       virtue02 virtue03 virtue04 virtue05 virtue08 virtue09
+       relativist01 relativist02 relativist03 relativist04 relativist05;
+
+  ANALYSIS:
+
+      estimator = MLR;
+
+  MODEL:
+
+   !------------------------
+   ! Hedonism
+    Hedo BY
+      hedonism01*
+      hedonism04
+      hedonism05
+      hedonism06
+      hedonism07
+      hedonism08;
+    Hedo@1;
+
+    !------------------------
+    ! Utilitarianism
+    Util BY
+      utilitarian01*
+      utilitarian02
+      utilitarian03
+      utilitarian04
+      utilitarian05
+      utilitarian06
+      utilitarian07
+      utilitarian08
+      utilitarian09;
+    Util@1;
+
+    !------------------------
+    ! Contractualism
+    Cont BY
+      contractualist01*
+      contractualist02
+      contractualist03
+      contractualist04
+      contractualist05
+      contractualist06;
+    Cont@1;
+
+    !------------------------
+    ! Deontology
+    Deon BY
+      deontology02*
+      deontology03
+      deontology04
+      deontology05
+      deontology06
+      deontology08;
+    Deon@1;
+
+    !------------------------
+    ! Virtue Ethics
+    Virt BY
+      virtue01*
+      virtue02
+      virtue03
+      virtue04
+      virtue05
+      virtue08
+      virtue09;
+    Virt@1;
+
+    !------------------------
+    ! Relativism
+    Rela BY
+      relativist01*
+      relativist02
+      relativist03
+      relativist04
+      relativist05;
+    Rela@1;
+
+! Second Order Factor ESTA
+  ESTA BY Hedo* Util Cont Deon Virt Rela;
+ESTA@1;
+ 
+OUTPUT:
+sampstat standardized stdyx residual modindices;
+PLOT:
+
+    type = plot3;
+  

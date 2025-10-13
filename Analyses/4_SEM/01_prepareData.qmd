@@ -1,0 +1,109 @@
+---
+title: "Clean, prepare and transform data"
+author: "Julius Fenn"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    html-math-method: katex
+bibliography: Library_subset.bib
+biblio-style: apalike
+link-citations: true
+---
+
+
+# Background Information
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) document. Instructions for writing these documents and background information can be found in the book written by @xieMarkdownDefinitiveGuide2018 When you execute code within the document, the results appear beneath the code. This file contains the pre-processing step (clean, prepare and transform data). File are split into multiple subfiles like data processing and data analyses steps, which follows the classical data-analysis pipeline [see @pengArtDataScience2016; @wickhamDataScienceImport2017].
+
+
+
+
+# Notes
+
+Global variables to control output:
+
+```{r}
+## global variables
+runMplus <- FALSE
+```
+
+
+# get packages, raw data, functions
+
+
+```{r}
+#| echo: true
+#| warning: false
+
+### install and load packages
+require(pacman)
+p_load('tidyverse', 'jsonlite', 'magrittr', 'xlsx',
+       'stargazer', 'psych', 'tm', 'MplusAutomation')
+
+
+### load data files
+## change working directory
+setwd("data")
+
+dat <- xlsx::read.xlsx2(file = "questionnaire.xlsx", sheetIndex = 1)
+```
+
+
+
+# data preperation
+
+
+```{r}
+dat <- dat %>%
+  mutate(across(c(hedonism01:relativist05), as.numeric))
+```
+
+## for second order factor model:
+
+```{r}
+setwd("output")
+
+# select variables
+vars_mplus <- c(
+  paste0("hedonism", sprintf("%02d", 1:9)),
+  paste0("utilitarian", sprintf("%02d", 1:9)),
+  paste0("contractualist", sprintf("%02d", 1:6)),
+  paste0("deontology", sprintf("%02d", 1:8)),
+  paste0("virtue", sprintf("%02d", 1:9)),
+  paste0("relativist", sprintf("%02d", 1:5))
+)
+
+# subset data
+tmp_dat_Mplus <- dat[, vars_mplus]
+
+# write Mplus data file
+MplusAutomation::prepareMplusData(df = tmp_dat_Mplus, filename = "ESTA_CFA.dat")
+```
+## for SEM:
+
+
+```{r}
+setwd("output")
+
+# select variables
+vars_mplus <- c(
+  paste0("hedonism", sprintf("%02d", 1:9)),
+  paste0("utilitarian", sprintf("%02d", 1:9)),
+  paste0("contractualist", sprintf("%02d", 1:6)),
+  paste0("deontology", sprintf("%02d", 1:8)),
+  paste0("virtue", sprintf("%02d", 1:9)),
+  paste0("relativist", sprintf("%02d", 1:5))
+)
+
+# subset data
+tmp_dat_Mplus <- dat[, vars_mplus]
+
+# write Mplus data file
+MplusAutomation::prepareMplusData(df = tmp_dat_Mplus, filename = "ESTA_SEM.dat")
+```
+
+
+# References
+

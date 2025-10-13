@@ -1,0 +1,349 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+
+SEM for scale final_ESTA_noVirtue
+DATA:
+FILE = "SEM_final_withTwN_f34ba24de460bf08be6f7040b2cf1667.dat";
+ LISTWISE=ON;
+VARIABLE:
+NAMES = bi01 gen01 bi02 genr02 bir03 gen03 bir04 genr04 bi05 gen05 bir06 bi07 bir08
+     bi09 b01 r01 b02 r02 b03 r03 b04 r04 b05 r05 n01 p01 n02 p02 n03 p03 n04 p04
+     n05 p05 n06 n07 p07 n08 p08 n09 p09 n10 p10 trust01 trust02 trust03 trust04
+     trust05 trust06 trust07 hed01 hed03 hed04 hed05 hed06 hed07 hed08 hed09 uti01
+     uti02 uti03 uti04 uti05 uti06 uti07 uti08 uti09 con01 con02 con03 con04 con05
+     con06 deo01 deo02 deo03 deo04 deo05 deo06 deo07 deo08 rel01 rel02 rel03 rel04
+     rel05;
+ MISSING=.;
+  usevariables = hed01-rel05;
+ANALYSIS:
+    estimator = MLR;
+OUTPUT:
+sampstat standardized stdyx residual modindices;
+PLOT:
+    type = plot3;
+MODEL:
+Hedo BY hed01*
+hed03
+hed04
+hed05
+hed06
+hed07
+hed08
+hed09
+;
+Hedo@1;
+Util BY uti01*
+uti02
+uti03
+uti04
+uti05
+uti06
+uti07
+uti08
+uti09
+;
+Util@1;
+Cont BY con01*
+con02
+con03
+con04
+con05
+con06
+;
+Cont@1;
+Deon BY deo01*
+deo02
+deo03
+deo04
+deo05
+deo06
+deo07
+deo08
+;
+Deon@1;
+Rela BY rel01*
+rel02
+rel03
+rel04
+rel05
+;
+Rela@1;
+  ESTA BY Hedo* Util Cont Deon Rela;
+ESTA@1;
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+36
+6
+0
+hed01 hed03 hed04 hed05 hed06 hed07 hed08 hed09 uti01 uti02 uti03 uti04 uti05 uti06 uti07 uti08 uti09 con01 con02 con03 con04 con05 con06 deo01 deo02 deo03 deo04 deo05 deo06 deo07 deo08 rel01 rel02 rel03 rel04 rel05 hedo util cont deon rela esta
+2
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 1 1 1 1 0
+0
+5
+hedo
+hed01 hed03 hed04 hed05 hed06 hed07 hed08 hed09
+util
+uti01 uti02 uti03 uti04 uti05 uti06 uti07 uti08 uti09
+cont
+con01 con02 con03 con04 con05 con06
+deon
+deo01 deo02 deo03 deo04 deo05 deo06 deo07 deo08
+rela
+rel01 rel02 rel03 rel04 rel05
+1 1 hedo hed01 0.746 0.041
+1 1 hedo hed03 0.465 0.045
+1 1 hedo hed04 0.771 0.042
+1 1 hedo hed05 0.570 0.041
+1 1 hedo hed06 0.656 0.041
+1 1 hedo hed07 0.695 0.038
+1 1 hedo hed08 0.618 0.040
+1 1 hedo hed09 0.736 0.040
+1 1 util uti01 0.587 0.040
+1 1 util uti02 0.639 0.044
+1 1 util uti03 0.648 0.046
+1 1 util uti04 0.757 0.050
+1 1 util uti05 0.660 0.047
+1 1 util uti06 0.650 0.043
+1 1 util uti07 0.626 0.046
+1 1 util uti08 0.651 0.045
+1 1 util uti09 0.796 0.053
+1 1 cont con01 0.842 0.053
+1 1 cont con02 0.833 0.053
+1 1 cont con03 0.784 0.048
+1 1 cont con04 0.813 0.053
+1 1 cont con05 0.673 0.051
+1 1 cont con06 0.881 0.054
+1 1 deon deo01 0.443 0.043
+1 1 deon deo02 0.458 0.036
+1 1 deon deo03 0.549 0.045
+1 1 deon deo04 0.670 0.049
+1 1 deon deo05 0.641 0.048
+1 1 deon deo06 0.692 0.053
+1 1 deon deo07 0.685 0.053
+1 1 deon deo08 0.578 0.046
+1 1 rela rel01 0.728 0.059
+1 1 rela rel02 0.831 0.061
+1 1 rela rel03 0.756 0.060
+1 1 rela rel04 0.913 0.065
+1 1 rela rel05 0.746 0.057
+1 1 esta hedo 1.546 0.121
+1 1 esta util 1.647 0.152
+1 1 esta cont 1.287 0.123
+1 1 esta deon 1.887 0.178
+1 1 esta rela 1.438 0.148
+4 1 hed01 0.812 0.067
+4 1 hed03 2.108 0.121
+4 1 hed04 0.666 0.069
+4 1 hed05 0.931 0.068
+4 1 hed06 0.647 0.063
+4 1 hed07 0.653 0.064
+4 1 hed08 0.774 0.057
+4 1 hed09 0.724 0.070
+4 1 uti01 0.524 0.040
+4 1 uti02 0.463 0.050
+4 1 uti03 0.643 0.071
+4 1 uti04 0.399 0.033
+4 1 uti05 0.555 0.059
+4 1 uti06 0.611 0.051
+4 1 uti07 0.791 0.061
+4 1 uti08 0.773 0.058
+4 1 uti09 0.700 0.059
+4 1 con01 0.357 0.041
+4 1 con02 0.377 0.038
+4 1 con03 0.722 0.086
+4 1 con04 0.694 0.064
+4 1 con05 1.244 0.106
+4 1 con06 0.705 0.079
+4 1 deo01 1.422 0.101
+4 1 deo02 0.968 0.056
+4 1 deo03 0.767 0.066
+4 1 deo04 0.496 0.057
+4 1 deo05 0.871 0.069
+4 1 deo06 0.630 0.055
+4 1 deo07 0.712 0.068
+4 1 deo08 0.713 0.053
+4 1 rel01 0.587 0.053
+4 1 rel02 0.323 0.032
+4 1 rel03 0.565 0.051
+4 1 rel04 0.614 0.066
+4 1 rel05 0.437 0.042
+4 1 hedo 1.000 0.000
+4 1 util 1.000 0.000
+4 1 cont 1.000 0.000
+4 1 deon 1.000 0.000
+4 1 rela 1.000 0.000
+5 1 esta 1.000 0.000
+11 1 hedo hed01 0.836 0.015
+11 1 hedo hed03 0.508 0.037
+11 1 hedo hed04 0.867 0.015
+11 1 hedo hed05 0.736 0.025
+11 1 hedo hed06 0.832 0.019
+11 1 hedo hed07 0.845 0.018
+11 1 hedo hed08 0.791 0.020
+11 1 hedo hed09 0.847 0.017
+11 1 util uti01 0.842 0.015
+11 1 util uti02 0.875 0.014
+11 1 util uti03 0.841 0.019
+11 1 util uti04 0.918 0.008
+11 1 util uti05 0.863 0.016
+11 1 util uti06 0.848 0.015
+11 1 util uti07 0.805 0.019
+11 1 util uti08 0.819 0.017
+11 1 util uti09 0.878 0.012
+11 1 cont con01 0.917 0.011
+11 1 cont con02 0.911 0.010
+11 1 cont con03 0.833 0.022
+11 1 cont con04 0.847 0.016
+11 1 cont con05 0.701 0.030
+11 1 cont con06 0.863 0.017
+11 1 deon deo01 0.621 0.033
+11 1 deon deo02 0.705 0.024
+11 1 deon deo03 0.801 0.021
+11 1 deon deo04 0.897 0.013
+11 1 deon deo05 0.826 0.016
+11 1 deon deo06 0.881 0.012
+11 1 deon deo07 0.866 0.015
+11 1 deon deo08 0.825 0.017
+11 1 rela rel01 0.857 0.015
+11 1 rela rel02 0.931 0.008
+11 1 rela rel03 0.870 0.014
+11 1 rela rel04 0.898 0.012
+11 1 rela rel05 0.892 0.012
+11 1 esta hedo 0.840 0.019
+11 1 esta util 0.855 0.021
+11 1 esta cont 0.790 0.029
+11 1 esta deon 0.884 0.018
+11 1 esta rela 0.821 0.028
+14 1 hed01 0.301 0.026
+14 1 hed03 0.742 0.038
+14 1 hed04 0.248 0.026
+14 1 hed05 0.458 0.036
+14 1 hed06 0.307 0.032
+14 1 hed07 0.285 0.030
+14 1 hed08 0.375 0.031
+14 1 hed09 0.283 0.029
+14 1 uti01 0.291 0.025
+14 1 uti02 0.234 0.025
+14 1 uti03 0.292 0.033
+14 1 uti04 0.158 0.014
+14 1 uti05 0.256 0.028
+14 1 uti06 0.280 0.026
+14 1 uti07 0.352 0.030
+14 1 uti08 0.330 0.027
+14 1 uti09 0.229 0.020
+14 1 con01 0.159 0.020
+14 1 con02 0.170 0.019
+14 1 con03 0.307 0.037
+14 1 con04 0.283 0.028
+14 1 con05 0.508 0.043
+14 1 con06 0.255 0.029
+14 1 deo01 0.614 0.041
+14 1 deo02 0.503 0.033
+14 1 deo03 0.358 0.033
+14 1 deo04 0.195 0.023
+14 1 deo05 0.317 0.027
+14 1 deo06 0.224 0.022
+14 1 deo07 0.249 0.026
+14 1 deo08 0.319 0.027
+14 1 rel01 0.265 0.026
+14 1 rel02 0.132 0.015
+14 1 rel03 0.244 0.025
+14 1 rel04 0.194 0.021
+14 1 rel05 0.204 0.022
+14 1 hedo 0.295 0.032
+14 1 util 0.269 0.036
+14 1 cont 0.377 0.045
+14 1 deon 0.219 0.032
+14 1 rela 0.326 0.045
+15 1 esta 1.000 0.0000000001000
+31 1 hedo hed01 1.375 0.048
+31 1 hedo hed03 0.857 0.070
+31 1 hedo hed04 1.420 0.047
+31 1 hedo hed05 1.050 0.056
+31 1 hedo hed06 1.207 0.051
+31 1 hedo hed07 1.279 0.050
+31 1 hedo hed08 1.137 0.054
+31 1 hedo hed09 1.356 0.050
+31 1 util uti01 1.131 0.044
+31 1 util uti02 1.232 0.045
+31 1 util uti03 1.248 0.050
+31 1 util uti04 1.458 0.043
+31 1 util uti05 1.272 0.050
+31 1 util uti06 1.252 0.046
+31 1 util uti07 1.206 0.051
+31 1 util uti08 1.254 0.049
+31 1 util uti09 1.534 0.046
+31 1 cont con01 1.372 0.045
+31 1 cont con02 1.357 0.044
+31 1 cont con03 1.277 0.051
+31 1 cont con04 1.325 0.046
+31 1 cont con05 1.097 0.060
+31 1 cont con06 1.435 0.048
+31 1 deon deo01 0.946 0.062
+31 1 deon deo02 0.978 0.053
+31 1 deon deo03 1.173 0.051
+31 1 deon deo04 1.431 0.046
+31 1 deon deo05 1.370 0.051
+31 1 deon deo06 1.479 0.046
+31 1 deon deo07 1.464 0.049
+31 1 deon deo08 1.234 0.048
+31 1 rela rel01 1.275 0.051
+31 1 rela rel02 1.455 0.043
+31 1 rela rel03 1.324 0.049
+31 1 rela rel04 1.600 0.045
+31 1 rela rel05 1.306 0.045
+31 1 esta hedo 0.840 0.019
+31 1 esta util 0.855 0.021
+31 1 esta cont 0.790 0.029
+31 1 esta deon 0.884 0.018
+31 1 esta rela 0.821 0.028
+34 1 hed01 0.812 0.067
+34 1 hed03 2.108 0.121
+34 1 hed04 0.666 0.069
+34 1 hed05 0.931 0.068
+34 1 hed06 0.647 0.063
+34 1 hed07 0.653 0.064
+34 1 hed08 0.774 0.057
+34 1 hed09 0.724 0.070
+34 1 uti01 0.524 0.040
+34 1 uti02 0.463 0.050
+34 1 uti03 0.643 0.071
+34 1 uti04 0.399 0.033
+34 1 uti05 0.555 0.059
+34 1 uti06 0.611 0.051
+34 1 uti07 0.791 0.061
+34 1 uti08 0.773 0.058
+34 1 uti09 0.700 0.059
+34 1 con01 0.357 0.041
+34 1 con02 0.377 0.038
+34 1 con03 0.722 0.086
+34 1 con04 0.694 0.064
+34 1 con05 1.244 0.106
+34 1 con06 0.705 0.079
+34 1 deo01 1.422 0.101
+34 1 deo02 0.968 0.056
+34 1 deo03 0.767 0.066
+34 1 deo04 0.496 0.057
+34 1 deo05 0.871 0.069
+34 1 deo06 0.630 0.055
+34 1 deo07 0.712 0.068
+34 1 deo08 0.713 0.053
+34 1 rel01 0.587 0.053
+34 1 rel02 0.323 0.032
+34 1 rel03 0.565 0.051
+34 1 rel04 0.614 0.066
+34 1 rel05 0.437 0.042
+34 1 hedo 0.295 0.032
+34 1 util 0.269 0.036
+34 1 cont 0.377 0.045
+34 1 deon 0.219 0.032
+34 1 rela 0.326 0.045
+35 1 esta 1.000 0.0000000001000

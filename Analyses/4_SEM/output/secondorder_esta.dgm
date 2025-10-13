@@ -1,0 +1,387 @@
+VERSION 1.1.0
+INPUT
+TITLE:
+ second order CFA ESTA;
+DATA:
+ FILE = "ESTA.dat";
+ LISTWISE=ON;
+VARIABLE:
+  NAMES = hedonism01 hedonism02 hedonism03 hedonism04 hedonism05 hedonism06 hedonism07
+       hedonism08 hedonism09 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+       utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+       contractualist01 contractualist02 contractualist03 contractualist04
+       contractualist05 contractualist06 deontology01 deontology02 deontology03
+       deontology04 deontology05 deontology06 deontology07 deontology08 virtue01
+       virtue02 virtue03 virtue04 virtue05 virtue06 virtue07 virtue08 virtue09
+       relativist01 relativist02 relativist03 relativist04 relativist05;
+  MISSING=.;
+   USEVARIABLES = hedonism01 hedonism04 hedonism05 hedonism06 hedonism07
+       hedonism08 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+       utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+       contractualist01 contractualist02 contractualist03 contractualist04
+       contractualist05 contractualist06 deontology02 deontology03
+       deontology04 deontology05 deontology06 deontology08 virtue01
+       virtue02 virtue03 virtue04 virtue05 virtue08 virtue09
+       relativist01 relativist02 relativist03 relativist04 relativist05;
+ANALYSIS:
+      estimator = MLR;
+OUTPUT:
+sampstat standardized stdyx residual modindices;
+PLOT:
+    type = plot3;
+MODEL:
+    Hedo BY
+      hedonism01*
+      hedonism04
+      hedonism05
+      hedonism06
+      hedonism07
+      hedonism08;
+    Hedo@1;
+    Util BY
+      utilitarian01*
+      utilitarian02
+      utilitarian03
+      utilitarian04
+      utilitarian05
+      utilitarian06
+      utilitarian07
+      utilitarian08
+      utilitarian09;
+    Util@1;
+    Cont BY
+      contractualist01*
+      contractualist02
+      contractualist03
+      contractualist04
+      contractualist05
+      contractualist06;
+    Cont@1;
+    Deon BY
+      deontology02*
+      deontology03
+      deontology04
+      deontology05
+      deontology06
+      deontology08;
+    Deon@1;
+    Virt BY
+      virtue01*
+      virtue02
+      virtue03
+      virtue04
+      virtue05
+      virtue08
+      virtue09;
+    Virt@1;
+    Rela BY
+      relativist01*
+      relativist02
+      relativist03
+      relativist04
+      relativist05;
+    Rela@1;
+  ESTA BY Hedo* Util Cont Deon Virt Rela;
+ESTA@1;
+INPUT_END
+2
+2
+0
+2
+MLR
+1
+GENERAL
+0
+39
+7
+0
+hedonism01 hedonism04 hedonism05 hedonism06 hedonism07 hedonism08 utilitarian01 utilitarian02 utilitarian03 utilitarian04 utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09 contractualist01 contractualist02 contractualist03 contractualist04 contractualist05 contractualist06 deontology02 deontology03 deontology04 deontology05 deontology06 deontology08 virtue01 virtue02 virtue03 virtue04 virtue05 virtue08 virtue09 relativist01 relativist02 relativist03 relativist04 relativist05 hedo util cont deon virt rela esta
+2
+-1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 1 1 1 1 1 1 0
+0
+6
+hedo
+hedonism01 hedonism04 hedonism05 hedonism06 hedonism07 hedonism08
+util
+utilitarian01 utilitarian02 utilitarian03 utilitarian04 utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+cont
+contractualist01 contractualist02 contractualist03 contractualist04 contractualist05 contractualist06
+deon
+deontology02 deontology03 deontology04 deontology05 deontology06 deontology08
+virt
+virtue01 virtue02 virtue03 virtue04 virtue05 virtue08 virtue09
+rela
+relativist01 relativist02 relativist03 relativist04 relativist05
+1 1 hedo hedonism01 0.773 0.041
+1 1 hedo hedonism04 0.790 0.041
+1 1 hedo hedonism05 0.582 0.042
+1 1 hedo hedonism06 0.674 0.042
+1 1 hedo hedonism07 0.683 0.037
+1 1 hedo hedonism08 0.630 0.040
+1 1 util utilitarian01 0.580 0.041
+1 1 util utilitarian02 0.632 0.045
+1 1 util utilitarian03 0.640 0.047
+1 1 util utilitarian04 0.748 0.052
+1 1 util utilitarian05 0.652 0.048
+1 1 util utilitarian06 0.642 0.044
+1 1 util utilitarian07 0.619 0.047
+1 1 util utilitarian08 0.643 0.046
+1 1 util utilitarian09 0.787 0.055
+1 1 cont contractualist01 0.829 0.051
+1 1 cont contractualist02 0.819 0.051
+1 1 cont contractualist03 0.771 0.046
+1 1 cont contractualist04 0.800 0.051
+1 1 cont contractualist05 0.662 0.049
+1 1 cont contractualist06 0.866 0.052
+1 1 deon deontology02 0.456 0.035
+1 1 deon deontology03 0.545 0.044
+1 1 deon deontology04 0.668 0.048
+1 1 deon deontology05 0.636 0.047
+1 1 deon deontology06 0.668 0.050
+1 1 deon deontology08 0.565 0.044
+1 1 virt virtue01 1.026 0.061
+1 1 virt virtue02 0.954 0.059
+1 1 virt virtue03 0.823 0.053
+1 1 virt virtue04 0.757 0.052
+1 1 virt virtue05 0.887 0.055
+1 1 virt virtue08 0.834 0.049
+1 1 virt virtue09 0.973 0.063
+1 1 rela relativist01 0.746 0.058
+1 1 rela relativist02 0.852 0.059
+1 1 rela relativist03 0.775 0.059
+1 1 rela relativist04 0.936 0.063
+1 1 rela relativist05 0.764 0.056
+1 1 esta hedo 1.509 0.116
+1 1 esta util 1.674 0.159
+1 1 esta cont 1.321 0.122
+1 1 esta deon 1.920 0.174
+1 1 esta virt 0.729 0.076
+1 1 esta rela 1.386 0.139
+4 1 hedonism01 0.744 0.066
+4 1 hedonism04 0.638 0.066
+4 1 hedonism05 0.922 0.073
+4 1 hedonism06 0.618 0.063
+4 1 hedonism07 0.760 0.071
+4 1 hedonism08 0.767 0.058
+4 1 utilitarian01 0.524 0.040
+4 1 utilitarian02 0.463 0.050
+4 1 utilitarian03 0.643 0.071
+4 1 utilitarian04 0.400 0.033
+4 1 utilitarian05 0.555 0.058
+4 1 utilitarian06 0.610 0.051
+4 1 utilitarian07 0.790 0.060
+4 1 utilitarian08 0.773 0.058
+4 1 utilitarian09 0.702 0.059
+4 1 contractualist01 0.356 0.041
+4 1 contractualist02 0.379 0.038
+4 1 contractualist03 0.720 0.085
+4 1 contractualist04 0.694 0.064
+4 1 contractualist05 1.245 0.106
+4 1 contractualist06 0.706 0.079
+4 1 deontology02 0.951 0.057
+4 1 deontology03 0.753 0.066
+4 1 deontology04 0.448 0.062
+4 1 deontology05 0.853 0.067
+4 1 deontology06 0.727 0.061
+4 1 deontology08 0.737 0.054
+4 1 virtue01 0.484 0.055
+4 1 virtue02 0.499 0.064
+4 1 virtue03 0.634 0.068
+4 1 virtue04 0.955 0.082
+4 1 virtue05 0.563 0.068
+4 1 virtue08 0.992 0.091
+4 1 virtue09 0.546 0.082
+4 1 relativist01 0.586 0.053
+4 1 relativist02 0.324 0.032
+4 1 relativist03 0.564 0.051
+4 1 relativist04 0.614 0.065
+4 1 relativist05 0.438 0.042
+4 1 hedo 1.000 0.000
+4 1 util 1.000 0.000
+4 1 cont 1.000 0.000
+4 1 deon 1.000 0.000
+4 1 virt 1.000 0.000
+4 1 rela 1.000 0.000
+5 1 esta 1.000 0.000
+11 1 hedo hedonism01 0.851 0.015
+11 1 hedo hedonism04 0.873 0.015
+11 1 hedo hedonism05 0.739 0.026
+11 1 hedo hedonism06 0.841 0.019
+11 1 hedo hedonism07 0.817 0.020
+11 1 hedo hedonism08 0.793 0.020
+11 1 util utilitarian01 0.842 0.015
+11 1 util utilitarian02 0.875 0.014
+11 1 util utilitarian03 0.841 0.019
+11 1 util utilitarian04 0.917 0.008
+11 1 util utilitarian05 0.863 0.016
+11 1 util utilitarian06 0.849 0.015
+11 1 util utilitarian07 0.805 0.019
+11 1 util utilitarian08 0.819 0.017
+11 1 util utilitarian09 0.878 0.012
+11 1 cont contractualist01 0.917 0.011
+11 1 cont contractualist02 0.911 0.010
+11 1 cont contractualist03 0.833 0.022
+11 1 cont contractualist04 0.847 0.016
+11 1 cont contractualist05 0.701 0.030
+11 1 cont contractualist06 0.863 0.017
+11 1 deon deontology02 0.711 0.024
+11 1 deon deontology03 0.805 0.021
+11 1 deon deontology04 0.908 0.014
+11 1 deon deontology05 0.830 0.016
+11 1 deon deontology06 0.861 0.014
+11 1 deon deontology08 0.819 0.017
+11 1 virt virtue01 0.877 0.016
+11 1 virt virtue02 0.858 0.021
+11 1 virt virtue03 0.788 0.026
+11 1 virt virtue04 0.692 0.032
+11 1 virt virtue05 0.825 0.024
+11 1 virt virtue08 0.720 0.030
+11 1 virt virtue09 0.852 0.023
+11 1 rela relativist01 0.858 0.015
+11 1 rela relativist02 0.931 0.008
+11 1 rela relativist03 0.870 0.014
+11 1 rela relativist04 0.898 0.012
+11 1 rela relativist05 0.892 0.012
+11 1 esta hedo 0.834 0.020
+11 1 esta util 0.858 0.021
+11 1 esta cont 0.797 0.027
+11 1 esta deon 0.887 0.017
+11 1 esta virt 0.589 0.040
+11 1 esta rela 0.811 0.028
+14 1 hedonism01 0.275 0.025
+14 1 hedonism04 0.238 0.025
+14 1 hedonism05 0.454 0.038
+14 1 hedonism06 0.293 0.032
+14 1 hedonism07 0.332 0.033
+14 1 hedonism08 0.371 0.032
+14 1 utilitarian01 0.291 0.025
+14 1 utilitarian02 0.234 0.025
+14 1 utilitarian03 0.292 0.033
+14 1 utilitarian04 0.158 0.014
+14 1 utilitarian05 0.255 0.028
+14 1 utilitarian06 0.280 0.026
+14 1 utilitarian07 0.352 0.030
+14 1 utilitarian08 0.329 0.027
+14 1 utilitarian09 0.230 0.020
+14 1 contractualist01 0.159 0.020
+14 1 contractualist02 0.171 0.019
+14 1 contractualist03 0.306 0.037
+14 1 contractualist04 0.283 0.028
+14 1 contractualist05 0.509 0.043
+14 1 contractualist06 0.255 0.029
+14 1 deontology02 0.494 0.034
+14 1 deontology03 0.351 0.033
+14 1 deontology04 0.176 0.025
+14 1 deontology05 0.310 0.027
+14 1 deontology06 0.258 0.024
+14 1 deontology08 0.330 0.028
+14 1 virtue01 0.231 0.028
+14 1 virtue02 0.264 0.037
+14 1 virtue03 0.380 0.041
+14 1 virtue04 0.521 0.044
+14 1 virtue05 0.319 0.040
+14 1 virtue08 0.482 0.043
+14 1 virtue09 0.274 0.039
+14 1 relativist01 0.265 0.026
+14 1 relativist02 0.133 0.015
+14 1 relativist03 0.243 0.025
+14 1 relativist04 0.194 0.021
+14 1 relativist05 0.204 0.022
+14 1 hedo 0.305 0.033
+14 1 util 0.263 0.037
+14 1 cont 0.364 0.043
+14 1 deon 0.213 0.030
+14 1 virt 0.653 0.047
+14 1 rela 0.342 0.045
+15 1 esta 1.000 0.0000000001000
+31 1 hedo hedonism01 1.399 0.048
+31 1 hedo hedonism04 1.430 0.048
+31 1 hedo hedonism05 1.054 0.057
+31 1 hedo hedonism06 1.219 0.050
+31 1 hedo hedonism07 1.237 0.051
+31 1 hedo hedonism08 1.141 0.054
+31 1 util utilitarian01 1.131 0.044
+31 1 util utilitarian02 1.232 0.045
+31 1 util utilitarian03 1.248 0.050
+31 1 util utilitarian04 1.458 0.043
+31 1 util utilitarian05 1.272 0.050
+31 1 util utilitarian06 1.253 0.046
+31 1 util utilitarian07 1.206 0.051
+31 1 util utilitarian08 1.254 0.049
+31 1 util utilitarian09 1.534 0.046
+31 1 cont contractualist01 1.373 0.045
+31 1 cont contractualist02 1.357 0.044
+31 1 cont contractualist03 1.278 0.051
+31 1 cont contractualist04 1.325 0.046
+31 1 cont contractualist05 1.097 0.060
+31 1 cont contractualist06 1.435 0.048
+31 1 deon deontology02 0.987 0.053
+31 1 deon deontology03 1.179 0.051
+31 1 deon deontology04 1.447 0.046
+31 1 deon deontology05 1.377 0.050
+31 1 deon deontology06 1.445 0.048
+31 1 deon deontology08 1.224 0.049
+31 1 virt virtue01 1.270 0.057
+31 1 virt virtue02 1.180 0.058
+31 1 virt virtue03 1.018 0.053
+31 1 virt virtue04 0.937 0.058
+31 1 virt virtue05 1.097 0.055
+31 1 virt virtue08 1.032 0.059
+31 1 virt virtue09 1.204 0.059
+31 1 rela relativist01 1.276 0.051
+31 1 rela relativist02 1.455 0.043
+31 1 rela relativist03 1.325 0.049
+31 1 rela relativist04 1.600 0.045
+31 1 rela relativist05 1.306 0.045
+31 1 esta hedo 0.834 0.020
+31 1 esta util 0.858 0.021
+31 1 esta cont 0.797 0.027
+31 1 esta deon 0.887 0.017
+31 1 esta virt 0.589 0.040
+31 1 esta rela 0.811 0.028
+34 1 hedonism01 0.744 0.066
+34 1 hedonism04 0.638 0.066
+34 1 hedonism05 0.922 0.073
+34 1 hedonism06 0.618 0.063
+34 1 hedonism07 0.760 0.071
+34 1 hedonism08 0.767 0.058
+34 1 utilitarian01 0.524 0.040
+34 1 utilitarian02 0.463 0.050
+34 1 utilitarian03 0.643 0.071
+34 1 utilitarian04 0.400 0.033
+34 1 utilitarian05 0.555 0.058
+34 1 utilitarian06 0.610 0.051
+34 1 utilitarian07 0.790 0.060
+34 1 utilitarian08 0.773 0.058
+34 1 utilitarian09 0.702 0.059
+34 1 contractualist01 0.356 0.041
+34 1 contractualist02 0.379 0.038
+34 1 contractualist03 0.720 0.085
+34 1 contractualist04 0.694 0.064
+34 1 contractualist05 1.245 0.106
+34 1 contractualist06 0.706 0.079
+34 1 deontology02 0.951 0.057
+34 1 deontology03 0.753 0.066
+34 1 deontology04 0.448 0.062
+34 1 deontology05 0.853 0.067
+34 1 deontology06 0.727 0.061
+34 1 deontology08 0.737 0.054
+34 1 virtue01 0.484 0.055
+34 1 virtue02 0.499 0.064
+34 1 virtue03 0.634 0.068
+34 1 virtue04 0.955 0.082
+34 1 virtue05 0.563 0.068
+34 1 virtue08 0.992 0.091
+34 1 virtue09 0.546 0.082
+34 1 relativist01 0.586 0.053
+34 1 relativist02 0.324 0.032
+34 1 relativist03 0.564 0.051
+34 1 relativist04 0.614 0.065
+34 1 relativist05 0.438 0.042
+34 1 hedo 0.305 0.033
+34 1 util 0.263 0.037
+34 1 cont 0.364 0.043
+34 1 deon 0.213 0.030
+34 1 virt 0.653 0.047
+34 1 rela 0.342 0.045
+35 1 esta 1.000 0.0000000001000

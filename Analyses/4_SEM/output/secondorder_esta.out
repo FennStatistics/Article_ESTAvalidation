@@ -1,0 +1,2847 @@
+Mplus VERSION 8.6
+MUTHEN & MUTHEN
+10/13/2025  11:08 AM
+
+INPUT INSTRUCTIONS
+
+  TITLE: second order CFA ESTA;
+  DATA: FILE = "ESTA.dat";
+   LISTWISE=ON;
+  VARIABLE:
+    NAMES = hedonism01 hedonism02 hedonism03 hedonism04 hedonism05 hedonism06 hedonism07
+         hedonism08 hedonism09 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+         utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+         contractualist01 contractualist02 contractualist03 contractualist04
+         contractualist05 contractualist06 deontology01 deontology02 deontology03
+         deontology04 deontology05 deontology06 deontology07 deontology08 virtue01
+         virtue02 virtue03 virtue04 virtue05 virtue06 virtue07 virtue08 virtue09
+         relativist01 relativist02 relativist03 relativist04 relativist05;
+    MISSING=.;
+
+     ! remove:
+     ! Hedonism: hedonism02, hedonism03 hedonism09
+     ! Deontology: deontology01, deontology07
+     ! Virtue Ethics: virtue06, virtue07
+     USEVARIABLES = hedonism01 hedonism04 hedonism05 hedonism06 hedonism07
+         hedonism08 utilitarian01 utilitarian02 utilitarian03 utilitarian04
+         utilitarian05 utilitarian06 utilitarian07 utilitarian08 utilitarian09
+         contractualist01 contractualist02 contractualist03 contractualist04
+         contractualist05 contractualist06 deontology02 deontology03
+         deontology04 deontology05 deontology06 deontology08 virtue01
+         virtue02 virtue03 virtue04 virtue05 virtue08 virtue09
+         relativist01 relativist02 relativist03 relativist04 relativist05;
+
+    ANALYSIS:
+
+        estimator = MLR;
+
+    MODEL:
+
+     !------------------------
+     ! Hedonism
+      Hedo BY
+        hedonism01*
+        hedonism04
+        hedonism05
+        hedonism06
+        hedonism07
+        hedonism08;
+      Hedo@1;
+
+      !------------------------
+      ! Utilitarianism
+      Util BY
+        utilitarian01*
+        utilitarian02
+        utilitarian03
+        utilitarian04
+        utilitarian05
+        utilitarian06
+        utilitarian07
+        utilitarian08
+        utilitarian09;
+      Util@1;
+
+      !------------------------
+      ! Contractualism
+      Cont BY
+        contractualist01*
+        contractualist02
+        contractualist03
+        contractualist04
+        contractualist05
+        contractualist06;
+      Cont@1;
+
+      !------------------------
+      ! Deontology
+      Deon BY
+        deontology02*
+        deontology03
+        deontology04
+        deontology05
+        deontology06
+        deontology08;
+      Deon@1;
+
+      !------------------------
+      ! Virtue Ethics
+      Virt BY
+        virtue01*
+        virtue02
+        virtue03
+        virtue04
+        virtue05
+        virtue08
+        virtue09;
+      Virt@1;
+
+      !------------------------
+      ! Relativism
+      Rela BY
+        relativist01*
+        relativist02
+        relativist03
+        relativist04
+        relativist05;
+      Rela@1;
+
+  ! Second Order Factor ESTA
+    ESTA BY Hedo* Util Cont Deon Virt Rela;
+  ESTA@1;
+
+  OUTPUT:
+  sampstat standardized stdyx residual modindices;
+  PLOT:
+
+      type = plot3;
+
+
+
+
+*** WARNING in VARIABLE command
+  Note that only the first 8 characters of variable names are used in the output.
+  Shorten variable names to avoid any confusion.
+*** WARNING in PLOT command
+  Note that only the first 8 characters of variable names are used in plots.
+  If variable names are not unique within the first 8 characters, problems
+  may occur.
+   2 WARNING(S) FOUND IN THE INPUT INSTRUCTIONS
+
+
+
+second order CFA ESTA;
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         579
+
+Number of dependent variables                                   39
+Number of independent variables                                  0
+Number of continuous latent variables                            7
+
+Observed dependent variables
+
+  Continuous
+   HEDONISM01  HEDONISM04  HEDONISM05  HEDONISM06  HEDONISM07  HEDONISM08
+   UTILITARIA  UTILITARIA  UTILITARIA  UTILITARIA  UTILITARIA  UTILITARIA
+   UTILITARIA  UTILITARIA  UTILITARIA  CONTRACTUA  CONTRACTUA  CONTRACTUA
+   CONTRACTUA  CONTRACTUA  CONTRACTUA  DEONTOLOGY  DEONTOLOGY  DEONTOLOGY
+   DEONTOLOGY  DEONTOLOGY  DEONTOLOGY  VIRTUE01    VIRTUE02    VIRTUE03
+   VIRTUE04    VIRTUE05    VIRTUE08    VIRTUE09    RELATIVIST  RELATIVIST
+   RELATIVIST  RELATIVIST  RELATIVIST
+
+Continuous latent variables
+   HEDO        UTIL        CONT        DEON        VIRT        RELA
+   ESTA
+
+
+Estimator                                                      MLR
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  ESTA.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+                4.235         4.373         4.307         4.333         4.155
+
+
+           Means
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                4.282         4.791         4.881         4.706         4.744
+
+
+           Means
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                4.990         4.760         4.670         4.656         4.658
+
+
+           Means
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+                4.406         4.370         4.264         4.332         4.078
+
+
+           Means
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+                4.370         3.960         4.333         4.223         4.499
+
+
+           Means
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+                3.971         4.249         5.459         5.373         5.066
+
+
+           Means
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+                4.750         5.154         4.717         5.508         4.762
+
+
+           Means
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+                4.428         4.560         4.387         4.380
+
+
+           Covariances
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       2.701
+ HEDONISM       2.025         2.683
+ HEDONISM       1.493         1.372         2.033
+ HEDONISM       1.697         1.769         1.383         2.105
+ HEDONISM       1.706         1.745         1.320         1.485         2.290
+ HEDONISM       1.530         1.613         1.368         1.419         1.409
+ UTILITAR       1.253         1.318         0.886         1.090         1.077
+ UTILITAR       1.372         1.395         0.933         1.128         1.148
+ UTILITAR       1.394         1.519         0.968         1.117         1.267
+ UTILITAR       1.566         1.570         0.970         1.222         1.352
+ UTILITAR       1.301         1.410         0.810         1.035         1.204
+ UTILITAR       1.364         1.445         0.825         1.056         1.232
+ UTILITAR       1.288         1.406         0.832         1.029         1.169
+ UTILITAR       1.314         1.375         0.814         1.052         1.218
+ UTILITAR       1.635         1.713         0.993         1.311         1.525
+ CONTRACT       1.286         1.334         0.842         0.989         1.129
+ CONTRACT       1.181         1.242         0.814         0.923         1.119
+ CONTRACT       1.214         1.281         0.867         0.915         1.075
+ CONTRACT       1.202         1.270         0.834         0.910         1.083
+ CONTRACT       1.008         1.094         0.622         0.810         0.971
+ CONTRACT       1.281         1.347         0.814         0.961         1.229
+ DEONTOLO       1.241         1.217         0.919         1.101         1.144
+ DEONTOLO       1.165         1.173         0.777         0.856         1.081
+ DEONTOLO       1.563         1.559         1.016         1.219         1.451
+ DEONTOLO       1.520         1.537         0.950         1.138         1.330
+ DEONTOLO       1.489         1.584         0.957         1.193         1.450
+ DEONTOLO       1.230         1.299         0.835         0.972         1.112
+ VIRTUE01       0.773         0.825         0.517         0.524         0.718
+ VIRTUE02       0.781         0.857         0.590         0.591         0.671
+ VIRTUE03       0.765         0.767         0.615         0.603         0.620
+ VIRTUE04       0.684         0.810         0.528         0.557         0.711
+ VIRTUE05       0.807         0.908         0.585         0.603         0.800
+ VIRTUE08       0.885         0.974         0.754         0.718         0.864
+ VIRTUE09       0.775         0.838         0.517         0.568         0.669
+ RELATIVI       1.151         1.255         0.766         0.950         1.123
+ RELATIVI       1.468         1.540         0.853         1.092         1.317
+ RELATIVI       1.207         1.304         0.802         0.924         1.110
+ RELATIVI       1.742         1.712         0.907         1.222         1.423
+ RELATIVI       1.275         1.285         0.738         0.953         1.174
+
+
+           Covariances
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       2.068
+ UTILITAR       1.024         1.803
+ UTILITAR       1.042         1.466         1.981
+ UTILITAR       1.057         1.405         1.544         2.200
+ UTILITAR       1.136         1.624         1.771         1.830         2.525
+ UTILITAR       0.965         1.442         1.602         1.551         1.842
+ UTILITAR       1.026         1.473         1.495         1.624         1.837
+ UTILITAR       0.975         1.397         1.501         1.466         1.726
+ UTILITAR       1.017         1.382         1.519         1.580         1.815
+ UTILITAR       1.198         1.657         1.863         1.869         2.332
+ CONTRACT       0.979         1.000         1.102         1.157         1.299
+ CONTRACT       0.911         0.991         0.992         1.105         1.229
+ CONTRACT       0.967         0.972         1.099         1.211         1.289
+ CONTRACT       1.010         1.016         1.072         1.187         1.266
+ CONTRACT       0.828         0.754         0.864         0.993         1.034
+ CONTRACT       1.017         1.072         1.215         1.259         1.431
+ DEONTOLO       1.103         0.916         1.016         1.018         1.093
+ DEONTOLO       0.879         0.895         1.074         1.022         1.220
+ DEONTOLO       1.170         1.143         1.382         1.335         1.563
+ DEONTOLO       1.139         1.142         1.343         1.305         1.518
+ DEONTOLO       1.188         1.139         1.330         1.297         1.486
+ DEONTOLO       0.989         1.009         1.149         1.165         1.260
+ VIRTUE01       0.553         0.628         0.692         0.776         0.884
+ VIRTUE02       0.555         0.700         0.765         0.769         0.893
+ VIRTUE03       0.577         0.615         0.661         0.703         0.794
+ VIRTUE04       0.590         0.668         0.682         0.673         0.751
+ VIRTUE05       0.606         0.699         0.754         0.772         0.937
+ VIRTUE08       0.755         0.778         0.814         0.773         0.943
+ VIRTUE09       0.601         0.659         0.736         0.871         0.952
+ RELATIVI       0.925         0.969         1.084         1.130         1.300
+ RELATIVI       1.009         1.065         1.225         1.285         1.519
+ RELATIVI       0.920         0.913         1.146         1.128         1.369
+ RELATIVI       1.086         1.276         1.457         1.440         1.741
+ RELATIVI       0.841         0.907         1.069         1.063         1.320
+
+
+           Covariances
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       2.173
+ UTILITAR       1.616         2.179
+ UTILITAR       1.535         1.458         2.245
+ UTILITAR       1.573         1.548         1.686         2.346
+ UTILITAR       1.976         1.880         1.820         1.915         3.054
+ CONTRACT       1.144         1.161         1.029         1.136         1.436
+ CONTRACT       1.047         1.115         0.954         1.075         1.311
+ CONTRACT       1.150         1.167         1.023         1.089         1.370
+ CONTRACT       1.100         1.147         1.028         1.092         1.246
+ CONTRACT       0.895         0.903         0.858         0.916         1.108
+ CONTRACT       1.239         1.310         1.201         1.238         1.548
+ DEONTOLO       0.937         0.952         0.949         1.004         1.264
+ DEONTOLO       1.067         1.056         0.993         1.078         1.394
+ DEONTOLO       1.332         1.278         1.295         1.396         1.705
+ DEONTOLO       1.340         1.331         1.192         1.308         1.684
+ DEONTOLO       1.252         1.233         1.153         1.330         1.746
+ DEONTOLO       1.077         1.112         1.008         1.182         1.391
+ VIRTUE01       0.787         0.834         0.753         0.785         0.952
+ VIRTUE02       0.812         0.875         0.736         0.835         0.948
+ VIRTUE03       0.688         0.731         0.687         0.739         0.784
+ VIRTUE04       0.669         0.753         0.700         0.712         0.800
+ VIRTUE05       0.806         0.823         0.783         0.794         0.964
+ VIRTUE08       0.828         0.849         0.891         0.797         0.998
+ VIRTUE09       0.852         0.897         0.815         0.896         0.968
+ RELATIVI       1.150         1.129         1.115         1.112         1.354
+ RELATIVI       1.326         1.262         1.269         1.349         1.625
+ RELATIVI       1.139         1.152         1.147         1.134         1.380
+ RELATIVI       1.555         1.473         1.492         1.565         1.941
+ RELATIVI       1.108         1.124         1.075         1.112         1.451
+
+
+           Covariances
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       2.241
+ CONTRACT       1.914         2.219
+ CONTRACT       1.741         1.655         2.353
+ CONTRACT       1.772         1.791         1.790         2.450
+ CONTRACT       1.488         1.507         1.422         1.453         2.448
+ CONTRACT       1.940         1.955         1.840         1.926         1.558
+ DEONTOLO       1.040         0.989         1.026         0.992         0.880
+ DEONTOLO       1.201         1.105         1.254         1.095         0.952
+ DEONTOLO       1.467         1.368         1.475         1.372         1.145
+ DEONTOLO       1.442         1.346         1.454         1.391         1.039
+ DEONTOLO       1.404         1.346         1.500         1.286         1.130
+ DEONTOLO       1.189         1.136         1.230         1.170         0.984
+ VIRTUE01       0.805         0.763         0.834         0.782         0.652
+ VIRTUE02       0.823         0.741         0.813         0.773         0.565
+ VIRTUE03       0.768         0.730         0.756         0.700         0.596
+ VIRTUE04       0.758         0.714         0.826         0.751         0.617
+ VIRTUE05       0.855         0.840         0.883         0.857         0.717
+ VIRTUE08       0.951         0.925         0.966         0.925         0.772
+ VIRTUE09       0.849         0.738         0.800         0.780         0.667
+ RELATIVI       1.073         1.028         1.039         1.108         0.870
+ RELATIVI       1.310         1.227         1.286         1.207         1.008
+ RELATIVI       1.163         1.071         1.135         1.098         0.925
+ RELATIVI       1.510         1.451         1.452         1.424         1.198
+ RELATIVI       1.181         1.143         1.107         1.090         0.919
+
+
+           Covariances
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       2.765
+ DEONTOLO       1.037         1.924
+ DEONTOLO       1.229         1.129         2.143
+ DEONTOLO       1.529         1.429         1.758         2.543
+ DEONTOLO       1.622         1.334         1.599         1.975         2.747
+ DEONTOLO       1.564         1.439         1.692         2.077         1.977
+ DEONTOLO       1.254         1.139         1.465         1.753         1.682
+ VIRTUE01       0.839         0.614         0.792         0.794         0.790
+ VIRTUE02       0.869         0.571         0.786         0.808         0.772
+ VIRTUE03       0.798         0.536         0.723         0.775         0.655
+ VIRTUE04       0.773         0.510         0.705         0.722         0.723
+ VIRTUE05       0.867         0.616         0.743         0.833         0.816
+ VIRTUE08       1.049         0.700         0.835         0.923         0.832
+ VIRTUE09       0.840         0.562         0.786         0.837         0.776
+ RELATIVI       1.193         0.820         0.969         1.293         1.381
+ RELATIVI       1.360         1.038         1.166         1.587         1.617
+ RELATIVI       1.261         0.813         0.984         1.328         1.515
+ RELATIVI       1.641         1.231         1.306         1.819         1.930
+ RELATIVI       1.279         0.906         1.060         1.385         1.482
+
+
+           Covariances
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       2.816
+ DEONTOLO       1.857         2.235
+ VIRTUE01       0.777         0.704         2.096
+ VIRTUE02       0.802         0.714         1.582         1.892
+ VIRTUE03       0.741         0.659         1.236         1.214         1.671
+ VIRTUE04       0.744         0.665         1.122         1.017         1.022
+ VIRTUE05       0.840         0.763         1.363         1.240         1.147
+ VIRTUE08       0.954         0.801         1.197         1.123         1.119
+ VIRTUE09       0.780         0.753         1.622         1.451         1.186
+ RELATIVI       1.237         1.115         0.619         0.697         0.498
+ RELATIVI       1.529         1.239         0.656         0.718         0.597
+ RELATIVI       1.301         1.132         0.596         0.676         0.521
+ RELATIVI       1.780         1.353         0.767         0.849         0.736
+ RELATIVI       1.363         1.165         0.561         0.613         0.550
+
+
+           Covariances
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       1.832
+ VIRTUE05       1.127         1.767
+ VIRTUE08       1.200         1.237         2.058
+ VIRTUE09       1.032         1.283         1.182         1.994
+ RELATIVI       0.541         0.643         0.684         0.608         2.213
+ RELATIVI       0.589         0.694         0.677         0.674         1.824
+ RELATIVI       0.563         0.689         0.661         0.574         1.902
+ RELATIVI       0.712         0.821         0.838         0.772         1.932
+ RELATIVI       0.568         0.603         0.641         0.555         1.659
+
+
+           Covariances
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       2.442
+ RELATIVI       1.902         2.319
+ RELATIVI       2.378         2.029         3.173
+ RELATIVI       1.898         1.715         2.122         2.142
+
+
+           Correlations
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       1.000
+ HEDONISM       0.752         1.000
+ HEDONISM       0.637         0.588         1.000
+ HEDONISM       0.712         0.744         0.668         1.000
+ HEDONISM       0.686         0.704         0.612         0.677         1.000
+ HEDONISM       0.647         0.685         0.667         0.680         0.647
+ UTILITAR       0.568         0.599         0.463         0.560         0.530
+ UTILITAR       0.593         0.605         0.465         0.552         0.539
+ UTILITAR       0.572         0.625         0.457         0.519         0.564
+ UTILITAR       0.600         0.603         0.428         0.530         0.562
+ UTILITAR       0.537         0.584         0.385         0.484         0.540
+ UTILITAR       0.562         0.598         0.392         0.493         0.552
+ UTILITAR       0.523         0.573         0.389         0.473         0.515
+ UTILITAR       0.522         0.548         0.373         0.474         0.525
+ UTILITAR       0.569         0.598         0.398         0.517         0.577
+ CONTRACT       0.523         0.544         0.395         0.455         0.498
+ CONTRACT       0.482         0.509         0.383         0.427         0.496
+ CONTRACT       0.482         0.510         0.396         0.411         0.463
+ CONTRACT       0.467         0.495         0.374         0.401         0.457
+ CONTRACT       0.392         0.427         0.279         0.357         0.410
+ CONTRACT       0.469         0.495         0.343         0.399         0.488
+ DEONTOLO       0.544         0.536         0.465         0.547         0.545
+ DEONTOLO       0.484         0.489         0.372         0.403         0.488
+ DEONTOLO       0.596         0.597         0.447         0.527         0.601
+ DEONTOLO       0.558         0.566         0.402         0.473         0.530
+ DEONTOLO       0.540         0.576         0.400         0.490         0.571
+ DEONTOLO       0.501         0.531         0.392         0.448         0.491
+ VIRTUE01       0.325         0.348         0.250         0.249         0.328
+ VIRTUE02       0.346         0.381         0.301         0.296         0.322
+ VIRTUE03       0.360         0.362         0.334         0.322         0.317
+ VIRTUE04       0.307         0.365         0.273         0.284         0.347
+ VIRTUE05       0.369         0.417         0.309         0.313         0.398
+ VIRTUE08       0.375         0.415         0.368         0.345         0.398
+ VIRTUE09       0.334         0.362         0.257         0.277         0.313
+ RELATIVI       0.471         0.515         0.361         0.440         0.499
+ RELATIVI       0.571         0.602         0.383         0.482         0.557
+ RELATIVI       0.482         0.523         0.369         0.418         0.482
+ RELATIVI       0.595         0.587         0.357         0.473         0.528
+ RELATIVI       0.530         0.536         0.354         0.449         0.530
+
+
+           Correlations
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       1.000
+ UTILITAR       0.531         1.000
+ UTILITAR       0.515         0.776         1.000
+ UTILITAR       0.495         0.705         0.739         1.000
+ UTILITAR       0.497         0.761         0.792         0.776         1.000
+ UTILITAR       0.455         0.729         0.772         0.710         0.786
+ UTILITAR       0.483         0.743         0.719         0.742         0.783
+ UTILITAR       0.453         0.695         0.712         0.660         0.725
+ UTILITAR       0.462         0.672         0.704         0.695         0.746
+ UTILITAR       0.477         0.706         0.757         0.721         0.840
+ CONTRACT       0.455         0.498         0.523         0.521         0.546
+ CONTRACT       0.426         0.495         0.473         0.500         0.519
+ CONTRACT       0.438         0.472         0.509         0.532         0.529
+ CONTRACT       0.449         0.483         0.487         0.511         0.509
+ CONTRACT       0.368         0.359         0.392         0.428         0.416
+ CONTRACT       0.425         0.480         0.519         0.510         0.542
+ DEONTOLO       0.553         0.492         0.520         0.495         0.496
+ DEONTOLO       0.417         0.456         0.521         0.471         0.524
+ DEONTOLO       0.510         0.534         0.616         0.564         0.617
+ DEONTOLO       0.478         0.513         0.576         0.531         0.576
+ DEONTOLO       0.492         0.506         0.563         0.521         0.557
+ DEONTOLO       0.460         0.503         0.546         0.525         0.531
+ VIRTUE01       0.266         0.323         0.340         0.361         0.384
+ VIRTUE02       0.280         0.379         0.395         0.377         0.409
+ VIRTUE03       0.311         0.354         0.363         0.367         0.387
+ VIRTUE04       0.303         0.368         0.358         0.335         0.349
+ VIRTUE05       0.317         0.391         0.403         0.392         0.444
+ VIRTUE08       0.366         0.404         0.403         0.363         0.414
+ VIRTUE09       0.296         0.347         0.370         0.416         0.424
+ RELATIVI       0.433         0.485         0.518         0.512         0.550
+ RELATIVI       0.449         0.508         0.557         0.554         0.612
+ RELATIVI       0.420         0.447         0.535         0.499         0.566
+ RELATIVI       0.424         0.534         0.581         0.545         0.615
+ RELATIVI       0.400         0.461         0.519         0.490         0.567
+
+
+           Correlations
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       1.000
+ UTILITAR       0.743         1.000
+ UTILITAR       0.695         0.659         1.000
+ UTILITAR       0.697         0.685         0.735         1.000
+ UTILITAR       0.767         0.729         0.695         0.715         1.000
+ CONTRACT       0.518         0.526         0.459         0.495         0.549
+ CONTRACT       0.477         0.507         0.428         0.471         0.504
+ CONTRACT       0.508         0.515         0.445         0.463         0.511
+ CONTRACT       0.477         0.496         0.438         0.455         0.456
+ CONTRACT       0.388         0.391         0.366         0.382         0.405
+ CONTRACT       0.505         0.534         0.482         0.486         0.533
+ DEONTOLO       0.458         0.465         0.457         0.472         0.522
+ DEONTOLO       0.495         0.489         0.452         0.481         0.545
+ DEONTOLO       0.567         0.543         0.542         0.572         0.612
+ DEONTOLO       0.549         0.544         0.480         0.515         0.581
+ DEONTOLO       0.506         0.498         0.458         0.517         0.596
+ DEONTOLO       0.489         0.504         0.450         0.516         0.532
+ VIRTUE01       0.369         0.390         0.347         0.354         0.376
+ VIRTUE02       0.401         0.431         0.357         0.396         0.394
+ VIRTUE03       0.361         0.383         0.354         0.373         0.347
+ VIRTUE04       0.335         0.377         0.345         0.343         0.338
+ VIRTUE05       0.412         0.419         0.393         0.390         0.415
+ VIRTUE08       0.391         0.401         0.415         0.363         0.398
+ VIRTUE09       0.409         0.430         0.385         0.414         0.392
+ RELATIVI       0.524         0.514         0.500         0.488         0.521
+ RELATIVI       0.576         0.547         0.542         0.564         0.595
+ RELATIVI       0.507         0.512         0.502         0.486         0.518
+ RELATIVI       0.592         0.560         0.559         0.573         0.623
+ RELATIVI       0.513         0.520         0.490         0.496         0.567
+
+
+           Correlations
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       1.000
+ CONTRACT       0.858         1.000
+ CONTRACT       0.758         0.724         1.000
+ CONTRACT       0.756         0.768         0.745         1.000
+ CONTRACT       0.635         0.646         0.592         0.593         1.000
+ CONTRACT       0.779         0.789         0.721         0.740         0.599
+ DEONTOLO       0.501         0.478         0.482         0.457         0.406
+ DEONTOLO       0.548         0.507         0.558         0.478         0.415
+ DEONTOLO       0.615         0.576         0.603         0.550         0.459
+ DEONTOLO       0.581         0.545         0.572         0.536         0.401
+ DEONTOLO       0.559         0.538         0.583         0.490         0.430
+ DEONTOLO       0.531         0.510         0.536         0.500         0.421
+ VIRTUE01       0.371         0.354         0.375         0.345         0.288
+ VIRTUE02       0.400         0.362         0.385         0.359         0.263
+ VIRTUE03       0.397         0.379         0.381         0.346         0.295
+ VIRTUE04       0.374         0.354         0.398         0.355         0.291
+ VIRTUE05       0.429         0.424         0.433         0.412         0.345
+ VIRTUE08       0.443         0.433         0.439         0.412         0.344
+ VIRTUE09       0.402         0.351         0.369         0.353         0.302
+ RELATIVI       0.482         0.464         0.455         0.476         0.374
+ RELATIVI       0.560         0.527         0.536         0.493         0.412
+ RELATIVI       0.510         0.472         0.486         0.461         0.388
+ RELATIVI       0.566         0.547         0.531         0.511         0.430
+ RELATIVI       0.539         0.524         0.493         0.476         0.401
+
+
+           Correlations
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       1.000
+ DEONTOLO       0.450         1.000
+ DEONTOLO       0.505         0.556         1.000
+ DEONTOLO       0.577         0.646         0.753         1.000
+ DEONTOLO       0.589         0.580         0.659         0.747         1.000
+ DEONTOLO       0.560         0.618         0.689         0.776         0.711
+ DEONTOLO       0.504         0.549         0.669         0.735         0.679
+ VIRTUE01       0.348         0.306         0.373         0.344         0.329
+ VIRTUE02       0.380         0.299         0.390         0.368         0.339
+ VIRTUE03       0.371         0.299         0.382         0.376         0.306
+ VIRTUE04       0.343         0.272         0.356         0.335         0.322
+ VIRTUE05       0.392         0.334         0.382         0.393         0.370
+ VIRTUE08       0.440         0.352         0.398         0.404         0.350
+ VIRTUE09       0.358         0.287         0.380         0.372         0.331
+ RELATIVI       0.483         0.397         0.445         0.545         0.560
+ RELATIVI       0.523         0.479         0.510         0.637         0.624
+ RELATIVI       0.498         0.385         0.442         0.547         0.600
+ RELATIVI       0.554         0.498         0.501         0.640         0.653
+ RELATIVI       0.526         0.446         0.495         0.593         0.611
+
+
+           Correlations
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       1.000
+ DEONTOLO       0.740         1.000
+ VIRTUE01       0.320         0.325         1.000
+ VIRTUE02       0.347         0.347         0.794         1.000
+ VIRTUE03       0.342         0.341         0.660         0.683         1.000
+ VIRTUE04       0.328         0.329         0.573         0.547         0.584
+ VIRTUE05       0.377         0.384         0.708         0.678         0.667
+ VIRTUE08       0.396         0.373         0.577         0.569         0.603
+ VIRTUE09       0.329         0.357         0.793         0.747         0.650
+ RELATIVI       0.495         0.501         0.287         0.341         0.259
+ RELATIVI       0.583         0.530         0.290         0.334         0.296
+ RELATIVI       0.509         0.497         0.270         0.323         0.265
+ RELATIVI       0.595         0.508         0.297         0.346         0.320
+ RELATIVI       0.555         0.532         0.265         0.304         0.291
+
+
+           Correlations
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       1.000
+ VIRTUE05       0.626         1.000
+ VIRTUE08       0.618         0.649         1.000
+ VIRTUE09       0.540         0.683         0.583         1.000
+ RELATIVI       0.269         0.325         0.320         0.289         1.000
+ RELATIVI       0.279         0.334         0.302         0.305         0.785
+ RELATIVI       0.273         0.341         0.303         0.267         0.840
+ RELATIVI       0.295         0.347         0.328         0.307         0.729
+ RELATIVI       0.287         0.310         0.305         0.268         0.762
+
+
+           Correlations
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       1.000
+ RELATIVI       0.799         1.000
+ RELATIVI       0.854         0.748         1.000
+ RELATIVI       0.830         0.769         0.814         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     HEDONISM01            4.235      -0.285       1.000    8.12%       3.000      4.000      4.000
+             579.000       2.701      -0.577       7.000    8.46%       5.000      6.000
+     HEDONISM04            4.373      -0.306       1.000    5.70%       3.000      4.000      5.000
+             579.000       2.683      -0.654       7.000   10.02%       5.000      6.000
+     HEDONISM05            4.307       0.028       1.000    3.97%       3.000      4.000      4.000
+             579.000       2.033      -0.024       7.000    9.33%       4.000      6.000
+     HEDONISM06            4.333      -0.185       1.000    3.97%       3.000      4.000      4.000
+             579.000       2.105      -0.226       7.000    7.43%       5.000      6.000
+     HEDONISM07            4.155      -0.043       1.000    4.66%       3.000      4.000      4.000
+             579.000       2.290      -0.447       7.000    7.60%       4.000      5.000
+     HEDONISM08            4.282      -0.228       1.000    5.70%       3.000      4.000      4.000
+             579.000       2.068       0.048       7.000    7.08%       5.000      5.000
+     UTILITARIAN01         4.791      -0.318       1.000    0.86%       4.000      4.000      5.000
+             579.000       1.803      -0.288       7.000   10.19%       5.000      6.000
+     UTILITARIAN02         4.881      -0.498       1.000    2.07%       4.000      5.000      5.000
+             579.000       1.981      -0.067       7.000   12.61%       5.000      6.000
+     UTILITARIAN03         4.706      -0.409       1.000    2.76%       3.000      4.000      5.000
+             579.000       2.200      -0.315       7.000   11.57%       5.000      6.000
+     UTILITARIAN04         4.744      -0.385       1.000    3.28%       3.000      4.000      5.000
+             579.000       2.525      -0.609       7.000   15.03%       5.000      6.000
+     UTILITARIAN05         4.990      -0.597       1.000    2.25%       4.000      5.000      5.000
+             579.000       2.173      -0.168       7.000   15.54%       6.000      6.000
+     UTILITARIAN06         4.760      -0.343       1.000    2.07%       4.000      4.000      5.000
+             579.000       2.179      -0.458       7.000   12.78%       5.000      6.000
+     UTILITARIAN07         4.670      -0.376       1.000    2.59%       3.000      4.000      5.000
+             579.000       2.245      -0.444       7.000   11.05%       5.000      6.000
+     UTILITARIAN08         4.656      -0.446       1.000    2.76%       3.000      4.000      5.000
+             579.000       2.346      -0.543       7.000    9.67%       5.000      6.000
+     UTILITARIAN09         4.658      -0.421       1.000    5.18%       3.000      4.000      5.000
+             579.000       3.054      -0.816       7.000   16.23%       5.000      6.000
+     CONTRACTUALIST0       4.406      -0.209       1.000    3.80%       3.000      4.000      4.000
+             579.000       2.241      -0.393       7.000    8.98%       5.000      6.000
+     CONTRACTUALIST0       4.370      -0.165       1.000    3.45%       3.000      4.000      4.000
+             579.000       2.219      -0.501       7.000    7.77%       5.000      6.000
+     CONTRACTUALIST0       4.264      -0.144       1.000    3.63%       3.000      4.000      4.000
+             579.000       2.353      -0.711       7.000    6.56%       5.000      6.000
+     CONTRACTUALIST0       4.332      -0.007       1.000    2.94%       3.000      4.000      4.000
+             579.000       2.450      -0.787       7.000   10.19%       5.000      6.000
+     CONTRACTUALIST0       4.078      -0.150       1.000    6.39%       3.000      4.000      4.000
+             579.000       2.448      -0.646       7.000    5.70%       5.000      5.000
+     CONTRACTUALIST0       4.370      -0.169       1.000    4.84%       3.000      4.000      4.000
+             579.000       2.765      -0.833       7.000   11.05%       5.000      6.000
+     DEONTOLOGY02          3.960      -0.076       1.000    5.01%       3.000      4.000      4.000
+             579.000       1.924      -0.210       7.000    3.45%       4.000      5.000
+     DEONTOLOGY03          4.333      -0.113       1.000    3.45%       3.000      4.000      4.000
+             579.000       2.143      -0.409       7.000    7.60%       5.000      6.000
+     DEONTOLOGY04          4.223      -0.127       1.000    5.70%       3.000      4.000      4.000
+             579.000       2.543      -0.549       7.000    9.50%       5.000      6.000
+     DEONTOLOGY05          4.499      -0.254       1.000    5.18%       3.000      4.000      5.000
+             579.000       2.747      -0.671       7.000   13.82%       5.000      6.000
+     DEONTOLOGY06          3.971      -0.024       1.000    8.29%       2.000      4.000      4.000
+             579.000       2.816      -0.861       7.000    6.91%       4.000      6.000
+     DEONTOLOGY08          4.249      -0.107       1.000    3.63%       3.000      4.000      4.000
+             579.000       2.235      -0.554       7.000    6.91%       5.000      6.000
+     VIRTUE01              5.459      -1.068       1.000    1.90%       4.000      5.000      6.000
+             579.000       2.096       0.723       7.000   25.91%       6.000      7.000
+     VIRTUE02              5.373      -0.953       1.000    1.38%       4.000      5.000      6.000
+             579.000       1.892       0.633       7.000   20.90%       6.000      7.000
+     VIRTUE03              5.066      -0.467       1.000    1.55%       4.000      5.000      5.000
+             579.000       1.671       0.292       7.000   14.34%       5.000      6.000
+     VIRTUE04              4.750      -0.250       1.000    1.55%       4.000      4.000      5.000
+             579.000       1.832      -0.110       7.000   11.40%       5.000      6.000
+     VIRTUE05              5.154      -0.689       1.000    1.55%       4.000      5.000      5.000
+             579.000       1.767       0.439       7.000   15.89%       6.000      6.000
+     VIRTUE08              4.717      -0.412       1.000    2.76%       4.000      4.000      5.000
+             579.000       2.058      -0.095       7.000   11.23%       5.000      6.000
+     VIRTUE09              5.508      -1.129       1.000    2.25%       4.000      5.000      6.000
+             579.000       1.994       1.107       7.000   26.94%       6.000      7.000
+     RELATIVIST01          4.762      -0.633       1.000    3.63%       4.000      5.000      5.000
+             579.000       2.213      -0.057       7.000    9.67%       5.000      6.000
+     RELATIVIST02          4.428      -0.350       1.000    4.49%       3.000      4.000      5.000
+             579.000       2.442      -0.574       7.000    7.77%       5.000      6.000
+     RELATIVIST03          4.560      -0.374       1.000    3.80%       3.000      4.000      5.000
+             579.000       2.319      -0.365       7.000    9.84%       5.000      6.000
+     RELATIVIST04          4.387      -0.381       1.000    8.12%       3.000      4.000      5.000
+             579.000       3.173      -0.871       7.000   11.23%       5.000      6.000
+     RELATIVIST05          4.380      -0.331       1.000    3.63%       3.000      4.000      4.000
+             579.000       2.142      -0.381       7.000    5.87%       5.000      6.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                      123
+
+Loglikelihood
+
+          H0 Value                      -30911.461
+          H0 Scaling Correction Factor      1.3521
+            for MLR
+          H1 Value                      -30121.491
+          H1 Scaling Correction Factor      1.2393
+            for MLR
+
+Information Criteria
+
+          Akaike (AIC)                   62068.921
+          Bayesian (BIC)                 62605.361
+          Sample-Size Adjusted BIC       62214.885
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                           1295.674*
+          Degrees of Freedom                   696
+          P-Value                           0.0000
+          Scaling Correction Factor         1.2194
+            for MLR
+
+*   The chi-square value for MLM, MLMV, MLR, ULSMV, WLSM and WLSMV cannot be used
+    for chi-square difference testing in the regular way.  MLM, MLR and WLSM
+    chi-square difference testing is described on the Mplus website.  MLMV, WLSMV,
+    and ULSMV difference testing is done using the DIFFTEST option.
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.039
+          90 Percent C.I.                    0.035  0.042
+          Probability RMSEA <= .05           1.000
+
+CFI/TLI
+
+          CFI                                0.964
+          TLI                                0.962
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                          17440.083
+          Degrees of Freedom                   741
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.041
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ HEDO     BY
+    HEDONISM01         0.773      0.041     18.748      0.000
+    HEDONISM04         0.790      0.041     19.197      0.000
+    HEDONISM05         0.582      0.042     14.026      0.000
+    HEDONISM06         0.674      0.042     16.173      0.000
+    HEDONISM07         0.683      0.037     18.620      0.000
+    HEDONISM08         0.630      0.040     15.614      0.000
+
+ UTIL     BY
+    UTILITARIA         0.580      0.041     14.054      0.000
+    UTILITARIA         0.632      0.045     14.030      0.000
+    UTILITARIA         0.640      0.047     13.501      0.000
+    UTILITARIA         0.748      0.052     14.350      0.000
+    UTILITARIA         0.652      0.048     13.501      0.000
+    UTILITARIA         0.642      0.044     14.552      0.000
+    UTILITARIA         0.619      0.047     13.173      0.000
+    UTILITARIA         0.643      0.046     13.846      0.000
+    UTILITARIA         0.787      0.055     14.311      0.000
+
+ CONT     BY
+    CONTRACTUA         0.829      0.051     16.315      0.000
+    CONTRACTUA         0.819      0.051     15.966      0.000
+    CONTRACTUA         0.771      0.046     16.680      0.000
+    CONTRACTUA         0.800      0.051     15.749      0.000
+    CONTRACTUA         0.662      0.049     13.417      0.000
+    CONTRACTUA         0.866      0.052     16.580      0.000
+
+ DEON     BY
+    DEONTOLOGY         0.456      0.035     13.053      0.000
+    DEONTOLOGY         0.545      0.044     12.418      0.000
+    DEONTOLOGY         0.668      0.048     13.837      0.000
+    DEONTOLOGY         0.636      0.047     13.593      0.000
+    DEONTOLOGY         0.668      0.050     13.396      0.000
+    DEONTOLOGY         0.565      0.044     12.789      0.000
+
+ VIRT     BY
+    VIRTUE01           1.026      0.061     16.775      0.000
+    VIRTUE02           0.954      0.059     16.240      0.000
+    VIRTUE03           0.823      0.053     15.615      0.000
+    VIRTUE04           0.757      0.052     14.612      0.000
+    VIRTUE05           0.887      0.055     16.226      0.000
+    VIRTUE08           0.834      0.049     16.872      0.000
+    VIRTUE09           0.973      0.063     15.555      0.000
+
+ RELA     BY
+    RELATIVIST         0.746      0.058     12.901      0.000
+    RELATIVIST         0.852      0.059     14.320      0.000
+    RELATIVIST         0.775      0.059     13.140      0.000
+    RELATIVIST         0.936      0.063     14.783      0.000
+    RELATIVIST         0.764      0.056     13.651      0.000
+
+ ESTA     BY
+    HEDO               1.509      0.116     13.006      0.000
+    UTIL               1.674      0.159     10.514      0.000
+    CONT               1.321      0.122     10.832      0.000
+    DEON               1.920      0.174     11.016      0.000
+    VIRT               0.729      0.076      9.650      0.000
+    RELA               1.386      0.139      9.990      0.000
+
+ Intercepts
+    HEDONISM01         4.235      0.068     62.000      0.000
+    HEDONISM04         4.373      0.068     64.242      0.000
+    HEDONISM05         4.307      0.059     72.687      0.000
+    HEDONISM06         4.333      0.060     71.872      0.000
+    HEDONISM07         4.155      0.063     66.073      0.000
+    HEDONISM08         4.282      0.060     71.649      0.000
+    UTILITARIA         4.791      0.056     85.865      0.000
+    UTILITARIA         4.881      0.058     83.451      0.000
+    UTILITARIA         4.706      0.062     76.343      0.000
+    UTILITARIA         4.744      0.066     71.839      0.000
+    UTILITARIA         4.990      0.061     81.455      0.000
+    UTILITARIA         4.760      0.061     77.591      0.000
+    UTILITARIA         4.670      0.062     74.996      0.000
+    UTILITARIA         4.656      0.064     73.143      0.000
+    UTILITARIA         4.658      0.073     64.136      0.000
+    CONTRACTUA         4.406      0.062     70.817      0.000
+    CONTRACTUA         4.370      0.062     70.581      0.000
+    CONTRACTUA         4.264      0.064     66.887      0.000
+    CONTRACTUA         4.332      0.065     66.595      0.000
+    CONTRACTUA         4.078      0.065     62.710      0.000
+    CONTRACTUA         4.370      0.069     63.232      0.000
+    DEONTOLOGY         3.960      0.058     68.698      0.000
+    DEONTOLOGY         4.333      0.061     71.232      0.000
+    DEONTOLOGY         4.223      0.066     63.722      0.000
+    DEONTOLOGY         4.499      0.069     65.314      0.000
+    DEONTOLOGY         3.971      0.070     56.935      0.000
+    DEONTOLOGY         4.249      0.062     68.381      0.000
+    VIRTUE01           5.459      0.060     90.730      0.000
+    VIRTUE02           5.373      0.057     93.996      0.000
+    VIRTUE03           5.066      0.054     94.294      0.000
+    VIRTUE04           4.750      0.056     84.438      0.000
+    VIRTUE05           5.154      0.055     93.281      0.000
+    VIRTUE08           4.717      0.060     79.116      0.000
+    VIRTUE09           5.508      0.059     93.846      0.000
+    RELATIVIST         4.762      0.062     77.027      0.000
+    RELATIVIST         4.428      0.065     68.191      0.000
+    RELATIVIST         4.560      0.063     72.047      0.000
+    RELATIVIST         4.387      0.074     59.257      0.000
+    RELATIVIST         4.380      0.061     72.006      0.000
+
+ Variances
+    ESTA               1.000      0.000    999.000    999.000
+
+ Residual Variances
+    HEDONISM01         0.744      0.066     11.296      0.000
+    HEDONISM04         0.638      0.066      9.726      0.000
+    HEDONISM05         0.922      0.073     12.663      0.000
+    HEDONISM06         0.618      0.063      9.801      0.000
+    HEDONISM07         0.760      0.071     10.682      0.000
+    HEDONISM08         0.767      0.058     13.133      0.000
+    UTILITARIA         0.524      0.040     13.088      0.000
+    UTILITARIA         0.463      0.050      9.268      0.000
+    UTILITARIA         0.643      0.071      9.120      0.000
+    UTILITARIA         0.400      0.033     12.282      0.000
+    UTILITARIA         0.555      0.058      9.484      0.000
+    UTILITARIA         0.610      0.051     11.875      0.000
+    UTILITARIA         0.790      0.060     13.088      0.000
+    UTILITARIA         0.773      0.058     13.237      0.000
+    UTILITARIA         0.702      0.059     11.879      0.000
+    CONTRACTUA         0.356      0.041      8.749      0.000
+    CONTRACTUA         0.379      0.038     10.002      0.000
+    CONTRACTUA         0.720      0.085      8.423      0.000
+    CONTRACTUA         0.694      0.064     10.915      0.000
+    CONTRACTUA         1.245      0.106     11.729      0.000
+    CONTRACTUA         0.706      0.079      8.924      0.000
+    DEONTOLOGY         0.951      0.057     16.641      0.000
+    DEONTOLOGY         0.753      0.066     11.369      0.000
+    DEONTOLOGY         0.448      0.062      7.252      0.000
+    DEONTOLOGY         0.853      0.067     12.656      0.000
+    DEONTOLOGY         0.727      0.061     11.933      0.000
+    DEONTOLOGY         0.737      0.054     13.716      0.000
+    VIRTUE01           0.484      0.055      8.795      0.000
+    VIRTUE02           0.499      0.064      7.783      0.000
+    VIRTUE03           0.634      0.068      9.386      0.000
+    VIRTUE04           0.955      0.082     11.616      0.000
+    VIRTUE05           0.563      0.068      8.321      0.000
+    VIRTUE08           0.992      0.091     10.909      0.000
+    VIRTUE09           0.546      0.082      6.644      0.000
+    RELATIVIST         0.586      0.053     11.010      0.000
+    RELATIVIST         0.324      0.032     10.078      0.000
+    RELATIVIST         0.564      0.051     11.003      0.000
+    RELATIVIST         0.614      0.065      9.389      0.000
+    RELATIVIST         0.438      0.042     10.371      0.000
+    HEDO               1.000      0.000    999.000    999.000
+    UTIL               1.000      0.000    999.000    999.000
+    CONT               1.000      0.000    999.000    999.000
+    DEON               1.000      0.000    999.000    999.000
+    VIRT               1.000      0.000    999.000    999.000
+    RELA               1.000      0.000    999.000    999.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.457E-02
+       (ratio of smallest to largest eigenvalue)
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ HEDO     BY
+    HEDONISM01         0.851      0.015     57.986      0.000
+    HEDONISM04         0.873      0.015     60.029      0.000
+    HEDONISM05         0.739      0.026     28.640      0.000
+    HEDONISM06         0.841      0.019     44.781      0.000
+    HEDONISM07         0.817      0.020     40.916      0.000
+    HEDONISM08         0.793      0.020     39.610      0.000
+
+ UTIL     BY
+    UTILITARIA         0.842      0.015     56.225      0.000
+    UTILITARIA         0.875      0.014     62.190      0.000
+    UTILITARIA         0.841      0.019     43.456      0.000
+    UTILITARIA         0.917      0.008    116.321      0.000
+    UTILITARIA         0.863      0.016     52.713      0.000
+    UTILITARIA         0.849      0.015     56.191      0.000
+    UTILITARIA         0.805      0.019     43.283      0.000
+    UTILITARIA         0.819      0.017     49.006      0.000
+    UTILITARIA         0.878      0.012     75.833      0.000
+
+ CONT     BY
+    CONTRACTUA         0.917      0.011     84.782      0.000
+    CONTRACTUA         0.911      0.010     86.813      0.000
+    CONTRACTUA         0.833      0.022     37.529      0.000
+    CONTRACTUA         0.847      0.016     51.562      0.000
+    CONTRACTUA         0.701      0.030     23.085      0.000
+    CONTRACTUA         0.863      0.017     50.744      0.000
+
+ DEON     BY
+    DEONTOLOGY         0.711      0.024     29.911      0.000
+    DEONTOLOGY         0.805      0.021     39.177      0.000
+    DEONTOLOGY         0.908      0.014     66.411      0.000
+    DEONTOLOGY         0.830      0.016     51.709      0.000
+    DEONTOLOGY         0.861      0.014     61.358      0.000
+    DEONTOLOGY         0.819      0.017     47.776      0.000
+
+ VIRT     BY
+    VIRTUE01           0.877      0.016     55.007      0.000
+    VIRTUE02           0.858      0.021     40.239      0.000
+    VIRTUE03           0.788      0.026     30.221      0.000
+    VIRTUE04           0.692      0.032     21.558      0.000
+    VIRTUE05           0.825      0.024     34.489      0.000
+    VIRTUE08           0.720      0.030     24.055      0.000
+    VIRTUE09           0.852      0.023     36.975      0.000
+
+ RELA     BY
+    RELATIVIST         0.858      0.015     55.609      0.000
+    RELATIVIST         0.931      0.008    118.776      0.000
+    RELATIVIST         0.870      0.014     60.415      0.000
+    RELATIVIST         0.898      0.012     76.802      0.000
+    RELATIVIST         0.892      0.012     72.478      0.000
+
+ ESTA     BY
+    HEDO               0.834      0.020     42.612      0.000
+    UTIL               0.858      0.021     39.963      0.000
+    CONT               0.797      0.027     29.725      0.000
+    DEON               0.887      0.017     51.626      0.000
+    VIRT               0.589      0.040     14.775      0.000
+    RELA               0.811      0.028     29.173      0.000
+
+ Intercepts
+    HEDONISM01         2.577      0.084     30.629      0.000
+    HEDONISM04         2.670      0.085     31.286      0.000
+    HEDONISM05         3.021      0.097     31.211      0.000
+    HEDONISM06         2.987      0.098     30.620      0.000
+    HEDONISM07         2.746      0.084     32.848      0.000
+    HEDONISM08         2.978      0.104     28.729      0.000
+    UTILITARIA         3.568      0.114     31.180      0.000
+    UTILITARIA         3.468      0.121     28.556      0.000
+    UTILITARIA         3.173      0.106     29.855      0.000
+    UTILITARIA         2.986      0.095     31.353      0.000
+    UTILITARIA         3.385      0.120     28.327      0.000
+    UTILITARIA         3.225      0.103     31.381      0.000
+    UTILITARIA         3.117      0.101     30.744      0.000
+    UTILITARIA         3.040      0.099     30.580      0.000
+    UTILITARIA         2.665      0.085     31.206      0.000
+    CONTRACTUA         2.943      0.094     31.376      0.000
+    CONTRACTUA         2.933      0.090     32.524      0.000
+    CONTRACTUA         2.780      0.082     33.905      0.000
+    CONTRACTUA         2.768      0.076     36.424      0.000
+    CONTRACTUA         2.606      0.080     32.639      0.000
+    CONTRACTUA         2.628      0.077     34.000      0.000
+    DEONTOLOGY         2.855      0.092     31.141      0.000
+    DEONTOLOGY         2.960      0.091     32.445      0.000
+    DEONTOLOGY         2.648      0.082     32.355      0.000
+    DEONTOLOGY         2.714      0.085     32.108      0.000
+    DEONTOLOGY         2.366      0.068     34.967      0.000
+    DEONTOLOGY         2.842      0.085     33.273      0.000
+    VIRTUE01           3.771      0.159     23.658      0.000
+    VIRTUE02           3.906      0.160     24.460      0.000
+    VIRTUE03           3.919      0.142     27.648      0.000
+    VIRTUE04           3.509      0.115     30.436      0.000
+    VIRTUE05           3.877      0.149     26.039      0.000
+    VIRTUE08           3.288      0.114     28.884      0.000
+    VIRTUE09           3.900      0.172     22.617      0.000
+    RELATIVIST         3.201      0.118     27.228      0.000
+    RELATIVIST         2.834      0.092     30.944      0.000
+    RELATIVIST         2.994      0.100     29.951      0.000
+    RELATIVIST         2.463      0.079     31.020      0.000
+    RELATIVIST         2.992      0.098     30.383      0.000
+
+ Variances
+    ESTA               1.000      0.000    999.000    999.000
+
+ Residual Variances
+    HEDONISM01         0.275      0.025     11.016      0.000
+    HEDONISM04         0.238      0.025      9.366      0.000
+    HEDONISM05         0.454      0.038     11.887      0.000
+    HEDONISM06         0.293      0.032      9.299      0.000
+    HEDONISM07         0.332      0.033     10.163      0.000
+    HEDONISM08         0.371      0.032     11.674      0.000
+    UTILITARIA         0.291      0.025     11.523      0.000
+    UTILITARIA         0.234      0.025      9.474      0.000
+    UTILITARIA         0.292      0.033      8.978      0.000
+    UTILITARIA         0.158      0.014     10.947      0.000
+    UTILITARIA         0.255      0.028      9.034      0.000
+    UTILITARIA         0.280      0.026     10.923      0.000
+    UTILITARIA         0.352      0.030     11.751      0.000
+    UTILITARIA         0.329      0.027     12.033      0.000
+    UTILITARIA         0.230      0.020     11.316      0.000
+    CONTRACTUA         0.159      0.020      8.011      0.000
+    CONTRACTUA         0.171      0.019      8.937      0.000
+    CONTRACTUA         0.306      0.037      8.271      0.000
+    CONTRACTUA         0.283      0.028     10.190      0.000
+    CONTRACTUA         0.509      0.043     11.950      0.000
+    CONTRACTUA         0.255      0.029      8.702      0.000
+    DEONTOLOGY         0.494      0.034     14.604      0.000
+    DEONTOLOGY         0.351      0.033     10.615      0.000
+    DEONTOLOGY         0.176      0.025      7.108      0.000
+    DEONTOLOGY         0.310      0.027     11.632      0.000
+    DEONTOLOGY         0.258      0.024     10.675      0.000
+    DEONTOLOGY         0.330      0.028     11.753      0.000
+    VIRTUE01           0.231      0.028      8.267      0.000
+    VIRTUE02           0.264      0.037      7.211      0.000
+    VIRTUE03           0.380      0.041      9.245      0.000
+    VIRTUE04           0.521      0.044     11.733      0.000
+    VIRTUE05           0.319      0.040      8.064      0.000
+    VIRTUE08           0.482      0.043     11.198      0.000
+    VIRTUE09           0.274      0.039      6.965      0.000
+    RELATIVIST         0.265      0.026     10.006      0.000
+    RELATIVIST         0.133      0.015      9.081      0.000
+    RELATIVIST         0.243      0.025      9.715      0.000
+    RELATIVIST         0.194      0.021      9.217      0.000
+    RELATIVIST         0.204      0.022      9.304      0.000
+    HEDO               0.305      0.033      9.360      0.000
+    UTIL               0.263      0.037      7.134      0.000
+    CONT               0.364      0.043      8.521      0.000
+    DEON               0.213      0.030      7.002      0.000
+    VIRT               0.653      0.047     13.911      0.000
+    RELA               0.342      0.045      7.596      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    HEDONISM           0.725      0.025     28.993      0.000
+    HEDONISM           0.762      0.025     30.015      0.000
+    HEDONISM           0.546      0.038     14.320      0.000
+    HEDONISM           0.707      0.032     22.391      0.000
+    HEDONISM           0.668      0.033     20.458      0.000
+    HEDONISM           0.629      0.032     19.805      0.000
+    UTILITAR           0.709      0.025     28.113      0.000
+    UTILITAR           0.766      0.025     31.095      0.000
+    UTILITAR           0.708      0.033     21.728      0.000
+    UTILITAR           0.842      0.014     58.161      0.000
+    UTILITAR           0.745      0.028     26.357      0.000
+    UTILITAR           0.720      0.026     28.096      0.000
+    UTILITAR           0.648      0.030     21.641      0.000
+    UTILITAR           0.671      0.027     24.503      0.000
+    UTILITAR           0.770      0.020     37.916      0.000
+    CONTRACT           0.841      0.020     42.391      0.000
+    CONTRACT           0.829      0.019     43.407      0.000
+    CONTRACT           0.694      0.037     18.765      0.000
+    CONTRACT           0.717      0.028     25.781      0.000
+    CONTRACT           0.491      0.043     11.543      0.000
+    CONTRACT           0.745      0.029     25.372      0.000
+    DEONTOLO           0.506      0.034     14.955      0.000
+    DEONTOLO           0.649      0.033     19.588      0.000
+    DEONTOLO           0.824      0.025     33.206      0.000
+    DEONTOLO           0.690      0.027     25.855      0.000
+    DEONTOLO           0.742      0.024     30.679      0.000
+    DEONTOLO           0.670      0.028     23.888      0.000
+    VIRTUE01           0.769      0.028     27.503      0.000
+    VIRTUE02           0.736      0.037     20.119      0.000
+    VIRTUE03           0.620      0.041     15.111      0.000
+    VIRTUE04           0.479      0.044     10.779      0.000
+    VIRTUE05           0.681      0.040     17.245      0.000
+    VIRTUE08           0.518      0.043     12.027      0.000
+    VIRTUE09           0.726      0.039     18.488      0.000
+    RELATIVI           0.735      0.026     27.805      0.000
+    RELATIVI           0.867      0.015     59.388      0.000
+    RELATIVI           0.757      0.025     30.207      0.000
+    RELATIVI           0.806      0.021     38.401      0.000
+    RELATIVI           0.796      0.022     36.239      0.000
+
+     Latent                                         Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    HEDO               0.695      0.033     21.306      0.000
+    UTIL               0.737      0.037     19.982      0.000
+    CONT               0.636      0.043     14.862      0.000
+    DEON               0.787      0.030     25.813      0.000
+    VIRT               0.347      0.047      7.388      0.000
+    RELA               0.658      0.045     14.586      0.000
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+                4.235         4.373         4.307         4.333         4.155
+
+
+           Model Estimated Means
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                4.282         4.791         4.881         4.706         4.744
+
+
+           Model Estimated Means
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                4.990         4.760         4.670         4.656         4.658
+
+
+           Model Estimated Means
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+                4.406         4.370         4.264         4.332         4.078
+
+
+           Model Estimated Means
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+                4.370         3.960         4.333         4.223         4.499
+
+
+           Model Estimated Means
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+                3.971         4.249         5.459         5.373         5.066
+
+
+           Model Estimated Means
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+                4.750         5.154         4.717         5.508         4.762
+
+
+           Model Estimated Means
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+                4.428         4.560         4.387         4.380
+
+
+           Residuals for Means
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Means
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+                0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       2.701
+ HEDONISM       2.001         2.683
+ HEDONISM       1.475         1.507         2.033
+ HEDONISM       1.706         1.744         1.285         2.105
+ HEDONISM       1.731         1.769         1.304         1.508         2.290
+ HEDONISM       1.596         1.631         1.202         1.391         1.411
+ UTILITAR       1.132         1.157         0.853         0.987         1.001
+ UTILITAR       1.233         1.261         0.929         1.075         1.091
+ UTILITAR       1.249         1.277         0.941         1.089         1.104
+ UTILITAR       1.459         1.492         1.100         1.272         1.290
+ UTILITAR       1.273         1.302         0.959         1.110         1.126
+ UTILITAR       1.254         1.282         0.945         1.093         1.109
+ UTILITAR       1.208         1.234         0.910         1.053         1.068
+ UTILITAR       1.256         1.284         0.946         1.095         1.110
+ UTILITAR       1.535         1.569         1.157         1.338         1.357
+ CONTRACT       1.276         1.305         0.962         1.113         1.129
+ CONTRACT       1.261         1.289         0.950         1.099         1.115
+ CONTRACT       1.188         1.214         0.895         1.036         1.051
+ CONTRACT       1.232         1.259         0.928         1.074         1.089
+ CONTRACT       1.020         1.042         0.768         0.889         0.902
+ CONTRACT       1.334         1.363         1.005         1.163         1.179
+ DEONTOLO       1.021         1.043         0.769         0.890         0.902
+ DEONTOLO       1.219         1.246         0.919         1.063         1.078
+ DEONTOLO       1.497         1.530         1.128         1.305         1.323
+ DEONTOLO       1.424         1.455         1.073         1.241         1.259
+ DEONTOLO       1.495         1.528         1.126         1.303         1.322
+ DEONTOLO       1.266         1.294         0.954         1.103         1.119
+ VIRTUE01       0.872         0.891         0.657         0.760         0.771
+ VIRTUE02       0.811         0.828         0.611         0.706         0.717
+ VIRTUE03       0.699         0.715         0.527         0.610         0.618
+ VIRTUE04       0.643         0.657         0.485         0.561         0.569
+ VIRTUE05       0.754         0.770         0.568         0.657         0.666
+ VIRTUE08       0.709         0.725         0.534         0.618         0.627
+ VIRTUE09       0.827         0.845         0.623         0.721         0.731
+ RELATIVI       1.206         1.233         0.909         1.051         1.066
+ RELATIVI       1.376         1.407         1.037         1.200         1.217
+ RELATIVI       1.253         1.280         0.944         1.092         1.108
+ RELATIVI       1.513         1.546         1.140         1.319         1.337
+ RELATIVI       1.235         1.262         0.930         1.076         1.092
+
+
+           Model Estimated Covariances
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       2.068
+ UTILITAR       0.923         1.803
+ UTILITAR       1.005         1.393         1.981
+ UTILITAR       1.018         1.411         1.537         2.201
+ UTILITAR       1.190         1.648         1.796         1.819         2.525
+ UTILITAR       1.038         1.438         1.567         1.587         1.854
+ UTILITAR       1.022         1.416         1.543         1.563         1.826
+ UTILITAR       0.984         1.364         1.486         1.505         1.759
+ UTILITAR       1.024         1.418         1.546         1.565         1.829
+ UTILITAR       1.252         1.734         1.890         1.914         2.236
+ CONTRACT       1.041         1.062         1.158         1.172         1.370
+ CONTRACT       1.028         1.050         1.144         1.159         1.353
+ CONTRACT       0.969         0.989         1.078         1.091         1.275
+ CONTRACT       1.004         1.025         1.117         1.132         1.322
+ CONTRACT       0.831         0.849         0.925         0.937         1.094
+ CONTRACT       1.087         1.110         1.210         1.225         1.432
+ DEONTOLO       0.832         0.849         0.926         0.937         1.095
+ DEONTOLO       0.994         1.015         1.106         1.120         1.308
+ DEONTOLO       1.220         1.246         1.358         1.375         1.606
+ DEONTOLO       1.161         1.185         1.291         1.308         1.528
+ DEONTOLO       1.219         1.244         1.356         1.373         1.604
+ DEONTOLO       1.032         1.054         1.148         1.163         1.359
+ VIRTUE01       0.711         0.726         0.791         0.801         0.936
+ VIRTUE02       0.661         0.675         0.735         0.745         0.870
+ VIRTUE03       0.570         0.582         0.634         0.642         0.750
+ VIRTUE04       0.524         0.535         0.583         0.591         0.690
+ VIRTUE05       0.614         0.627         0.684         0.692         0.809
+ VIRTUE08       0.578         0.590         0.643         0.651         0.761
+ VIRTUE09       0.674         0.688         0.750         0.759         0.887
+ RELATIVI       0.983         1.004         1.094         1.108         1.294
+ RELATIVI       1.122         1.145         1.248         1.264         1.477
+ RELATIVI       1.021         1.043         1.136         1.151         1.344
+ RELATIVI       1.233         1.259         1.372         1.390         1.623
+ RELATIVI       1.007         1.028         1.120         1.134         1.325
+
+
+           Model Estimated Covariances
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       2.173
+ UTILITAR       1.593         2.179
+ UTILITAR       1.534         1.511         2.245
+ UTILITAR       1.596         1.571         1.513         2.346
+ UTILITAR       1.951         1.921         1.850         1.924         3.054
+ CONTRACT       1.195         1.177         1.133         1.179         1.441
+ CONTRACT       1.181         1.163         1.120         1.165         1.424
+ CONTRACT       1.113         1.096         1.055         1.097         1.341
+ CONTRACT       1.153         1.136         1.094         1.138         1.391
+ CONTRACT       0.955         0.940         0.905         0.942         1.151
+ CONTRACT       1.249         1.230         1.185         1.232         1.506
+ DEONTOLO       0.956         0.941         0.906         0.942         1.152
+ DEONTOLO       1.142         1.124         1.083         1.126         1.376
+ DEONTOLO       1.402         1.380         1.329         1.382         1.690
+ DEONTOLO       1.333         1.313         1.264         1.315         1.607
+ DEONTOLO       1.400         1.378         1.327         1.380         1.688
+ DEONTOLO       1.185         1.167         1.124         1.169         1.429
+ VIRTUE01       0.816         0.804         0.774         0.805         0.984
+ VIRTUE02       0.759         0.747         0.720         0.748         0.915
+ VIRTUE03       0.655         0.645         0.621         0.646         0.789
+ VIRTUE04       0.602         0.593         0.571         0.594         0.726
+ VIRTUE05       0.706         0.695         0.669         0.696         0.851
+ VIRTUE08       0.664         0.654         0.630         0.655         0.800
+ VIRTUE09       0.774         0.762         0.734         0.763         0.933
+ RELATIVI       1.129         1.112         1.071         1.114         1.362
+ RELATIVI       1.289         1.269         1.222         1.271         1.554
+ RELATIVI       1.173         1.155         1.112         1.157         1.414
+ RELATIVI       1.416         1.395         1.343         1.397         1.708
+ RELATIVI       1.156         1.138         1.096         1.140         1.394
+
+
+           Model Estimated Covariances
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       2.241
+ CONTRACT       1.862         2.219
+ CONTRACT       1.755         1.734         2.353
+ CONTRACT       1.819         1.797         1.693         2.450
+ CONTRACT       1.506         1.488         1.402         1.453         2.448
+ CONTRACT       1.970         1.946         1.834         1.901         1.574
+ DEONTOLO       0.958         0.946         0.892         0.924         0.765
+ DEONTOLO       1.144         1.131         1.065         1.104         0.914
+ DEONTOLO       1.405         1.388         1.308         1.356         1.122
+ DEONTOLO       1.336         1.320         1.244         1.290         1.068
+ DEONTOLO       1.403         1.386         1.306         1.354         1.121
+ DEONTOLO       1.188         1.174         1.106         1.147         0.949
+ VIRTUE01       0.818         0.809         0.762         0.790         0.654
+ VIRTUE02       0.761         0.752         0.708         0.734         0.608
+ VIRTUE03       0.656         0.649         0.611         0.633         0.524
+ VIRTUE04       0.604         0.597         0.562         0.583         0.482
+ VIRTUE05       0.707         0.699         0.659         0.683         0.565
+ VIRTUE08       0.665         0.658         0.619         0.642         0.532
+ VIRTUE09       0.776         0.767         0.722         0.749         0.620
+ RELATIVI       1.132         1.119         1.054         1.093         0.904
+ RELATIVI       1.292         1.276         1.202         1.247         1.032
+ RELATIVI       1.176         1.162         1.094         1.135         0.939
+ RELATIVI       1.420         1.403         1.322         1.370         1.134
+ RELATIVI       1.159         1.145         1.079         1.118         0.926
+
+
+           Model Estimated Covariances
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       2.765
+ DEONTOLO       1.001         1.924
+ DEONTOLO       1.196         1.163         2.143
+ DEONTOLO       1.468         1.428         1.706         2.543
+ DEONTOLO       1.397         1.358         1.623         1.992         2.747
+ DEONTOLO       1.466         1.426         1.704         2.092         1.990
+ DEONTOLO       1.242         1.208         1.443         1.771         1.685
+ VIRTUE01       0.855         0.654         0.782         0.960         0.913
+ VIRTUE02       0.795         0.608         0.727         0.892         0.849
+ VIRTUE03       0.686         0.525         0.627         0.770         0.732
+ VIRTUE04       0.631         0.483         0.577         0.708         0.673
+ VIRTUE05       0.739         0.566         0.676         0.830         0.789
+ VIRTUE08       0.695         0.532         0.636         0.780         0.742
+ VIRTUE09       0.811         0.620         0.741         0.910         0.865
+ RELATIVI       1.183         0.905         1.081         1.328         1.263
+ RELATIVI       1.350         1.033         1.234         1.515         1.441
+ RELATIVI       1.229         0.940         1.123         1.379         1.311
+ RELATIVI       1.484         1.135         1.356         1.665         1.584
+ RELATIVI       1.211         0.927         1.107         1.359         1.293
+
+
+           Model Estimated Covariances
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       2.816
+ DEONTOLO       1.769         2.235
+ VIRTUE01       0.959         0.812         2.096
+ VIRTUE02       0.891         0.755         1.498         1.892
+ VIRTUE03       0.769         0.651         1.293         1.202         1.671
+ VIRTUE04       0.707         0.599         1.189         1.105         0.954
+ VIRTUE05       0.829         0.702         1.393         1.295         1.117
+ VIRTUE08       0.779         0.660         1.311         1.218         1.051
+ VIRTUE09       0.909         0.769         1.528         1.420         1.225
+ RELATIVI       1.326         1.123         0.773         0.719         0.620
+ RELATIVI       1.513         1.281         0.882         0.820         0.708
+ RELATIVI       1.377         1.166         0.803         0.747         0.644
+ RELATIVI       1.663         1.408         0.970         0.902         0.778
+ RELATIVI       1.357         1.149         0.792         0.736         0.635
+
+
+           Model Estimated Covariances
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       1.832
+ VIRTUE05       1.028         1.767
+ VIRTUE08       0.967         1.133         2.058
+ VIRTUE09       1.127         1.321         1.242         1.994
+ RELATIVI       0.571         0.669         0.629         0.733         2.213
+ RELATIVI       0.651         0.763         0.717         0.837         1.856
+ RELATIVI       0.592         0.694         0.653         0.761         1.690
+ RELATIVI       0.716         0.838         0.789         0.920         2.041
+ RELATIVI       0.584         0.684         0.644         0.750         1.665
+
+
+           Model Estimated Covariances
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       2.442
+ RELATIVI       1.928         2.319
+ RELATIVI       2.328         2.119         3.173
+ RELATIVI       1.900         1.729         2.089         2.142
+
+
+           Model Estimated Correlations
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       1.000
+ HEDONISM       0.743         1.000
+ HEDONISM       0.629         0.645         1.000
+ HEDONISM       0.716         0.734         0.621         1.000
+ HEDONISM       0.696         0.714         0.604         0.687         1.000
+ HEDONISM       0.675         0.692         0.586         0.667         0.648
+ UTILITAR       0.513         0.526         0.445         0.507         0.493
+ UTILITAR       0.533         0.547         0.463         0.527         0.512
+ UTILITAR       0.512         0.525         0.445         0.506         0.492
+ UTILITAR       0.559         0.573         0.485         0.552         0.537
+ UTILITAR       0.526         0.539         0.456         0.519         0.505
+ UTILITAR       0.517         0.530         0.449         0.510         0.496
+ UTILITAR       0.490         0.503         0.426         0.484         0.471
+ UTILITAR       0.499         0.512         0.433         0.493         0.479
+ UTILITAR       0.535         0.548         0.464         0.528         0.513
+ CONTRACT       0.519         0.532         0.450         0.512         0.498
+ CONTRACT       0.515         0.528         0.447         0.509         0.495
+ CONTRACT       0.471         0.483         0.409         0.465         0.453
+ CONTRACT       0.479         0.491         0.416         0.473         0.460
+ CONTRACT       0.397         0.407         0.344         0.392         0.381
+ CONTRACT       0.488         0.501         0.424         0.482         0.469
+ DEONTOLO       0.448         0.459         0.389         0.442         0.430
+ DEONTOLO       0.507         0.520         0.440         0.500         0.487
+ DEONTOLO       0.571         0.586         0.496         0.564         0.548
+ DEONTOLO       0.523         0.536         0.454         0.516         0.502
+ DEONTOLO       0.542         0.556         0.471         0.535         0.520
+ DEONTOLO       0.515         0.528         0.447         0.509         0.495
+ VIRTUE01       0.366         0.376         0.318         0.362         0.352
+ VIRTUE02       0.359         0.368         0.311         0.354         0.344
+ VIRTUE03       0.329         0.338         0.286         0.325         0.316
+ VIRTUE04       0.289         0.297         0.251         0.286         0.278
+ VIRTUE05       0.345         0.354         0.300         0.341         0.331
+ VIRTUE08       0.301         0.308         0.261         0.297         0.289
+ VIRTUE09       0.356         0.365         0.309         0.352         0.342
+ RELATIVI       0.493         0.506         0.428         0.487         0.474
+ RELATIVI       0.536         0.550         0.465         0.529         0.515
+ RELATIVI       0.501         0.513         0.435         0.494         0.481
+ RELATIVI       0.517         0.530         0.449         0.510         0.496
+ RELATIVI       0.513         0.526         0.446         0.507         0.493
+
+
+           Model Estimated Correlations
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       1.000
+ UTILITAR       0.478         1.000
+ UTILITAR       0.497         0.737         1.000
+ UTILITAR       0.477         0.708         0.736         1.000
+ UTILITAR       0.521         0.773         0.803         0.772         1.000
+ UTILITAR       0.490         0.727         0.756         0.726         0.792
+ UTILITAR       0.482         0.715         0.743         0.714         0.778
+ UTILITAR       0.457         0.678         0.705         0.677         0.739
+ UTILITAR       0.465         0.690         0.717         0.689         0.751
+ UTILITAR       0.498         0.739         0.768         0.738         0.805
+ CONTRACT       0.483         0.529         0.549         0.528         0.576
+ CONTRACT       0.480         0.525         0.546         0.524         0.572
+ CONTRACT       0.439         0.480         0.499         0.480         0.523
+ CONTRACT       0.446         0.488         0.507         0.487         0.532
+ CONTRACT       0.369         0.404         0.420         0.404         0.440
+ CONTRACT       0.455         0.497         0.517         0.497         0.542
+ DEONTOLO       0.417         0.456         0.474         0.456         0.497
+ DEONTOLO       0.472         0.516         0.537         0.516         0.562
+ DEONTOLO       0.532         0.582         0.605         0.581         0.634
+ DEONTOLO       0.487         0.533         0.554         0.532         0.580
+ DEONTOLO       0.505         0.552         0.574         0.552         0.602
+ DEONTOLO       0.480         0.525         0.546         0.524         0.572
+ VIRTUE01       0.341         0.373         0.388         0.373         0.407
+ VIRTUE02       0.334         0.365         0.380         0.365         0.398
+ VIRTUE03       0.307         0.335         0.349         0.335         0.365
+ VIRTUE04       0.269         0.295         0.306         0.294         0.321
+ VIRTUE05       0.321         0.351         0.365         0.351         0.383
+ VIRTUE08       0.280         0.306         0.319         0.306         0.334
+ VIRTUE09       0.332         0.363         0.377         0.362         0.395
+ RELATIVI       0.460         0.503         0.523         0.502         0.548
+ RELATIVI       0.499         0.546         0.568         0.545         0.595
+ RELATIVI       0.466         0.510         0.530         0.509         0.555
+ RELATIVI       0.481         0.526         0.547         0.526         0.573
+ RELATIVI       0.478         0.523         0.544         0.522         0.570
+
+
+           Model Estimated Correlations
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       1.000
+ UTILITAR       0.732         1.000
+ UTILITAR       0.695         0.683         1.000
+ UTILITAR       0.707         0.695         0.659         1.000
+ UTILITAR       0.757         0.745         0.706         0.719         1.000
+ CONTRACT       0.542         0.533         0.505         0.514         0.551
+ CONTRACT       0.538         0.529         0.502         0.510         0.547
+ CONTRACT       0.492         0.484         0.459         0.467         0.500
+ CONTRACT       0.500         0.492         0.466         0.474         0.508
+ CONTRACT       0.414         0.407         0.386         0.393         0.421
+ CONTRACT       0.510         0.501         0.475         0.484         0.518
+ DEONTOLO       0.467         0.460         0.436         0.443         0.475
+ DEONTOLO       0.529         0.520         0.494         0.502         0.538
+ DEONTOLO       0.596         0.586         0.556         0.566         0.606
+ DEONTOLO       0.546         0.537         0.509         0.518         0.555
+ DEONTOLO       0.566         0.556         0.528         0.537         0.575
+ DEONTOLO       0.538         0.529         0.502         0.510         0.547
+ VIRTUE01       0.383         0.376         0.357         0.363         0.389
+ VIRTUE02       0.374         0.368         0.349         0.355         0.381
+ VIRTUE03       0.344         0.338         0.321         0.326         0.349
+ VIRTUE04       0.302         0.297         0.282         0.286         0.307
+ VIRTUE05       0.360         0.354         0.336         0.342         0.366
+ VIRTUE08       0.314         0.309         0.293         0.298         0.319
+ VIRTUE09       0.372         0.366         0.347         0.353         0.378
+ RELATIVI       0.515         0.507         0.481         0.489         0.524
+ RELATIVI       0.559         0.550         0.522         0.531         0.569
+ RELATIVI       0.523         0.514         0.487         0.496         0.531
+ RELATIVI       0.539         0.530         0.503         0.512         0.549
+ RELATIVI       0.536         0.527         0.500         0.509         0.545
+
+
+           Model Estimated Correlations
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       1.000
+ CONTRACT       0.835         1.000
+ CONTRACT       0.764         0.759         1.000
+ CONTRACT       0.776         0.771         0.705         1.000
+ CONTRACT       0.643         0.638         0.584         0.593         1.000
+ CONTRACT       0.791         0.786         0.719         0.731         0.605
+ DEONTOLO       0.461         0.458         0.419         0.426         0.353
+ DEONTOLO       0.522         0.519         0.474         0.482         0.399
+ DEONTOLO       0.589         0.584         0.535         0.543         0.450
+ DEONTOLO       0.539         0.535         0.489         0.497         0.412
+ DEONTOLO       0.559         0.555         0.507         0.516         0.427
+ DEONTOLO       0.531         0.527         0.482         0.490         0.406
+ VIRTUE01       0.378         0.375         0.343         0.349         0.289
+ VIRTUE02       0.369         0.367         0.336         0.341         0.282
+ VIRTUE03       0.339         0.337         0.308         0.313         0.259
+ VIRTUE04       0.298         0.296         0.271         0.275         0.228
+ VIRTUE05       0.355         0.353         0.323         0.328         0.272
+ VIRTUE08       0.310         0.308         0.281         0.286         0.237
+ VIRTUE09       0.367         0.364         0.333         0.339         0.280
+ RELATIVI       0.508         0.505         0.462         0.469         0.389
+ RELATIVI       0.552         0.548         0.502         0.510         0.422
+ RELATIVI       0.516         0.512         0.468         0.476         0.394
+ RELATIVI       0.532         0.529         0.484         0.491         0.407
+ RELATIVI       0.529         0.525         0.480         0.488         0.404
+
+
+           Model Estimated Correlations
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       1.000
+ DEONTOLO       0.434         1.000
+ DEONTOLO       0.491         0.573         1.000
+ DEONTOLO       0.554         0.646         0.731         1.000
+ DEONTOLO       0.507         0.591         0.669         0.754         1.000
+ DEONTOLO       0.526         0.613         0.694         0.782         0.715
+ DEONTOLO       0.500         0.582         0.659         0.743         0.680
+ VIRTUE01       0.355         0.326         0.369         0.416         0.380
+ VIRTUE02       0.348         0.319         0.361         0.407         0.372
+ VIRTUE03       0.319         0.293         0.331         0.373         0.342
+ VIRTUE04       0.280         0.257         0.291         0.328         0.300
+ VIRTUE05       0.334         0.307         0.347         0.391         0.358
+ VIRTUE08       0.292         0.267         0.303         0.341         0.312
+ VIRTUE09       0.345         0.317         0.359         0.404         0.370
+ RELATIVI       0.478         0.439         0.497         0.560         0.512
+ RELATIVI       0.520         0.476         0.539         0.608         0.556
+ RELATIVI       0.485         0.445         0.504         0.568         0.520
+ RELATIVI       0.501         0.459         0.520         0.586         0.536
+ RELATIVI       0.498         0.456         0.517         0.582         0.533
+
+
+           Model Estimated Correlations
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       1.000
+ DEONTOLO       0.705         1.000
+ VIRTUE01       0.395         0.375         1.000
+ VIRTUE02       0.386         0.367         0.752         1.000
+ VIRTUE03       0.354         0.337         0.691         0.676         1.000
+ VIRTUE04       0.311         0.296         0.607         0.594         0.545
+ VIRTUE05       0.371         0.353         0.724         0.708         0.650
+ VIRTUE08       0.324         0.308         0.631         0.617         0.567
+ VIRTUE09       0.383         0.364         0.747         0.731         0.671
+ RELATIVI       0.531         0.505         0.359         0.351         0.323
+ RELATIVI       0.577         0.548         0.390         0.382         0.350
+ RELATIVI       0.539         0.512         0.364         0.356         0.327
+ RELATIVI       0.556         0.529         0.376         0.368         0.338
+ RELATIVI       0.553         0.525         0.374         0.366         0.336
+
+
+           Model Estimated Correlations
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       1.000
+ VIRTUE05       0.571         1.000
+ VIRTUE08       0.498         0.594         1.000
+ VIRTUE09       0.590         0.704         0.613         1.000
+ RELATIVI       0.283         0.338         0.295         0.349         1.000
+ RELATIVI       0.308         0.367         0.320         0.379         0.799
+ RELATIVI       0.287         0.343         0.299         0.354         0.746
+ RELATIVI       0.297         0.354         0.309         0.366         0.770
+ RELATIVI       0.295         0.352         0.307         0.363         0.765
+
+
+           Model Estimated Correlations
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       1.000
+ RELATIVI       0.810         1.000
+ RELATIVI       0.836         0.781         1.000
+ RELATIVI       0.831         0.776         0.801         1.000
+
+
+           Residuals for Covariances
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ HEDONISM       0.024         0.000
+ HEDONISM       0.018        -0.135         0.000
+ HEDONISM      -0.009         0.025         0.097         0.000
+ HEDONISM      -0.025        -0.024         0.016        -0.023         0.000
+ HEDONISM      -0.066        -0.017         0.166         0.028        -0.002
+ UTILITAR       0.121         0.161         0.034         0.104         0.077
+ UTILITAR       0.138         0.134         0.004         0.053         0.058
+ UTILITAR       0.144         0.242         0.027         0.028         0.162
+ UTILITAR       0.107         0.079        -0.130        -0.050         0.062
+ UTILITAR       0.028         0.108        -0.150        -0.075         0.078
+ UTILITAR       0.110         0.164        -0.120        -0.037         0.124
+ UTILITAR       0.081         0.172        -0.078        -0.024         0.101
+ UTILITAR       0.058         0.092        -0.132        -0.042         0.107
+ UTILITAR       0.099         0.144        -0.164        -0.027         0.167
+ CONTRACT       0.010         0.029        -0.119        -0.124         0.000
+ CONTRACT      -0.080        -0.047        -0.136        -0.176         0.004
+ CONTRACT       0.026         0.067        -0.028        -0.120         0.024
+ CONTRACT      -0.030         0.011        -0.094        -0.164        -0.006
+ CONTRACT      -0.012         0.051        -0.146        -0.079         0.069
+ CONTRACT      -0.053        -0.016        -0.191        -0.201         0.050
+ DEONTOLO       0.220         0.174         0.150         0.212         0.242
+ DEONTOLO      -0.054        -0.074        -0.142        -0.207         0.003
+ DEONTOLO       0.066         0.029        -0.112        -0.085         0.127
+ DEONTOLO       0.096         0.082        -0.122        -0.103         0.071
+ DEONTOLO      -0.006         0.056        -0.169        -0.110         0.128
+ DEONTOLO      -0.036         0.005        -0.118        -0.131        -0.008
+ VIRTUE01      -0.099        -0.066        -0.140        -0.236        -0.053
+ VIRTUE02      -0.029         0.029        -0.021        -0.116        -0.046
+ VIRTUE03       0.066         0.052         0.089        -0.006         0.002
+ VIRTUE04       0.041         0.153         0.043        -0.004         0.142
+ VIRTUE05       0.053         0.138         0.017        -0.054         0.134
+ VIRTUE08       0.176         0.250         0.220         0.100         0.238
+ VIRTUE09      -0.051        -0.007        -0.105        -0.152        -0.062
+ RELATIVI      -0.055         0.022        -0.143        -0.102         0.057
+ RELATIVI       0.091         0.133        -0.184        -0.107         0.100
+ RELATIVI      -0.046         0.024        -0.142        -0.168         0.002
+ RELATIVI       0.229         0.166        -0.233        -0.097         0.086
+ RELATIVI       0.040         0.023        -0.192        -0.123         0.082
+
+
+           Residuals for Covariances
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ UTILITAR       0.102         0.000
+ UTILITAR       0.037         0.072         0.000
+ UTILITAR       0.038        -0.006         0.006         0.000
+ UTILITAR      -0.054        -0.025        -0.025         0.011         0.000
+ UTILITAR      -0.073         0.003         0.034        -0.036        -0.012
+ UTILITAR       0.004         0.057        -0.049         0.061         0.011
+ UTILITAR      -0.009         0.033         0.015        -0.039        -0.033
+ UTILITAR      -0.006        -0.036        -0.027         0.014        -0.013
+ UTILITAR      -0.053        -0.077        -0.027        -0.045         0.096
+ CONTRACT      -0.062        -0.062        -0.056        -0.015        -0.071
+ CONTRACT      -0.117        -0.059        -0.152        -0.053        -0.124
+ CONTRACT      -0.002        -0.017         0.021         0.119         0.014
+ CONTRACT       0.006        -0.010        -0.045         0.056        -0.056
+ CONTRACT      -0.003        -0.095        -0.061         0.057        -0.061
+ CONTRACT      -0.071        -0.038         0.005         0.033         0.000
+ DEONTOLO       0.271         0.066         0.090         0.080        -0.002
+ DEONTOLO      -0.115        -0.120        -0.032        -0.098        -0.089
+ DEONTOLO      -0.050        -0.103         0.025        -0.040        -0.043
+ DEONTOLO      -0.021        -0.043         0.051        -0.002        -0.010
+ DEONTOLO      -0.031        -0.105        -0.026        -0.076        -0.118
+ DEONTOLO      -0.043        -0.045         0.001         0.002        -0.098
+ VIRTUE01      -0.158        -0.098        -0.099        -0.025        -0.051
+ VIRTUE02      -0.106         0.025         0.030         0.025         0.023
+ VIRTUE03       0.007         0.033         0.026         0.061         0.044
+ VIRTUE04       0.066         0.132         0.098         0.082         0.061
+ VIRTUE05      -0.008         0.071         0.070         0.080         0.129
+ VIRTUE08       0.177         0.188         0.171         0.122         0.182
+ VIRTUE09      -0.072        -0.029        -0.014         0.112         0.065
+ RELATIVI      -0.058        -0.035        -0.010         0.022         0.006
+ RELATIVI      -0.113        -0.080        -0.023         0.021         0.042
+ RELATIVI      -0.101        -0.130         0.010        -0.023         0.025
+ RELATIVI      -0.147         0.017         0.085         0.050         0.118
+ RELATIVI      -0.165        -0.121        -0.050        -0.071        -0.005
+
+
+           Residuals for Covariances
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       0.000
+ UTILITAR       0.022         0.000
+ UTILITAR       0.001        -0.053         0.000
+ UTILITAR      -0.022        -0.023         0.173         0.000
+ UTILITAR       0.025        -0.041        -0.030        -0.009         0.000
+ CONTRACT      -0.051        -0.016        -0.105        -0.043        -0.005
+ CONTRACT      -0.134        -0.048        -0.166        -0.089        -0.113
+ CONTRACT       0.037         0.071        -0.032        -0.008         0.029
+ CONTRACT      -0.053         0.011        -0.066        -0.046        -0.144
+ CONTRACT      -0.059        -0.037        -0.047        -0.025        -0.043
+ CONTRACT      -0.010         0.080         0.017         0.006         0.042
+ DEONTOLO      -0.018         0.011         0.043         0.061         0.112
+ DEONTOLO      -0.074        -0.068        -0.090        -0.048         0.017
+ DEONTOLO      -0.069        -0.102        -0.035         0.014         0.015
+ DEONTOLO       0.007         0.018        -0.072        -0.007         0.076
+ DEONTOLO      -0.148        -0.145        -0.175        -0.050         0.059
+ DEONTOLO      -0.109        -0.056        -0.116         0.013        -0.038
+ VIRTUE01      -0.029         0.030        -0.022        -0.020        -0.033
+ VIRTUE02       0.053         0.128         0.016         0.086         0.033
+ VIRTUE03       0.033         0.086         0.066         0.094        -0.005
+ VIRTUE04       0.067         0.160         0.129         0.118         0.074
+ VIRTUE05       0.101         0.128         0.114         0.098         0.114
+ VIRTUE08       0.164         0.195         0.261         0.143         0.198
+ VIRTUE09       0.078         0.135         0.081         0.133         0.035
+ RELATIVI       0.020         0.017         0.044        -0.002        -0.008
+ RELATIVI       0.037        -0.007         0.047         0.078         0.071
+ RELATIVI      -0.034        -0.003         0.034        -0.023        -0.035
+ RELATIVI       0.138         0.078         0.149         0.168         0.233
+ RELATIVI      -0.049        -0.014        -0.021        -0.029         0.057
+
+
+           Residuals for Covariances
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ CONTRACT       0.051         0.000
+ CONTRACT      -0.014        -0.078         0.000
+ CONTRACT      -0.047        -0.006         0.096         0.000
+ CONTRACT      -0.017         0.019         0.020        -0.001         0.000
+ CONTRACT      -0.030         0.008         0.006         0.025        -0.015
+ DEONTOLO       0.082         0.042         0.134         0.068         0.115
+ DEONTOLO       0.057        -0.026         0.189        -0.009         0.037
+ DEONTOLO       0.063        -0.020         0.167         0.016         0.023
+ DEONTOLO       0.105         0.025         0.210         0.101        -0.029
+ DEONTOLO       0.001        -0.041         0.194        -0.068         0.009
+ DEONTOLO       0.001        -0.038         0.124         0.023         0.035
+ VIRTUE01      -0.014        -0.046         0.072        -0.008        -0.002
+ VIRTUE02       0.062        -0.010         0.105         0.038        -0.043
+ VIRTUE03       0.111         0.082         0.145         0.067         0.072
+ VIRTUE04       0.154         0.118         0.264         0.169         0.135
+ VIRTUE05       0.147         0.141         0.225         0.175         0.152
+ VIRTUE08       0.285         0.268         0.347         0.282         0.240
+ VIRTUE09       0.073        -0.029         0.078         0.031         0.047
+ RELATIVI      -0.060        -0.091        -0.015         0.016        -0.034
+ RELATIVI       0.018        -0.049         0.083        -0.040        -0.024
+ RELATIVI      -0.013        -0.090         0.041        -0.037        -0.014
+ RELATIVI       0.090         0.048         0.130         0.054         0.064
+ RELATIVI       0.022        -0.002         0.028        -0.029        -0.007
+
+
+           Residuals for Covariances
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ DEONTOLO       0.036         0.000
+ DEONTOLO       0.033        -0.034         0.000
+ DEONTOLO       0.061         0.001         0.052         0.000
+ DEONTOLO       0.225        -0.024        -0.024        -0.017         0.000
+ DEONTOLO       0.097         0.013        -0.012        -0.014        -0.013
+ DEONTOLO       0.012        -0.068         0.022        -0.018        -0.002
+ VIRTUE01      -0.016        -0.040         0.010        -0.166        -0.123
+ VIRTUE02       0.074        -0.037         0.059        -0.084        -0.076
+ VIRTUE03       0.112         0.012         0.096         0.005        -0.077
+ VIRTUE04       0.142         0.027         0.129         0.014         0.049
+ VIRTUE05       0.128         0.050         0.067         0.003         0.027
+ VIRTUE08       0.354         0.168         0.200         0.143         0.090
+ VIRTUE09       0.029        -0.058         0.045        -0.073        -0.090
+ RELATIVI       0.010        -0.086        -0.113        -0.035         0.119
+ RELATIVI       0.010         0.005        -0.067         0.072         0.176
+ RELATIVI       0.032        -0.127        -0.139        -0.051         0.204
+ RELATIVI       0.157         0.096        -0.050         0.154         0.346
+ RELATIVI       0.068        -0.020        -0.047         0.026         0.190
+
+
+           Residuals for Covariances
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       0.000
+ DEONTOLO       0.088         0.000
+ VIRTUE01      -0.182        -0.107         0.000
+ VIRTUE02      -0.089        -0.041         0.083         0.000
+ VIRTUE03      -0.028         0.008        -0.057         0.012         0.000
+ VIRTUE04       0.037         0.066        -0.067        -0.088         0.068
+ VIRTUE05       0.012         0.062        -0.030        -0.055         0.030
+ VIRTUE08       0.174         0.141        -0.113        -0.095         0.068
+ VIRTUE09      -0.129        -0.017         0.094         0.031        -0.039
+ RELATIVI      -0.089        -0.008        -0.154        -0.022        -0.123
+ RELATIVI       0.016        -0.042        -0.226        -0.103        -0.111
+ RELATIVI      -0.076        -0.034        -0.207        -0.071        -0.123
+ RELATIVI       0.117        -0.055        -0.203        -0.053        -0.042
+ RELATIVI       0.006         0.015        -0.230        -0.123        -0.085
+
+
+           Residuals for Covariances
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       0.000
+ VIRTUE05       0.099         0.000
+ VIRTUE08       0.233         0.104         0.000
+ VIRTUE09      -0.095        -0.038        -0.061         0.000
+ RELATIVI      -0.029        -0.026         0.055        -0.125         0.000
+ RELATIVI      -0.062        -0.069        -0.040        -0.163        -0.032
+ RELATIVI      -0.029        -0.005         0.008        -0.187         0.212
+ RELATIVI      -0.004        -0.017         0.050        -0.147        -0.109
+ RELATIVI      -0.016        -0.081        -0.002        -0.196        -0.007
+
+
+           Residuals for Covariances
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       0.000
+ RELATIVI      -0.026         0.000
+ RELATIVI       0.050        -0.090         0.000
+ RELATIVI      -0.002        -0.015         0.034         0.000
+
+
+           Residuals for Correlations
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ HEDONISM       0.009         0.000
+ HEDONISM       0.008        -0.058         0.000
+ HEDONISM      -0.004         0.010         0.047         0.000
+ HEDONISM      -0.010        -0.010         0.008        -0.011         0.000
+ HEDONISM      -0.028        -0.007         0.081         0.014        -0.001
+ UTILITAR       0.055         0.073         0.018         0.053         0.038
+ UTILITAR       0.060         0.058         0.002         0.026         0.027
+ UTILITAR       0.059         0.100         0.013         0.013         0.072
+ UTILITAR       0.041         0.030        -0.057        -0.022         0.026
+ UTILITAR       0.011         0.045        -0.071        -0.035         0.035
+ UTILITAR       0.045         0.068        -0.057        -0.017         0.055
+ UTILITAR       0.033         0.070        -0.036        -0.011         0.045
+ UTILITAR       0.023         0.037        -0.061        -0.019         0.046
+ UTILITAR       0.035         0.050        -0.066        -0.011         0.063
+ CONTRACT       0.004         0.012        -0.056        -0.057         0.000
+ CONTRACT      -0.033        -0.019        -0.064        -0.081         0.002
+ CONTRACT       0.010         0.027        -0.013        -0.054         0.010
+ CONTRACT      -0.012         0.004        -0.042        -0.072        -0.003
+ CONTRACT      -0.005         0.020        -0.066        -0.035         0.029
+ CONTRACT      -0.019        -0.006        -0.081        -0.083         0.020
+ DEONTOLO       0.097         0.077         0.076         0.105         0.115
+ DEONTOLO      -0.022        -0.031        -0.068        -0.097         0.001
+ DEONTOLO       0.025         0.011        -0.049        -0.037         0.053
+ DEONTOLO       0.035         0.030        -0.052        -0.043         0.028
+ DEONTOLO      -0.002         0.021        -0.071        -0.045         0.051
+ DEONTOLO      -0.015         0.002        -0.055        -0.060        -0.003
+ VIRTUE01      -0.042        -0.028        -0.068        -0.112        -0.024
+ VIRTUE02      -0.013         0.013        -0.011        -0.058        -0.022
+ VIRTUE03       0.031         0.024         0.048        -0.003         0.001
+ VIRTUE04       0.018         0.069         0.022        -0.002         0.069
+ VIRTUE05       0.024         0.063         0.009        -0.028         0.066
+ VIRTUE08       0.075         0.106         0.107         0.048         0.109
+ VIRTUE09      -0.022        -0.003        -0.052        -0.074        -0.029
+ RELATIVI      -0.023         0.009        -0.067        -0.047         0.025
+ RELATIVI       0.036         0.052        -0.083        -0.047         0.042
+ RELATIVI      -0.018         0.010        -0.065        -0.076         0.001
+ RELATIVI       0.078         0.057        -0.092        -0.038         0.032
+ RELATIVI       0.017         0.010        -0.092        -0.058         0.037
+
+
+           Residuals for Correlations
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ UTILITAR       0.053         0.000
+ UTILITAR       0.018         0.038         0.000
+ UTILITAR       0.018        -0.003         0.003         0.000
+ UTILITAR      -0.024        -0.012        -0.011         0.005         0.000
+ UTILITAR      -0.035         0.002         0.017        -0.016        -0.005
+ UTILITAR       0.002         0.029        -0.023         0.028         0.005
+ UTILITAR      -0.004         0.017         0.007        -0.018        -0.014
+ UTILITAR      -0.003        -0.018        -0.013         0.006        -0.005
+ UTILITAR      -0.021        -0.033        -0.011        -0.017         0.035
+ CONTRACT      -0.029        -0.031        -0.026        -0.007        -0.030
+ CONTRACT      -0.054        -0.029        -0.072        -0.024        -0.052
+ CONTRACT      -0.001        -0.008         0.010         0.052         0.006
+ CONTRACT       0.003        -0.005        -0.020         0.024        -0.022
+ CONTRACT      -0.001        -0.045        -0.028         0.024        -0.024
+ CONTRACT      -0.030        -0.017         0.002         0.014         0.000
+ DEONTOLO       0.136         0.036         0.046         0.039        -0.001
+ DEONTOLO      -0.055        -0.061        -0.015        -0.045        -0.038
+ DEONTOLO      -0.022        -0.048         0.011        -0.017        -0.017
+ DEONTOLO      -0.009        -0.019         0.022        -0.001        -0.004
+ DEONTOLO      -0.013        -0.047        -0.011        -0.031        -0.044
+ DEONTOLO      -0.020        -0.022         0.000         0.001        -0.041
+ VIRTUE01      -0.076        -0.050        -0.048        -0.012        -0.022
+ VIRTUE02      -0.054         0.014         0.015         0.012         0.011
+ VIRTUE03       0.004         0.019         0.015         0.032         0.021
+ VIRTUE04       0.034         0.073         0.052         0.041         0.028
+ VIRTUE05      -0.004         0.040         0.038         0.041         0.061
+ VIRTUE08       0.086         0.098         0.085         0.057         0.080
+ VIRTUE09      -0.036        -0.015        -0.007         0.053         0.029
+ RELATIVI      -0.027        -0.017        -0.005         0.010         0.002
+ RELATIVI      -0.050        -0.038        -0.010         0.009         0.017
+ RELATIVI      -0.046        -0.063         0.005        -0.010         0.010
+ RELATIVI      -0.057         0.007         0.034         0.019         0.042
+ RELATIVI      -0.079        -0.062        -0.024        -0.033        -0.002
+
+
+           Residuals for Correlations
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       0.000
+ UTILITAR       0.010         0.000
+ UTILITAR       0.000        -0.024         0.000
+ UTILITAR      -0.010        -0.010         0.075         0.000
+ UTILITAR       0.010        -0.016        -0.012        -0.003         0.000
+ CONTRACT      -0.023        -0.007        -0.047        -0.019        -0.002
+ CONTRACT      -0.061        -0.022        -0.074        -0.039        -0.043
+ CONTRACT       0.016         0.032        -0.014        -0.003         0.011
+ CONTRACT      -0.023         0.005        -0.028        -0.019        -0.053
+ CONTRACT      -0.026        -0.016        -0.020        -0.011        -0.016
+ CONTRACT      -0.004         0.033         0.007         0.002         0.014
+ DEONTOLO      -0.009         0.006         0.021         0.029         0.046
+ DEONTOLO      -0.034        -0.032        -0.041        -0.021         0.007
+ DEONTOLO      -0.030        -0.043        -0.014         0.006         0.005
+ DEONTOLO       0.003         0.007        -0.029        -0.003         0.026
+ DEONTOLO      -0.060        -0.059        -0.070        -0.020         0.020
+ DEONTOLO      -0.049        -0.025        -0.052         0.006        -0.015
+ VIRTUE01      -0.014         0.014        -0.010        -0.009        -0.013
+ VIRTUE02       0.026         0.063         0.008         0.041         0.014
+ VIRTUE03       0.017         0.045         0.034         0.047        -0.002
+ VIRTUE04       0.034         0.080         0.063         0.057         0.031
+ VIRTUE05       0.051         0.065         0.057         0.048         0.049
+ VIRTUE08       0.078         0.092         0.122         0.065         0.079
+ VIRTUE09       0.037         0.065         0.038         0.062         0.014
+ RELATIVI       0.009         0.008         0.020        -0.001        -0.003
+ RELATIVI       0.016        -0.003         0.020         0.033         0.026
+ RELATIVI      -0.015        -0.002         0.015        -0.010        -0.013
+ RELATIVI       0.053         0.030         0.056         0.062         0.075
+ RELATIVI      -0.022        -0.007        -0.010        -0.013         0.022
+
+
+           Residuals for Correlations
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ CONTRACT       0.023         0.000
+ CONTRACT      -0.006        -0.034         0.000
+ CONTRACT      -0.020        -0.003         0.040         0.000
+ CONTRACT      -0.007         0.008         0.008         0.000         0.000
+ CONTRACT      -0.012         0.003         0.003         0.009        -0.006
+ DEONTOLO       0.040         0.020         0.063         0.031         0.053
+ DEONTOLO       0.026        -0.012         0.084        -0.004         0.016
+ DEONTOLO       0.026        -0.008         0.068         0.006         0.009
+ DEONTOLO       0.042         0.010         0.082         0.039        -0.011
+ DEONTOLO       0.000        -0.016         0.075        -0.026         0.004
+ DEONTOLO       0.000        -0.017         0.054         0.010         0.015
+ VIRTUE01      -0.006        -0.021         0.032        -0.003        -0.001
+ VIRTUE02       0.030        -0.005         0.050         0.018        -0.020
+ VIRTUE03       0.058         0.043         0.073         0.033         0.035
+ VIRTUE04       0.076         0.058         0.127         0.080         0.064
+ VIRTUE05       0.074         0.071         0.110         0.084         0.073
+ VIRTUE08       0.133         0.125         0.157         0.126         0.107
+ VIRTUE09       0.035        -0.014         0.036         0.014         0.021
+ RELATIVI      -0.027        -0.041        -0.007         0.007        -0.015
+ RELATIVI       0.008        -0.021         0.035        -0.016        -0.010
+ RELATIVI      -0.005        -0.040         0.018        -0.016        -0.006
+ RELATIVI       0.034         0.018         0.048         0.019         0.023
+ RELATIVI       0.010        -0.001         0.013        -0.012        -0.003
+
+
+           Residuals for Correlations
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ DEONTOLO       0.016         0.000
+ DEONTOLO       0.014        -0.017         0.000
+ DEONTOLO       0.023         0.000         0.022         0.000
+ DEONTOLO       0.082        -0.010        -0.010        -0.006         0.000
+ DEONTOLO       0.035         0.006        -0.005        -0.005        -0.005
+ DEONTOLO       0.005        -0.033         0.010        -0.008        -0.001
+ VIRTUE01      -0.007        -0.020         0.005        -0.072        -0.051
+ VIRTUE02       0.032        -0.020         0.029        -0.038        -0.033
+ VIRTUE03       0.052         0.006         0.050         0.002        -0.036
+ VIRTUE04       0.063         0.014         0.065         0.007         0.022
+ VIRTUE05       0.058         0.027         0.035         0.002         0.012
+ VIRTUE08       0.148         0.085         0.095         0.062         0.038
+ VIRTUE09       0.012        -0.030         0.022        -0.032        -0.038
+ RELATIVI       0.004        -0.042        -0.052        -0.015         0.048
+ RELATIVI       0.004         0.002        -0.030         0.029         0.068
+ RELATIVI       0.013        -0.060        -0.062        -0.021         0.081
+ RELATIVI       0.053         0.039        -0.019         0.054         0.117
+ RELATIVI       0.028        -0.010        -0.022         0.011         0.078
+
+
+           Residuals for Correlations
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       0.000
+ DEONTOLO       0.035         0.000
+ VIRTUE01      -0.075        -0.050         0.000
+ VIRTUE02      -0.039        -0.020         0.042         0.000
+ VIRTUE03      -0.013         0.004        -0.030         0.007         0.000
+ VIRTUE04       0.016         0.033        -0.034        -0.047         0.039
+ VIRTUE05       0.005         0.031        -0.016        -0.030         0.017
+ VIRTUE08       0.072         0.066        -0.054        -0.048         0.036
+ VIRTUE09      -0.054        -0.008         0.046         0.016        -0.022
+ RELATIVI      -0.036        -0.004        -0.072        -0.011        -0.064
+ RELATIVI       0.006        -0.018        -0.100        -0.048        -0.055
+ RELATIVI      -0.030        -0.015        -0.094        -0.034        -0.062
+ RELATIVI       0.039        -0.021        -0.079        -0.022        -0.018
+ RELATIVI       0.003         0.007        -0.109        -0.061        -0.045
+
+
+           Residuals for Correlations
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       0.000
+ VIRTUE05       0.055         0.000
+ VIRTUE08       0.120         0.055         0.000
+ VIRTUE09      -0.050        -0.020        -0.030         0.000
+ RELATIVI      -0.015        -0.013         0.026        -0.060         0.000
+ RELATIVI      -0.029        -0.033        -0.018        -0.074        -0.014
+ RELATIVI      -0.014        -0.002         0.004        -0.087         0.094
+ RELATIVI      -0.002        -0.007         0.019        -0.058        -0.041
+ RELATIVI      -0.008        -0.042        -0.001        -0.095        -0.003
+
+
+           Residuals for Correlations
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       0.000
+ RELATIVI      -0.011         0.000
+ RELATIVI       0.018        -0.033         0.000
+ RELATIVI      -0.001        -0.007         0.013         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ HEDONISM       0.643         0.000
+ HEDONISM       0.582        -3.204         0.000
+ HEDONISM      -0.340         1.108         5.319         0.000
+ HEDONISM      -0.721        -0.727         0.705        -0.776         0.000
+ HEDONISM      -1.690        -0.603        16.748         1.083        -0.073
+ UTILITAR       2.693         4.245         0.709         2.626         2.665
+ UTILITAR       2.854         2.929         0.078         1.124         1.622
+ UTILITAR       2.774         5.542         0.493         0.550         4.186
+ UTILITAR       2.099         1.925        -2.273        -1.080         1.545
+ UTILITAR       0.508         2.095        -2.590        -1.432         1.744
+ UTILITAR       2.238         4.074        -2.158        -0.783         2.979
+ UTILITAR       1.345         2.973        -1.317        -0.432         2.049
+ UTILITAR       1.029         1.712        -2.502        -0.758         2.697
+ UTILITAR       1.614         2.657        -2.611        -0.485         3.709
+ CONTRACT       0.159         0.546        -1.938        -2.123         0.002
+ CONTRACT      -1.300        -0.851        -2.219        -3.025         0.068
+ CONTRACT       0.438         1.246        -0.456        -2.051         0.447
+ CONTRACT      -0.434         0.181        -1.417        -2.497        -0.101
+ CONTRACT      -0.159         0.738        -2.088        -1.131         1.028
+ CONTRACT      -0.731        -0.240        -3.011        -3.168         0.824
+ DEONTOLO       4.031         3.466         2.613         3.848         4.486
+ DEONTOLO      -0.834        -1.284        -2.272        -3.499         0.063
+ DEONTOLO       1.129         0.579        -2.030        -1.596         2.945
+ DEONTOLO       1.443         1.331        -1.939        -1.653         1.334
+ DEONTOLO      -0.092         0.914        -2.822        -1.772         2.542
+ DEONTOLO      -0.577         0.094        -2.034        -2.167        -0.140
+ VIRTUE01      -1.672        -1.022        -2.139        -4.362        -0.912
+ VIRTUE02      -0.485         0.473        -0.308        -2.097        -0.764
+ VIRTUE03       1.110         0.920         1.352        -0.111         0.034
+ VIRTUE04       0.639         2.117         0.655        -0.063         2.148
+ VIRTUE05       0.926         2.184         0.265        -0.933         2.182
+ VIRTUE08       2.452         3.722         3.061         1.604         3.536
+ VIRTUE09      -0.833        -0.120        -1.766        -2.836        -0.997
+ RELATIVI      -0.883         0.326        -2.297        -1.601         1.040
+ RELATIVI       1.770         2.481        -3.255        -1.866         2.048
+ RELATIVI      -0.760         0.359        -2.270        -2.679         0.044
+ RELATIVI       3.595         2.411        -3.708        -1.456         1.454
+ RELATIVI       0.757         0.390        -3.302        -2.192         1.592
+
+
+           Standardized Residuals (z-scores) for Covariances
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ UTILITAR       2.442         0.000
+ UTILITAR       0.791         4.484         0.000
+ UTILITAR       0.795        -0.232         0.226       999.000
+ UTILITAR      -1.086        -1.190        -0.948         0.551         0.000
+ UTILITAR      -1.432         0.137         1.520        -1.064        -0.533
+ UTILITAR       0.075         3.277        -1.876         2.367         0.431
+ UTILITAR      -0.168         1.605         0.600        -1.220        -1.220
+ UTILITAR      -0.114        -1.207        -0.796         0.872        -0.597
+ UTILITAR      -0.937        -2.741        -1.273        -1.293         3.903
+ CONTRACT      -1.020        -1.274        -1.341        -0.305        -1.384
+ CONTRACT      -1.915        -1.360        -4.223        -1.039        -2.355
+ CONTRACT      -0.027        -0.350         0.405         2.283         0.245
+ CONTRACT       0.102        -0.189        -0.848         0.998        -0.907
+ CONTRACT      -0.047        -1.584        -1.023         0.849        -0.863
+ CONTRACT      -1.073        -0.752         0.101         0.570        -0.005
+ DEONTOLO       4.850         1.460         2.092         1.544        -0.033
+ DEONTOLO      -2.192        -2.727        -0.773        -1.709        -1.695
+ DEONTOLO      -1.022        -2.235         0.698        -0.766        -0.815
+ DEONTOLO      -0.355        -0.880         1.144        -0.038        -0.174
+ DEONTOLO      -0.538        -2.243        -0.575        -1.342        -2.047
+ DEONTOLO      -0.792        -0.967         0.013         0.029        -1.677
+ VIRTUE01      -2.694        -1.958        -1.911        -0.431        -0.986
+ VIRTUE02      -1.822         0.548         0.667         0.441         0.513
+ VIRTUE03       0.125         0.740         0.583         1.103         0.947
+ VIRTUE04       1.057         2.288         1.845         1.189         1.091
+ VIRTUE05      -0.145         1.573         1.590         1.418         2.738
+ VIRTUE08       2.536         3.779         2.996         1.908         3.146
+ VIRTUE09      -1.297        -0.640        -0.349         2.034         1.351
+ RELATIVI      -0.889        -0.685        -0.176         0.381         0.103
+ RELATIVI      -2.013        -1.865        -0.663         0.429         1.230
+ RELATIVI      -1.554        -2.719         0.205        -0.425         0.500
+ RELATIVI      -2.202         0.316         1.817         0.859         2.586
+ RELATIVI      -2.816        -2.994        -1.347        -1.490        -0.128
+
+
+           Standardized Residuals (z-scores) for Covariances
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       0.000
+ UTILITAR       0.743       999.000
+ UTILITAR       0.033        -1.541         0.000
+ UTILITAR      -0.761        -0.731         8.272         0.000
+ UTILITAR       1.048        -1.124        -0.707        -0.195       999.000
+ CONTRACT      -1.096        -0.322        -1.881        -0.799        -0.085
+ CONTRACT      -2.997        -1.008        -3.098        -1.625        -1.802
+ CONTRACT       0.711         1.431        -0.505        -0.137         0.435
+ CONTRACT      -0.985         0.208        -1.015        -0.773        -1.972
+ CONTRACT      -0.874        -0.572        -0.638        -0.345        -0.550
+ CONTRACT      -0.188         1.486         0.293         0.090         0.573
+ DEONTOLO      -0.336         0.228         0.819         1.193         2.006
+ DEONTOLO      -1.389        -1.384        -1.576        -0.859         0.287
+ DEONTOLO      -1.337        -2.238        -0.671         0.269         0.264
+ DEONTOLO       0.128         0.352        -1.136        -0.113         1.153
+ DEONTOLO      -2.517        -2.862        -2.775        -0.871         0.908
+ DEONTOLO      -1.815        -1.074        -1.913         0.226        -0.567
+ VIRTUE01      -0.529         0.632        -0.359        -0.321        -0.495
+ VIRTUE02       1.089         3.305         0.295         1.482         0.605
+ VIRTUE03       0.748         1.822         1.291         2.013        -0.098
+ VIRTUE04       1.118         2.815         1.883         1.786         1.056
+ VIRTUE05       1.845         2.651         2.092         1.814         2.256
+ VIRTUE08       3.163         4.139         4.434         2.339         2.941
+ VIRTUE09       1.489         3.130         1.470         2.589         0.577
+ RELATIVI       0.329         0.296         0.737        -0.039        -0.130
+ RELATIVI       0.863        -0.155         1.149         1.613         1.601
+ RELATIVI      -0.651        -0.063         0.665        -0.442        -0.619
+ RELATIVI       2.657         1.439         2.557         2.901         3.752
+ RELATIVI      -1.162        -0.296        -0.456        -0.570         1.089
+
+
+           Standardized Residuals (z-scores) for Covariances
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ CONTRACT     999.000         0.000
+ CONTRACT      -0.781        -2.599         0.000
+ CONTRACT      -1.795        -0.415         4.112         0.000
+ CONTRACT      -0.671         0.680         0.478        -0.016         0.000
+ CONTRACT      -1.039         0.589         0.330         0.953        -0.382
+ DEONTOLO       1.636         0.827         2.628         1.150         1.665
+ DEONTOLO       1.162        -0.533         3.940        -0.158         0.597
+ DEONTOLO       1.345        -0.419         4.869         0.295         0.366
+ DEONTOLO       2.254         0.468         4.431         1.614        -0.392
+ DEONTOLO       0.018        -0.882         4.680        -1.084         0.130
+ DEONTOLO       0.022        -0.809         2.400         0.405         0.522
+ VIRTUE01      -0.251        -0.745         1.328        -0.150        -0.030
+ VIRTUE02       1.228        -0.175         1.946         0.718        -0.601
+ VIRTUE03       2.315         1.536         2.992         1.246         1.050
+ VIRTUE04       2.480         1.886         4.226         2.594         1.690
+ VIRTUE05       3.082         2.574         4.651         3.892         2.276
+ VIRTUE08       4.444         4.319         5.318         4.732         3.141
+ VIRTUE09       1.456        -0.495         1.423         0.643         0.691
+ RELATIVI      -1.009        -1.495        -0.232         0.234        -0.448
+ RELATIVI       0.344        -0.842         1.696        -0.621        -0.354
+ RELATIVI      -0.236        -1.471         0.695        -0.573        -0.188
+ RELATIVI       1.672         0.799         2.201         0.764         0.803
+ RELATIVI       0.424        -0.040         0.492        -0.448        -0.103
+
+
+           Standardized Residuals (z-scores) for Covariances
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ DEONTOLO       0.594         0.000
+ DEONTOLO       0.629        -1.212         0.000
+ DEONTOLO       1.245         0.049         7.596         0.000
+ DEONTOLO       4.088        -0.840        -0.658        -0.587         0.000
+ DEONTOLO       2.041         0.395        -0.528        -0.546        -0.413
+ DEONTOLO       0.208        -1.715         1.054        -0.750        -0.100
+ VIRTUE01      -0.304        -0.716         0.157        -2.928        -1.947
+ VIRTUE02       1.393        -0.672         0.967        -1.574        -1.322
+ VIRTUE03       2.219         0.211         1.558         0.092        -1.213
+ VIRTUE04       2.279         0.416         1.859         0.235         0.746
+ VIRTUE05       2.967         0.974         1.166         0.065         0.467
+ VIRTUE08       5.450         2.458         2.761         2.276         1.205
+ VIRTUE09       0.515        -1.088         0.714        -1.337        -1.584
+ RELATIVI       0.149        -1.479        -1.870        -0.661         2.154
+ RELATIVI       0.158         0.095        -1.303         1.643         4.108
+ RELATIVI       0.481        -2.194        -2.531        -1.132         3.735
+ RELATIVI       2.293         1.617        -0.876         3.326         7.140
+ RELATIVI       1.130        -0.402        -0.874         0.678         3.866
+
+
+           Standardized Residuals (z-scores) for Covariances
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       0.000
+ DEONTOLO       3.949         0.000
+ VIRTUE01      -2.861        -1.904         0.026
+ VIRTUE02      -1.536        -0.723       999.000         0.000
+ VIRTUE03      -0.445         0.138        -1.716       999.000         0.000
+ VIRTUE04       0.528         1.056        -1.942        -3.236         2.680
+ VIRTUE05       0.209         1.171        -0.784        -1.773         1.014
+ VIRTUE08       2.682         2.159        -2.580        -2.538         1.629
+ VIRTUE09      -2.256        -0.279         9.179         3.850        -1.000
+ RELATIVI      -1.725        -0.147        -2.262        -0.322        -2.051
+ RELATIVI       0.370        -0.910        -3.349        -1.692        -1.924
+ RELATIVI      -1.498        -0.614        -3.109        -1.112        -2.067
+ RELATIVI       2.225        -0.953        -2.428        -0.720        -0.603
+ RELATIVI       0.132         0.296        -3.833        -2.114        -1.513
+
+
+           Standardized Residuals (z-scores) for Covariances
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       0.000
+ VIRTUE05     999.000         0.000
+ VIRTUE08     999.000       999.000         0.000
+ VIRTUE09      -2.685        -1.163        -1.439         0.021
+ RELATIVI      -0.419        -0.428         0.740        -1.921         0.000
+ RELATIVI      -0.921        -1.195        -0.567        -2.966        -2.685
+ RELATIVI      -0.439        -0.077         0.108        -3.109       999.000
+ RELATIVI      -0.047        -0.241         0.618        -2.011        -3.254
+ RELATIVI      -0.250        -1.462        -0.036        -3.704        -0.388
+
+
+           Standardized Residuals (z-scores) for Covariances
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       0.000
+ RELATIVI      -1.841         0.000
+ RELATIVI       2.693        -2.881         0.000
+ RELATIVI      -0.340        -0.661         2.477         0.035
+
+
+           Normalized Residuals for Covariances
+              HEDONISM      HEDONISM      HEDONISM      HEDONISM      HEDONISM
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ HEDONISM       0.188         0.000
+ HEDONISM       0.152        -1.154         0.000
+ HEDONISM      -0.079         0.213         0.882         0.000
+ HEDONISM      -0.207        -0.198         0.151        -0.209         0.000
+ HEDONISM      -0.554        -0.149         1.519         0.254        -0.019
+ UTILITAR       1.176         1.587         0.373         1.143         0.842
+ UTILITAR       1.249         1.211         0.039         0.534         0.577
+ UTILITAR       1.267         2.140         0.266         0.273         1.555
+ UTILITAR       0.882         0.665        -1.201        -0.470         0.556
+ UTILITAR       0.239         0.920        -1.469        -0.722         0.723
+ UTILITAR       0.976         1.472        -1.189        -0.367         1.182
+ UTILITAR       0.706         1.492        -0.779        -0.233         0.975
+ UTILITAR       0.504         0.785        -1.338        -0.400         1.021
+ UTILITAR       0.769         1.116        -1.440        -0.238         1.400
+ CONTRACT       0.082         0.248        -1.111        -1.151         0.001
+ CONTRACT      -0.688        -0.409        -1.305        -1.682         0.034
+ CONTRACT       0.222         0.581        -0.271        -1.150         0.224
+ CONTRACT      -0.247         0.093        -0.880        -1.501        -0.054
+ CONTRACT      -0.101         0.436        -1.420        -0.737         0.633
+ CONTRACT      -0.410        -0.125        -1.737        -1.790         0.426
+ DEONTOLO       2.054         1.635         1.539         2.108         2.315
+ DEONTOLO      -0.477        -0.669        -1.399        -2.053         0.031
+ DEONTOLO       0.525         0.242        -1.016        -0.765         1.106
+ DEONTOLO       0.754         0.655        -1.080        -0.906         0.610
+ DEONTOLO      -0.049         0.444        -1.529        -0.959         1.091
+ DEONTOLO      -0.315         0.047        -1.167        -1.257        -0.071
+ VIRTUE01      -0.958        -0.606        -1.471        -2.579        -0.543
+ VIRTUE02      -0.285         0.274        -0.216        -1.266        -0.468
+ VIRTUE03       0.703         0.555         0.996        -0.073         0.022
+ VIRTUE04       0.418         1.457         0.487        -0.044         1.493
+ VIRTUE05       0.546         1.343         0.188        -0.596         1.402
+ VIRTUE08       1.599         2.296         2.240         1.038         2.331
+ VIRTUE09      -0.505        -0.067        -1.189        -1.719        -0.638
+ RELATIVI      -0.471         0.179        -1.383        -0.937         0.528
+ RELATIVI       0.766         1.093        -1.748        -0.976         0.889
+ RELATIVI      -0.389         0.195        -1.351        -1.551         0.022
+ RELATIVI       1.709         1.205        -2.015        -0.790         0.691
+ RELATIVI       0.365         0.200        -1.909        -1.198         0.780
+
+
+           Normalized Residuals for Covariances
+              HEDONISM      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ HEDONISM       0.000
+ UTILITAR       1.107         0.000
+ UTILITAR       0.371         0.751         0.000
+ UTILITAR       0.376        -0.059         0.057         0.000
+ UTILITAR      -0.491        -0.241        -0.228         0.094         0.000
+ UTILITAR      -0.709         0.033         0.315        -0.315        -0.106
+ UTILITAR       0.038         0.575        -0.463         0.550         0.093
+ UTILITAR      -0.088         0.345         0.146        -0.364        -0.296
+ UTILITAR      -0.061        -0.368        -0.251         0.132        -0.120
+ UTILITAR      -0.459        -0.713        -0.241        -0.374         0.765
+ CONTRACT      -0.560        -0.623        -0.550        -0.142        -0.611
+ CONTRACT      -1.088        -0.626        -1.608        -0.507        -1.099
+ CONTRACT      -0.015        -0.170         0.201         1.084         0.116
+ CONTRACT       0.056        -0.098        -0.434         0.513        -0.476
+ CONTRACT      -0.031        -0.969        -0.597         0.523        -0.515
+ CONTRACT      -0.611        -0.367         0.046         0.286        -0.002
+ DEONTOLO       2.698         0.750         0.991         0.815        -0.016
+ DEONTOLO      -1.179        -1.359        -0.346        -0.971        -0.841
+ DEONTOLO      -0.455        -1.001         0.238        -0.357        -0.362
+ DEONTOLO      -0.187        -0.420         0.486        -0.020        -0.083
+ DEONTOLO      -0.271        -1.037        -0.245        -0.665        -0.983
+ DEONTOLO      -0.424        -0.488         0.006         0.016        -0.879
+ VIRTUE01      -1.694        -1.077        -1.029        -0.248        -0.482
+ VIRTUE02      -1.156         0.292         0.331         0.254         0.234
+ VIRTUE03       0.085         0.416         0.322         0.680         0.476
+ VIRTUE04       0.744         1.508         1.123         0.826         0.626
+ VIRTUE05      -0.094         0.856         0.816         0.844         1.318
+ VIRTUE08       1.778         2.118         1.762         1.187         1.699
+ VIRTUE09      -0.815        -0.342        -0.161         1.151         0.642
+ RELATIVI      -0.530        -0.362        -0.095         0.205         0.049
+ RELATIVI      -1.039        -0.825        -0.225         0.190         0.374
+ RELATIVI      -0.921        -1.373         0.098        -0.214         0.222
+ RELATIVI      -1.205         0.153         0.743         0.417         0.939
+ RELATIVI      -1.614        -1.393        -0.542        -0.722        -0.049
+
+
+           Normalized Residuals for Covariances
+              UTILITAR      UTILITAR      UTILITAR      UTILITAR      UTILITAR
+              ________      ________      ________      ________      ________
+ UTILITAR       0.000
+ UTILITAR       0.197         0.000
+ UTILITAR       0.009        -0.499         0.000
+ UTILITAR      -0.203        -0.217         1.580         0.000
+ UTILITAR       0.204        -0.347        -0.249        -0.069         0.000
+ CONTRACT      -0.471        -0.145        -0.975        -0.394        -0.041
+ CONTRACT      -1.289        -0.465        -1.606        -0.841        -0.927
+ CONTRACT       0.338         0.672        -0.287        -0.074         0.228
+ CONTRACT      -0.490         0.105        -0.594        -0.425        -1.139
+ CONTRACT      -0.534        -0.349        -0.418        -0.225        -0.346
+ CONTRACT      -0.088         0.695         0.149         0.049         0.308
+ DEONTOLO      -0.184         0.119         0.452         0.630         1.014
+ DEONTOLO      -0.728        -0.699        -0.882        -0.469         0.152
+ DEONTOLO      -0.609        -0.937        -0.314         0.122         0.119
+ DEONTOLO       0.062         0.162        -0.636        -0.059         0.587
+ DEONTOLO      -1.275        -1.324        -1.542        -0.440         0.452
+ DEONTOLO      -1.005        -0.546        -1.116         0.124        -0.317
+ VIRTUE01      -0.287         0.312        -0.218        -0.195        -0.278
+ VIRTUE02       0.556         1.438         0.174         0.872         0.304
+ VIRTUE03       0.393         1.005         0.776         1.115        -0.054
+ VIRTUE04       0.710         1.755         1.329         1.218         0.681
+ VIRTUE05       1.056         1.407         1.247         1.050         1.114
+ VIRTUE08       1.693         2.101         2.698         1.420         1.708
+ VIRTUE09       0.798         1.481         0.863         1.408         0.315
+ RELATIVI       0.178         0.158         0.406        -0.021        -0.067
+ RELATIVI       0.341        -0.067         0.447         0.705         0.598
+ RELATIVI      -0.317        -0.032         0.330        -0.218        -0.294
+ RELATIVI       1.142         0.648         1.220         1.353         1.690
+ RELATIVI      -0.497        -0.144        -0.215        -0.279         0.507
+
+
+           Normalized Residuals for Covariances
+              CONTRACT      CONTRACT      CONTRACT      CONTRACT      CONTRACT
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ CONTRACT       0.462         0.000
+ CONTRACT      -0.126        -0.724         0.000
+ CONTRACT      -0.423        -0.060         0.855         0.000
+ CONTRACT      -0.156         0.169         0.173        -0.005         0.000
+ CONTRACT      -0.252         0.074         0.055         0.211        -0.126
+ DEONTOLO       0.795         0.418         1.343         0.650         1.094
+ DEONTOLO       0.522        -0.246         1.790        -0.086         0.348
+ DEONTOLO       0.512        -0.168         1.446         0.132         0.191
+ DEONTOLO       0.889         0.215         1.803         0.831        -0.237
+ DEONTOLO       0.007        -0.355         1.656        -0.558         0.075
+ DEONTOLO       0.009        -0.359         1.125         0.208         0.312
+ VIRTUE01      -0.132        -0.437         0.707        -0.079        -0.020
+ VIRTUE02       0.630        -0.103         1.063         0.392        -0.418
+ VIRTUE03       1.260         0.908         1.664         0.745         0.765
+ VIRTUE04       1.597         1.238         2.772         1.740         1.330
+ VIRTUE05       1.581         1.474         2.436         1.944         1.581
+ VIRTUE08       2.680         2.594         3.295         2.779         2.291
+ VIRTUE09       0.757        -0.288         0.795         0.331         0.473
+ RELATIVI      -0.529        -0.821        -0.133         0.137        -0.296
+ RELATIVI       0.155        -0.426         0.744        -0.337        -0.207
+ RELATIVI      -0.113        -0.806         0.366        -0.325        -0.120
+ RELATIVI       0.707         0.385         1.035         0.416         0.493
+ RELATIVI       0.203        -0.021         0.260        -0.257        -0.065
+
+
+           Normalized Residuals for Covariances
+              CONTRACT      DEONTOLO      DEONTOLO      DEONTOLO      DEONTOLO
+              ________      ________      ________      ________      ________
+ CONTRACT       0.000
+ DEONTOLO       0.321         0.000
+ DEONTOLO       0.293        -0.354         0.000
+ DEONTOLO       0.482         0.006         0.467         0.000
+ DEONTOLO       1.774        -0.229        -0.215        -0.138         0.000
+ DEONTOLO       0.780         0.118        -0.108        -0.117        -0.105
+ DEONTOLO       0.100        -0.681         0.210        -0.164        -0.021
+ VIRTUE01      -0.155        -0.443         0.096        -1.528        -1.124
+ VIRTUE02       0.714        -0.423         0.595        -0.802        -0.733
+ VIRTUE03       1.200         0.142         1.036         0.052        -0.783
+ VIRTUE04       1.429         0.306         1.312         0.143         0.486
+ VIRTUE05       1.352         0.608         0.722         0.033         0.270
+ VIRTUE08       3.203         1.729         1.866         1.288         0.781
+ VIRTUE09       0.280        -0.675         0.450        -0.705        -0.881
+ RELATIVI       0.084        -0.846        -1.076        -0.299         1.020
+ RELATIVI       0.079         0.048        -0.639         0.603         1.494
+ RELATIVI       0.265        -1.242        -1.363        -0.453         1.726
+ RELATIVI       1.141         0.834        -0.431         1.175         2.645
+ RELATIVI       0.585        -0.210        -0.472         0.242         1.673
+
+
+           Normalized Residuals for Covariances
+              DEONTOLO      DEONTOLO      VIRTUE01      VIRTUE02      VIRTUE03
+              ________      ________      ________      ________      ________
+ DEONTOLO       0.000
+ DEONTOLO       0.756         0.000
+ VIRTUE01      -1.639        -1.086         0.000
+ VIRTUE02      -0.840        -0.420         0.661         0.000
+ VIRTUE03      -0.276         0.089        -0.506         0.113         0.000
+ VIRTUE04       0.347         0.710        -0.652        -0.930         0.767
+ VIRTUE05       0.117         0.679        -0.259        -0.518         0.304
+ VIRTUE08       1.561         1.380        -1.009        -0.922         0.694
+ VIRTUE09      -1.247        -0.171         0.700         0.248        -0.350
+ RELATIVI      -0.789        -0.079        -1.489        -0.215        -1.392
+ RELATIVI       0.137        -0.398        -2.102        -1.009        -1.217
+ RELATIVI      -0.666        -0.321        -2.009        -0.710        -1.384
+ RELATIVI       0.892        -0.462        -1.637        -0.458        -0.401
+ RELATIVI       0.056         0.149        -2.388        -1.307        -0.995
+
+
+           Normalized Residuals for Covariances
+              VIRTUE04      VIRTUE05      VIRTUE08      VIRTUE09      RELATIVI
+              ________      ________      ________      ________      ________
+ VIRTUE04       0.000
+ VIRTUE05       1.001         0.000
+ VIRTUE08       2.338         1.021         0.000
+ VIRTUE09      -0.952        -0.335        -0.545         0.000
+ RELATIVI      -0.304        -0.277         0.521        -1.268         0.000
+ RELATIVI      -0.631        -0.723        -0.372        -1.692        -0.279
+ RELATIVI      -0.311        -0.050         0.076        -1.955         1.758
+ RELATIVI      -0.033        -0.156         0.412        -1.296        -0.873
+ RELATIVI      -0.173        -0.920        -0.024        -2.203        -0.060
+
+
+           Normalized Residuals for Covariances
+              RELATIVI      RELATIVI      RELATIVI      RELATIVI
+              ________      ________      ________      ________
+ RELATIVI       0.000
+ RELATIVI      -0.219         0.000
+ RELATIVI       0.398        -0.724         0.000
+ RELATIVI      -0.021        -0.129         0.286         0.000
+
+
+MODEL MODIFICATION INDICES
+
+NOTE:  Modification indices for direct effects of observed dependent variables
+regressed on covariates may not be included.  To include these, request
+MODINDICES (ALL).
+
+Minimum M.I. value for printing the modification index    10.000
+
+                                   M.I.     E.P.C.  Std E.P.C.  StdYX E.P.C.
+
+BY Statements
+
+HEDO     BY DEONTOLO              29.602     0.232      0.421        0.303
+HEDO     BY VIRTUE01              12.861    -0.088     -0.159       -0.110
+HEDO     BY VIRTUE08              16.878     0.131      0.237        0.165
+UTIL     BY HEDONISM              10.475     0.110      0.214        0.130
+UTIL     BY RELATIVI              10.543     0.100      0.195        0.109
+CONT     BY HEDONISM              11.941    -0.120     -0.199       -0.137
+CONT     BY VIRTUE08              18.482     0.146      0.241        0.168
+DEON     BY HEDONISM              10.301    -0.099     -0.215       -0.148
+DEON     BY CONTRACT              13.912     0.111      0.240        0.156
+DEON     BY VIRTUE08              12.360     0.096      0.207        0.144
+RELA     BY HEDONISM              15.316    -0.155     -0.265       -0.185
+RELA     BY DEONTOLO              22.838     0.202      0.345        0.208
+ESTA     BY HEDONISM              11.352     0.333      0.333        0.204
+ESTA     BY HEDONISM              15.173    -0.410     -0.410       -0.288
+ESTA     BY HEDONISM              16.099    -0.371     -0.371       -0.256
+ESTA     BY VIRTUE01              13.989    -0.185     -0.185       -0.128
+ESTA     BY VIRTUE08              15.475     0.253      0.253        0.176
+ESTA     BY RELATIVI              11.262     0.282      0.282        0.158
+
+WITH Statements
+
+HEDONISM WITH HEDONISM            22.230    -0.204     -0.204       -0.266
+HEDONISM WITH HEDONISM            10.930     0.135      0.135        0.178
+HEDONISM WITH HEDONISM            23.542     0.212      0.212        0.252
+UTILITAR WITH UTILITAR            13.286     0.094      0.094        0.190
+UTILITAR WITH UTILITAR            27.364     0.203      0.203        0.260
+UTILITAR WITH UTILITAR            24.460     0.150      0.150        0.283
+CONTRACT WITH CONTRACT            24.906     0.138      0.138        0.375
+CONTRACT WITH CONTRACT            18.505    -0.136     -0.136       -0.260
+CONTRACT WITH UTILITAR            13.777    -0.135     -0.135       -0.193
+CONTRACT WITH CONTRACT            12.172     0.133      0.133        0.188
+DEONTOLO WITH HEDONISM            10.527     0.128      0.128        0.167
+DEONTOLO WITH HEDONISM            12.632     0.152      0.152        0.178
+DEONTOLO WITH DEONTOLO            10.396     0.133      0.133        0.182
+VIRTUE02 WITH VIRTUE01            27.125     0.166      0.166        0.337
+VIRTUE04 WITH VIRTUE02            10.614    -0.121     -0.121       -0.176
+VIRTUE05 WITH VIRTUE04            11.130     0.128      0.128        0.174
+VIRTUE08 WITH VIRTUE01            18.924    -0.169     -0.169       -0.244
+VIRTUE08 WITH VIRTUE02            12.289    -0.134     -0.134       -0.191
+VIRTUE08 WITH VIRTUE04            31.878     0.273      0.273        0.280
+VIRTUE08 WITH VIRTUE05            12.110     0.137      0.137        0.183
+VIRTUE09 WITH VIRTUE01            30.560     0.182      0.182        0.354
+VIRTUE09 WITH VIRTUE04            11.206    -0.129     -0.129       -0.179
+RELATIVI WITH RELATIVI            94.924     0.311      0.311        0.541
+RELATIVI WITH HEDONISM            18.681     0.162      0.162        0.240
+RELATIVI WITH DEONTOLO            14.098    -0.136     -0.136       -0.202
+RELATIVI WITH RELATIVI            25.387    -0.176     -0.176       -0.294
+RELATIVI WITH RELATIVI            15.405     0.128      0.128        0.288
+RELATIVI WITH RELATIVI            18.778    -0.152     -0.152       -0.258
+
+
+SAMPLE STATISTICS FOR ESTIMATED FACTOR SCORES
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              HEDO          HEDO_SE       UTIL          UTIL_SE       CONT
+              ________      ________      ________      ________      ________
+                0.000         0.455         0.000         0.361         0.000
+
+
+           Means
+              CONT_SE       DEON          DEON_SE       VIRT          VIRT_SE
+              ________      ________      ________      ________      ________
+                0.360         0.000         0.510         0.000         0.309
+
+
+           Means
+              RELA          RELA_SE       ESTA          ESTA_SE
+              ________      ________      ________      ________
+                0.000         0.357         0.000         0.292
+
+
+           Covariances
+              HEDO          HEDO_SE       UTIL          UTIL_SE       CONT
+              ________      ________      ________      ________      ________
+ HEDO           3.069
+ HEDO_SE        0.000         0.000
+ UTIL           2.597         0.000         3.670
+ UTIL_SE        0.000         0.000         0.000         0.000
+ CONT           1.925         0.000         2.146         0.000         2.615
+ CONT_SE        0.000         0.000         0.000         0.000         0.000
+ DEON           2.883         0.000         3.142         0.000         2.591
+ DEON_SE        0.000         0.000         0.000         0.000         0.000
+ VIRT           1.083         0.000         1.287         0.000         1.050
+ VIRT_SE        0.000         0.000         0.000         0.000         0.000
+ RELA           2.063         0.000         2.340         0.000         1.837
+ RELA_SE        0.000         0.000         0.000         0.000         0.000
+ ESTA           1.483         0.000         1.656         0.000         1.306
+ ESTA_SE        0.000         0.000         0.000         0.000         0.000
+
+
+           Covariances
+              CONT_SE       DEON          DEON_SE       VIRT          VIRT_SE
+              ________      ________      ________      ________      ________
+ CONT_SE        0.000
+ DEON           0.000         4.426
+ DEON_SE        0.000         0.000         0.000
+ VIRT           0.000         1.368         0.000         1.435
+ VIRT_SE        0.000         0.000         0.000         0.000         0.000
+ RELA           0.000         2.688         0.000         0.896         0.000
+ RELA_SE        0.000         0.000         0.000         0.000         0.000
+ ESTA           0.000         1.880         0.000         0.723         0.000
+ ESTA_SE        0.000         0.000         0.000         0.000         0.000
+
+
+           Covariances
+              RELA          RELA_SE       ESTA          ESTA_SE
+              ________      ________      ________      ________
+ RELA           2.793
+ RELA_SE        0.000         0.000
+ ESTA           1.371         0.000         0.915
+ ESTA_SE        0.000         0.000         0.000         0.000
+
+
+           Correlations
+              HEDO          HEDO_SE       UTIL          UTIL_SE       CONT
+              ________      ________      ________      ________      ________
+ HEDO           1.000
+ HEDO_SE      999.000         1.000
+ UTIL           0.774       999.000         1.000
+ UTIL_SE      999.000       999.000       999.000         1.000
+ CONT           0.680       999.000         0.693       999.000         1.000
+ CONT_SE      999.000       999.000       999.000       999.000       999.000
+ DEON           0.782       999.000         0.780       999.000         0.762
+ DEON_SE      999.000       999.000       999.000       999.000       999.000
+ VIRT           0.516       999.000         0.561       999.000         0.542
+ VIRT_SE      999.000       999.000       999.000       999.000       999.000
+ RELA           0.705       999.000         0.731       999.000         0.680
+ RELA_SE      999.000       999.000       999.000       999.000       999.000
+ ESTA           0.885       999.000         0.903       999.000         0.845
+ ESTA_SE      999.000       999.000       999.000       999.000       999.000
+
+
+           Correlations
+              CONT_SE       DEON          DEON_SE       VIRT          VIRT_SE
+              ________      ________      ________      ________      ________
+ CONT_SE        1.000
+ DEON         999.000         1.000
+ DEON_SE      999.000       999.000         1.000
+ VIRT         999.000         0.543       999.000         1.000
+ VIRT_SE      999.000       999.000       999.000       999.000         1.000
+ RELA         999.000         0.764       999.000         0.448       999.000
+ RELA_SE      999.000       999.000       999.000       999.000       999.000
+ ESTA         999.000         0.935       999.000         0.631       999.000
+ ESTA_SE      999.000       999.000       999.000       999.000       999.000
+
+
+           Correlations
+              RELA          RELA_SE       ESTA          ESTA_SE
+              ________      ________      ________      ________
+ RELA           1.000
+ RELA_SE      999.000         1.000
+ ESTA           0.858       999.000         1.000
+ ESTA_SE      999.000       999.000       999.000         1.000
+
+
+PLOT INFORMATION
+
+The following plots are available:
+
+  Histograms (sample values, estimated factor scores, estimated values, residuals)
+  Scatterplots (sample values, estimated factor scores, estimated values, residuals)
+  Latent variable distribution plots
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\daten\phd\article_esta\analyses\4_sem\output\secondorder_esta.dgm
+
+     Beginning Time:  11:08:50
+        Ending Time:  11:08:52
+       Elapsed Time:  00:00:02
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2021 Muthen & Muthen
