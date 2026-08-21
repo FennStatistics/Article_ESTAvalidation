@@ -1,3 +1,7 @@
+# macOS Finder metadata
+.DS_Store
+**/.DS_Store
+
 # uploading to RPubs
 rsconnect/
 # environment variables
@@ -9,3 +13,5 @@ rsconnect/
 
 
 **/zz_internalMaterials/
+
+structureProject.md

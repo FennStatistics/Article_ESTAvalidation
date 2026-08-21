@@ -1,0 +1,37 @@
+cff-version: 1.2.1
+message: "If you use these materials or analyses, please cite the manuscript as below."
+type: dataset
+title: "Development and Validation of an Empirical Ethics Scale for Technology Assessment"
+authors:
+  - family-names: Fenn
+    given-names: Julius
+  - family-names: Höfele
+    given-names: Philipp
+  - family-names: Sölder
+    given-names: Paul
+  - family-names: Langer
+    given-names: Markus
+  - family-names: Kiesel
+    given-names: Andrea
+abstract: "Open materials and analysis pipelines for the Ethics Scale for Technology Assessment (ESTA). Manuscript under review at Technology in Society (TECHIS-D-26-01212)."
+url: "https://github.com/FennStatistics/Article_ESTAvalidation"
+repository-code: "https://github.com/FennStatistics/Article_ESTAvalidation"
+year: 2026
+license: GPL-3.0
+preferred-citation:
+  type: unpublished
+  title: "Development and Validation of an Empirical Ethics Scale for Technology Assessment"
+  authors:
+    - family-names: Fenn
+      given-names: Julius
+    - family-names: Höfele
+      given-names: Philipp
+    - family-names: Sölder
+      given-names: Paul
+    - family-names: Langer
+      given-names: Markus
+    - family-names: Kiesel
+      given-names: Andrea
+  year: 2026
+  notes: "Manuscript under review, Technology in Society (TECHIS-D-26-01212)"
+  url: "https://github.com/FennStatistics/Article_ESTAvalidation"
