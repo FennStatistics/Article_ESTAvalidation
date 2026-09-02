@@ -1,8 +1,6 @@
 # Development and Validation of an Empirical Ethics Scale for Technology Assessment - Challenges and Perspectives for a Real Time Ethics for Emerging Technologies
 
-by Julius Fenn†, Philipp Höfele†, Paul Sölder, Markus Langer, Andrea Kiesel
-
-†These authors contributed equally to this work.
+by Julius Fenn, Philipp Höfele, Paul Sölder, Markus Langer, Andrea Kiesel
 
 ---
 

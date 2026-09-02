@@ -11,3 +11,4 @@ Analyses Files of Studies:
 - [2_webProbing](https://github.com/FennStatistics/Article_ESTAvalidation/tree/main/Analyses/2_webProbing) - Analyses of web probing study of a subset of items.
 - [3_factor_IRT_Analyses](https://github.com/FennStatistics/Article_ESTAvalidation/tree/main/Analyses/3_factor_IRT_Analyses) - Analyses to investigate the dimensionality (EFA) and response structure (IRT) of ESTA regarding three different technologies.
 - [4_SEM](https://github.com/FennStatistics/Article_ESTAvalidation/tree/main/Analyses/4_SEM) - Analyses to test construct validity regarding one technology.
+- [5_additionalTests](5_additionalTests) - Supplementary revision analyses (e.g. SAI narrative vs descriptive ESTA comparison for R1-16).
