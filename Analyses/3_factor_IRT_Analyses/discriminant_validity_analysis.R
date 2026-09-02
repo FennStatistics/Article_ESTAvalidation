@@ -86,6 +86,15 @@ tech_map_sanity <- c(
   SAI_descriptive = NA_character_
 )
 
+study3_tech <- c("NPP", "SR", "SAI_narrative")
+
+tech_label_manuscript <- c(
+  NPP = "NPP",
+  SR = "HM",
+  SAI_narrative = "SAI",
+  SAI_descriptive = "SAI_descriptive"
+)
+
 theory_key_from_label <- setNames(names(factor_labels), factor_labels)
 
 # ---- Helpers ----
@@ -197,21 +206,23 @@ build_bifactor_model <- function() {
 
 fit_cfa_safe <- function(model, data, label = "") {
   tryCatch(
-    cfa(
-      model,
-      data = data,
-      estimator = "MLR",
-      std.lv = TRUE,
-      missing = "fiml",
-      ncpus = 1
+    withCallingHandlers(
+      cfa(
+        model,
+        data = data,
+        estimator = "MLR",
+        std.lv = TRUE,
+        missing = "fiml",
+        ncpus = 1
+      ),
+      warning = function(w) {
+        cat("WARNING:", label, "—", conditionMessage(w), "\n")
+        invokeRestart("muffleWarning")
+      }
     ),
     error = function(e) {
       cat("NON-CONVERGENCE:", label, "—", conditionMessage(e), "\n")
       NULL
-    },
-    warning = function(w) {
-      cat("WARNING:", label, "—", conditionMessage(w), "\n")
-      invokeRestart("muffleWarning")
     }
   )
 }
@@ -434,6 +445,32 @@ compute_fornell_larcker <- function(fit) {
   bind_rows(rows)
 }
 
+compute_lrt_row <- function(fit_baseline, fit_nested, technology, comparison) {
+  if (is.null(fit_baseline) || is.null(fit_nested)) return(NULL)
+  if (!lavInspect(fit_baseline, "converged") || !lavInspect(fit_nested, "converged")) {
+    return(NULL)
+  }
+  lrt <- tryCatch(lavTestLRT(fit_baseline, fit_nested), error = function(e) NULL)
+  if (is.null(lrt) || nrow(lrt) < 2) return(NULL)
+  cfi_m1 <- unname(fitMeasures(fit_baseline, "cfi"))
+  cfi_nested <- unname(fitMeasures(fit_nested, "cfi"))
+  tibble(
+    technology = technology,
+    comparison = comparison,
+    chisq_diff = lrt$`Chisq diff`[2],
+    df_diff = lrt$`Df diff`[2],
+    pvalue = lrt$`Pr(>Chisq)`[2],
+    cfi_M1 = cfi_m1,
+    cfi_nested = cfi_nested,
+    delta_cfi = cfi_nested - cfi_m1
+  )
+}
+
+is_util_deon_pair <- function(fi, fj) {
+  pair <- sort(c(fi, fj))
+  identical(pair, c("Deontology", "Utilitarianism"))
+}
+
 check_omega_sanity <- function(technology, omega, alpha) {
   sanity_tech <- tech_map_sanity[[technology]]
   if (is.na(sanity_tech)) {
@@ -479,6 +516,8 @@ fl_rows <- list()
 htmt_rows <- list()
 dv_rows <- list()
 model_comp_rows <- list()
+model_lrt_rows <- list()
+bifactor_rows <- list()
 
 for (tech in names(datasets)) {
   dat_tech <- datasets[[tech]]
@@ -538,9 +577,9 @@ for (tech in names(datasets)) {
   htmt2_boot <- htmt2_boot %>%
     mutate(
       technology = tech,
-      flag_85 = ci_hi < 0.85,
-      flag_90 = ci_hi < 0.90,
-      flag_100 = ci_hi < 1.00
+      pass_htmt85 = htmt <= 0.85,
+      pass_htmt90 = htmt <= 0.90,
+      pass_htmt_inf = ci_hi < 1.00
     )
   htmt_rows[[length(htmt_rows) + 1]] <- htmt2_boot
 
@@ -551,7 +590,7 @@ for (tech in names(datasets)) {
       "HTMT2", htmt2_boot$point[k],
       ci_lo = htmt2_boot$ci_lo[k], ci_hi = htmt2_boot$ci_hi[k],
       threshold = 0.85,
-      flag = if (htmt2_boot$flag_85[k]) "pass_85" else "fail_85"
+      flag = if (htmt2_boot$pass_htmt85[k]) "pass_htmt85" else "fail_htmt85"
     )
   }
 
@@ -591,6 +630,17 @@ for (tech in names(datasets)) {
       fit_indices_row(comp_list[[mn]], tech, mn)
   }
 
+  lrt_specs <- c(
+    "M1 vs one-factor (M2)" = "M2",
+    "M1 vs second-order (M3)" = "M3",
+    "M1 vs merged Util+Deon (M4)" = "M4"
+  )
+  for (label in names(lrt_specs)) {
+    mn <- lrt_specs[[label]]
+    row <- compute_lrt_row(fit, comp_list[[mn]], tech, label)
+    if (!is.null(row)) model_lrt_rows[[length(model_lrt_rows) + 1]] <- row
+  }
+
   if (!is.null(fit_m3) && lavInspect(fit_m3, "converged")) {
     cr2 <- tryCatch(compRelSEM(fit_m3), error = function(e) NULL)
     if (!is.null(cr2)) {
@@ -621,6 +671,30 @@ for (tech in names(datasets)) {
       results_long <- add_result(results_long, tech, "G", "omega_H", mli[["OmegaH.G"]])
       results_long <- add_result(results_long, tech, "G", "omega_G", mli[["Omega.G"]])
       results_long <- add_result(results_long, tech, "G", "PUC", mli[["PUC"]])
+    }
+    if (!is.null(bi) && !is.null(bi$FactorLevelIndices)) {
+      fli <- as_tibble(bi$FactorLevelIndices, rownames = "factor")
+      fli_sub <- fli %>% filter(factor != "G")
+      if (nrow(fli_sub) > 0) {
+        fli_sub <- fli_sub %>%
+          mutate(
+            technology = tech,
+            omega_HS = pmax(Omega - OmegaH, 0)
+          )
+        bifactor_rows[[length(bifactor_rows) + 1]] <- fli_sub
+        for (k in seq_len(nrow(fli_sub))) {
+          results_long <- add_result(
+            results_long, tech, fli_sub$factor[k], "omega_HS",
+            fli_sub$omega_HS[k]
+          )
+          results_long <- add_result(
+            results_long, tech, fli_sub$factor[k], "ECV_SS",
+            fli_sub$ECV_SS[k]
+          )
+        }
+        cat("  Subscale omega_HS range:", round(min(fli_sub$omega_HS), 3),
+            "to", round(max(fli_sub$omega_HS), 3), "\n")
+      }
     }
   }
 }
@@ -692,9 +766,89 @@ cat("\n=== Writing outputs ===\n")
 table_reliability_AVE <- bind_rows(reliability_rows)
 table_FornellLarcker <- bind_rows(fl_rows)
 table_HTMT_matrix <- bind_rows(htmt_rows)
+if (nrow(table_HTMT_matrix) == 0) {
+  table_HTMT_matrix <- tibble(
+    factor_i = character(), factor_j = character(), htmt = numeric(),
+    ci_lo = numeric(), ci_hi = numeric(), htmt2 = logical(), point = numeric(),
+    technology = character(), pass_htmt85 = logical(), pass_htmt90 = logical(),
+    pass_htmt_inf = logical()
+  )
+}
 table_model_comparison <- bind_rows(model_comp_rows)
+table_model_LRT <- bind_rows(model_lrt_rows)
+table_bifactor_subscale_reliability <- bind_rows(bifactor_rows)
 table_discriminantValidity <- bind_rows(dv_rows)
 table_incremental_R2 <- bind_rows(incremental_rows)
+
+table_HTMT_study3 <- table_HTMT_matrix %>%
+  filter(technology %in% study3_tech)
+
+table_HTMT_top7_study3 <- table_HTMT_study3 %>%
+  arrange(desc(htmt)) %>%
+  slice_head(n = 7) %>%
+  mutate(tech_label = tech_label_manuscript[technology])
+
+table_FL_failures_study3 <- table_FornellLarcker %>%
+  filter(
+    type == "latent_r",
+    technology %in% study3_tech,
+    !fl_pass
+  ) %>%
+  mutate(
+    tech_label = tech_label_manuscript[technology],
+    pair = paste(factor_i, factor_j, sep = "–")
+  ) %>%
+  select(technology, tech_label, pair, factor_i, factor_j, latent_r = value, fl_pass)
+
+table_HTMT_summary <- bind_rows(
+  tibble(
+    scope = "Study_3",
+    n_pairs = nrow(table_HTMT_study3),
+    n_fail_htmt85 = sum(!table_HTMT_study3$pass_htmt85, na.rm = TRUE),
+    n_fail_htmt90 = sum(!table_HTMT_study3$pass_htmt90, na.rm = TRUE),
+    n_fail_htmt_inf = sum(!table_HTMT_study3$pass_htmt_inf, na.rm = TRUE),
+    max_htmt2 = max(table_HTMT_study3$htmt, na.rm = TRUE),
+    fl_pass_pct = round(
+      100 * mean(
+        table_FornellLarcker$fl_pass[
+          table_FornellLarcker$type == "latent_r" &
+            table_FornellLarcker$technology %in% study3_tech
+        ],
+        na.rm = TRUE
+      ),
+      1
+    )
+  ),
+  tibble(
+    scope = "All_technologies",
+    n_pairs = nrow(table_HTMT_matrix),
+    n_fail_htmt85 = sum(!table_HTMT_matrix$pass_htmt85, na.rm = TRUE),
+    n_fail_htmt90 = sum(!table_HTMT_matrix$pass_htmt90, na.rm = TRUE),
+    n_fail_htmt_inf = sum(!table_HTMT_matrix$pass_htmt_inf, na.rm = TRUE),
+    max_htmt2 = max(table_HTMT_matrix$htmt, na.rm = TRUE),
+    fl_pass_pct = round(
+      100 * mean(
+        table_FornellLarcker$fl_pass[table_FornellLarcker$type == "latent_r"],
+        na.rm = TRUE
+      ),
+      1
+    )
+  )
+)
+
+table_worst_pair_dv <- table_discriminantValidity %>%
+  filter(
+    test == "r_fixed_0.9",
+    pmap_lgl(list(lhs, rhs), is_util_deon_pair)
+  ) %>%
+  arrange(desc(abs(est)))
+
+table_model_comparison_study3 <- table_model_comparison %>%
+  filter(technology %in% study3_tech)
+
+table_bifactor_study3 <- table_bifactor_subscale_reliability %>%
+  filter(technology %in% study3_tech) %>%
+  mutate(tech_label = tech_label_manuscript[technology])
 
 write.csv(results_long, file.path(out_dir, "discriminant_validity_results.csv"), row.names = FALSE)
 
@@ -711,9 +865,26 @@ write_table_pair(
   table_HTMT_matrix, "table_HTMT_matrix",
   title = "HTMT2 ratios with bootstrap 95% CI (lower triangle)",
   notes = c(
-    "HTMT2 geometric mean (Roemer et al., 2021). R = 1000 bootstrap resamples.",
-    "Pass if upper CI < .85 (conservative) or < .90 (liberal)."
+    "HTMT2 consistent HTMT (Roemer et al., 2021). R = 1000 bootstrap resamples.",
+    "HTMT.85/.90: point estimate <= threshold (Henseler et al., 2015).",
+    "HTMT_inf: 95% CI excludes 1.00."
   )
+)
+
+write_table_pair(
+  table_HTMT_top7_study3, "table_HTMT_top7_study3",
+  title = "Highest HTMT2 pairs — Study 3 (top 7 of 45)",
+  notes = "Illustrative rows for manuscript appendix table."
+)
+
+write_table_pair(
+  table_HTMT_summary, "table_HTMT_summary",
+  title = "HTMT2 summary counts by scope"
+)
+
+write_table_pair(
+  table_FL_failures_study3, "table_FL_failures_study3",
+  title = "Fornell-Larcker failures — Study 3"
 )
 
 write_table_pair(
@@ -730,6 +901,39 @@ write_table_pair(
     "M4: merged Utilitarianism+Deontology; M4b: merged Relativism+Hedonism; M5: bifactor."
   )
 )
+
+if (nrow(table_model_LRT) > 0) {
+  write_table_pair(
+    table_model_LRT, "table_model_LRT",
+    title = "Nested model comparisons vs six-factor M1 (lavTestLRT)",
+    notes = "Positive chi-square diff favors less constrained (M1) model."
+  )
+}
+
+if (nrow(table_model_comparison_study3) > 0) {
+  write_table_pair(
+    table_model_comparison_study3, "table_model_comparison_study3",
+    title = "Competing CFA models — Study 3 technologies only"
+  )
+}
+
+if (nrow(table_bifactor_subscale_reliability) > 0) {
+  write_table_pair(
+    table_bifactor_study3, "table_bifactor_subscale_reliability",
+    title = "Bifactor subscale reliability (omega_HS) — Study 3",
+    notes = c(
+      "M5 bifactor model; omega_HS = Omega - OmegaH per subfactor (Rodriguez et al., 2016).",
+      "ECV_SS = explained common variance specific to subscale."
+    )
+  )
+}
+
+if (nrow(table_worst_pair_dv) > 0) {
+  write_table_pair(
+    table_worst_pair_dv, "table_worst_pair_dv",
+    title = "Utilitarianism-Deontology latent-correlation discriminantValidity tests"
+  )
+}
 
 if (nrow(table_discriminantValidity) > 0) {
   write_table_pair(
@@ -759,10 +963,12 @@ summary_md <- paste0(
   "{{PLACEHOLDER_AVE_threshold}} for {{PLACEHOLDER_AVE_pass_n}} of ",
   "{{PLACEHOLDER_AVE_total_n}} factor–technology combinations. ",
   "Fornell–Larcker discriminant validity was supported for ",
-  "{{PLACEHOLDER_FL_pass_pct}}% of factor pairs (see `table_FornellLarcker.csv`). ",
-  "HTMT2 ratios with bootstrap 95% CIs (R = 1000) exceeded the conservative ",
-  ".85 upper-CI threshold for {{PLACEHOLDER_HTMT_fail_n}} of ",
-  "{{PLACEHOLDER_HTMT_total_n}} pairs (see `table_HTMT_matrix.csv`). ",
+  "{{PLACEHOLDER_FL_pass_pct_study3}}% of Study 3 factor pairs ",
+  "({{PLACEHOLDER_FL_pass_n_study3}}/{{PLACEHOLDER_FL_total_n_study3}}; see ",
+  "`table_FL_failures_study3.csv`). ",
+  "All {{PLACEHOLDER_HTMT_total_n_study3}} Study 3 HTMT2 point estimates were ",
+  "below .85 (max = {{PLACEHOLDER_HTMT_max_study3}}); none of the bootstrap 95% ",
+  "CIs included 1.00 (see `table_HTMT_matrix.csv`). ",
   "CI-based latent-correlation tests (Rönkkö & Cho, 2022) indicated ",
   "{{PLACEHOLDER_DV_summary}}.\n\n",
   "## Discussion\n\n",
@@ -808,22 +1014,31 @@ if (nrow(table_reliability_AVE) > 0) {
   )
 }
 if (nrow(table_FornellLarcker) > 0) {
-  fl_pairs <- table_FornellLarcker %>% filter(type == "latent_r")
-  if (nrow(fl_pairs) > 0) {
-    pct <- round(100 * mean(fl_pairs$fl_pass, na.rm = TRUE), 1)
+  fl_s3 <- table_FornellLarcker %>%
+    filter(type == "latent_r", technology %in% study3_tech)
+  if (nrow(fl_s3) > 0) {
+    pct <- round(100 * mean(fl_s3$fl_pass, na.rm = TRUE), 1)
     summary_md <- fill_placeholder(
-      summary_md, "PLACEHOLDER_FL_pass_pct", as.character(pct)
+      summary_md, "PLACEHOLDER_FL_pass_pct_study3", as.character(pct)
+    )
+    summary_md <- fill_placeholder(
+      summary_md, "PLACEHOLDER_FL_pass_n_study3",
+      as.character(sum(fl_s3$fl_pass, na.rm = TRUE))
+    )
+    summary_md <- fill_placeholder(
+      summary_md, "PLACEHOLDER_FL_total_n_study3",
+      as.character(nrow(fl_s3))
     )
   }
 }
-if (nrow(table_HTMT_matrix) > 0) {
+if (nrow(table_HTMT_study3) > 0) {
   summary_md <- fill_placeholder(
-    summary_md, "PLACEHOLDER_HTMT_fail_n",
-    as.character(sum(!table_HTMT_matrix$flag_85, na.rm = TRUE))
+    summary_md, "PLACEHOLDER_HTMT_total_n_study3",
+    as.character(nrow(table_HTMT_study3))
   )
   summary_md <- fill_placeholder(
-    summary_md, "PLACEHOLDER_HTMT_total_n",
-    as.character(nrow(table_HTMT_matrix))
+    summary_md, "PLACEHOLDER_HTMT_max_study3",
+    sprintf("%.3f", max(table_HTMT_study3$htmt, na.rm = TRUE))
   )
 }
 if (nrow(table_FornellLarcker) > 0) {

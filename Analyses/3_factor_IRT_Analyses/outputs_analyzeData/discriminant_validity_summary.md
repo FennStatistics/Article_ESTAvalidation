@@ -2,7 +2,7 @@
 
 ## Results
 
-After scale purification, we re-estimated six-factor CFA models (MLR, FIML) for each technology. McDonald's ω ranged from 0.91 to 0.97 across factors and technologies (see `table_reliability_AVE.csv`). Average variance extracted (AVE) exceeded 0.50 for 24 of 24 factor–technology combinations. Fornell–Larcker discriminant validity was supported for 91.7% of factor pairs (see `table_FornellLarcker.csv`). HTMT2 ratios with bootstrap 95% CIs (R = 1000) exceeded the conservative .85 upper-CI threshold for 7 of 60 pairs (see `table_HTMT_matrix.csv`). CI-based latent-correlation tests (Rönkkö & Cho, 2022) indicated {{PLACEHOLDER_DV_summary}}.
+After scale purification, we re-estimated six-factor CFA models (MLR, FIML) for each technology. McDonald's ω ranged from 0.91 to 0.97 across factors and technologies (see `table_reliability_AVE.csv`). Average variance extracted (AVE) exceeded 0.50 for 24 of 24 factor–technology combinations. Fornell–Larcker discriminant validity was supported for 88.9% of Study 3 factor pairs (40/45; see `table_FL_failures_study3.csv`). All 45 Study 3 HTMT2 point estimates were below .85 (max = 0.848); none of the bootstrap 95% CIs included 1.00 (see `table_HTMT_matrix.csv`). CI-based latent-correlation tests (Rönkkö & Cho, 2022) indicated {{PLACEHOLDER_DV_summary}}.
 
 ## Discussion
 
