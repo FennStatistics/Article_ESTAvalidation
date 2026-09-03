@@ -1,0 +1,42 @@
+ethical_theory,item_id,negative_pole_left,positive_pole_right
+Relativism,relativist01,is culturally unacceptable,is culturally acceptable
+Relativism,relativist02,is unacceptable to my family,is acceptable to my family
+Relativism,relativist03,is traditionally unacceptable,is traditionally acceptable
+Relativism,relativist04,is individually unacceptable,is individually acceptable
+Relativism,relativist05,is unacceptable to people I most admire,is acceptable to people I most admire
+Contractualism,contractualist01,is unjust,is just
+Contractualism,contractualist02,is unfair,is fair
+Contractualism,contractualist03,works against implicit moral conventions,supports implicit moral conventions
+Contractualism,contractualist04,violates important social norms,does not violate important social norms
+Contractualism,contractualist05,does not result in an equal distribution of good and bad,results in an equal distribution of good and bad
+Contractualism,contractualist06,violates my ideas of fairness,does not violate my ideas of fairness
+Hedonism,hedonism01,is personally unsatisfactory,is personally satisfactory
+Hedonism,hedonism02,is not in the best interests of my person,is in the best interests of my person
+Hedonism,hedonism03,minimizes my pleasure,maximizes my pleasure
+Hedonism,hedonism04,is a hindrance to a good personal life,promotes a good personal life
+Hedonism,hedonism05,harms my health,promotes my health
+Hedonism,hedonism06,harms my freedom,promotes my freedom
+Utilitarianism,utilitarian01,provides the least utility for society,provides the greatest utility for society
+Utilitarianism,utilitarian02,minimizes benefits for society,maximizes benefits for society
+Utilitarianism,utilitarian03,maximizes harm for society,minimizes harm for society
+Utilitarianism,utilitarian04,tends overall to be bad for society,tends overall to be good for society
+Utilitarianism,utilitarian05,is not OK if actions can be justified by their consequences for society,is OK if actions can be justified by their consequences for society
+Utilitarianism,utilitarian06,leads to the least good for the greatest number,leads to the greatest good for the greatest number
+Utilitarianism,utilitarian07,leads to the greatest ill for the greatest number,leads to the least ill for the greatest number
+Utilitarianism,utilitarian08,results in a negative cost-benefit ratio for society,results in a positive cost-benefit ratio for society
+Utilitarianism,utilitarian09,is inefficient for society,is efficient for society
+Utilitarianism,utilitarian10,leads to future harm for society,provides for future benefit society
+Deontology,deontology01,harms the autonomy of users,promotes the autonomy of users
+Deontology,deontology02,obliges a certain immoral behaviour,obliges a certain moral behaviour
+Deontology,deontology03,is not morally right,is morally right
+Deontology,deontology04,goes against an important moral rule by which I live,does not go against an important moral rule by which I live
+Deontology,deontology05,implies a moral obligation to act otherwise,implies no moral obligation to act otherwise
+Deontology,deontology06,attacks the intrinsic value of nature,protects the intrinsic value of nature
+Deontology,deontology07,attacks the value of the cultural environment,protects the value of the cultural environment
+Virtue Ethics,virtue01,is developed by someone who has wrong motivations,is developed by someone who has good motivations
+Virtue Ethics,virtue02,is developed by someone who has wrong desires,is developed by someone who has good desires
+Virtue Ethics,virtue03,is developed by someone who has a bad character,is developed by someone who has a good character
+Virtue Ethics,virtue04,is developed by someone who is not prudent,is developed by someone who is prudent
+Virtue Ethics,virtue05,is developed by someone who is not reasonable,is developed by someone who is reasonable
+Virtue Ethics,virtue06,is developed by someone who is insensitive to interactions with society,is developed by someone who is sensitive to interactions with society
+Virtue Ethics,virtue07,is developed by someone who is acting on ill intentions,is developed by someone who is acting on good intentions
