@@ -1,0 +1,51 @@
+"pool_id","theory","technology","probed_in_study2","substantive_action","substantive_criterion","substantive_note"
+"relativist01","relativist","SAI_narrative",FALSE,"not_probed",NA,NA
+"relativist02","relativist","SAI_narrative",FALSE,"not_probed",NA,NA
+"relativist03","relativist","SAI_narrative",FALSE,"not_probed",NA,NA
+"relativist04","relativist","SAI_narrative",FALSE,"not_probed",NA,NA
+"relativist05","relativist","SAI_narrative",FALSE,"not_probed",NA,NA
+"contractualist01","contractualist","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"contractualist02","contractualist","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"contractualist03","contractualist","SAI_narrative",TRUE,"revised","comprehension_confusion","Unwritten contract: revised to implicit moral conventions (appendix finalItems)."
+"contractualist04","contractualist","SAI_narrative",TRUE,"revised","comprehension_confusion","Unspoken promise: revised to important social norms (appendix finalItems)."
+"contractualist05","contractualist","SAI_narrative",FALSE,"not_probed",NA,NA
+"contractualist06","contractualist","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"hedonism01","hedonism","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"hedonism02","hedonism","SAI_narrative",TRUE,"flagged","ambiguous_interpretation","Selfishness interpreted variably (personal vs societal scope)."
+"hedonism03","hedonism","SAI_narrative",TRUE,"flagged","ambiguous_interpretation","Sacrifices required: divergent personal vs collective interpretations."
+"hedonism04","hedonism","SAI_narrative",FALSE,"not_probed",NA,NA
+"hedonism05","hedonism","SAI_narrative",FALSE,"not_probed",NA,NA
+"hedonism06","hedonism","SAI_narrative",FALSE,"not_probed",NA,NA
+"hedonism07","hedonism","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"hedonism08","hedonism","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"hedonism09","hedonism","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian01","utilitarian","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"utilitarian02","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian03","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian04","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian05","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian06","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian07","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian08","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian09","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"utilitarian10","utilitarian","SAI_narrative",FALSE,"not_probed",NA,NA
+"deontology01","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology02","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology03","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology04","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology05","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology06","deontology","SAI_narrative",FALSE,"not_probed",NA,NA
+"deontology07","deontology","SAI_narrative",TRUE,"deleted","comprehension_confusion","Respect in interactions: participants confused about 'treatment with respect'."
+"deontology08","deontology","SAI_narrative",TRUE,"deleted","comprehension_confusion","Dignity in interactions: uncertainty about dignity; relevance to SAI questioned."
+"deontology09","deontology","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"deontology10","deontology","SAI_narrative",FALSE,"not_probed",NA,NA
+"deontology11","deontology","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue01","virtue","SAI_narrative",TRUE,"probed_no_change",NA,NA
+"virtue02","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue03","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue04","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue05","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue06","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue07","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue08","virtue","SAI_narrative",FALSE,"not_probed",NA,NA
+"virtue09","virtue","SAI_narrative",TRUE,"probed_no_change",NA,NA

@@ -1,0 +1,51 @@
+"pool_id","theory","stem_pool","study3_id","in_study3","appendix_final_id","mplus_column_id","in_mplus_final","mplus_removed","structural_drop_study3"
+"relativist01","relativist","...is culturally unacceptable / acceptable","relativist01",TRUE,"relativist01","relativist01",TRUE,FALSE,FALSE
+"relativist02","relativist","...unacceptable / acceptable to my family","relativist02",TRUE,"relativist02","relativist02",TRUE,FALSE,FALSE
+"relativist03","relativist","...traditionally unacceptable / acceptable","relativist03",TRUE,"relativist03","relativist03",TRUE,FALSE,FALSE
+"relativist04","relativist","...individually unacceptable / acceptable","relativist04",TRUE,"relativist04","relativist04",TRUE,FALSE,FALSE
+"relativist05","relativist","...unacceptable / acceptable to people I admire","relativist05",TRUE,"relativist05","relativist05",TRUE,FALSE,FALSE
+"contractualist01","contractualist","...is unjust / just","contractualist01",TRUE,"contractualist01","contractualist01",TRUE,FALSE,FALSE
+"contractualist02","contractualist","...is unfair / fair","contractualist02",TRUE,"contractualist02","contractualist02",TRUE,FALSE,FALSE
+"contractualist03","contractualist","...respects an unwritten contract","contractualist03",TRUE,"contractualist03","contractualist03",TRUE,FALSE,FALSE
+"contractualist04","contractualist","...respects an unspoken promise","contractualist04",TRUE,"contractualist04","contractualist04",TRUE,FALSE,FALSE
+"contractualist05","contractualist","...equal distribution of good and bad","contractualist05",TRUE,"contractualist05","contractualist05",TRUE,FALSE,FALSE
+"contractualist06","contractualist","...violates my ideas of fairness","contractualist06",TRUE,"contractualist06","contractualist06",TRUE,FALSE,FALSE
+"hedonism01","hedonism","...personally unsatisfactory / satisfactory","hedonism01",TRUE,"hedonism01","hedonism01",TRUE,FALSE,FALSE
+"hedonism02","hedonism","...would be selfish for me to use","hedonism02",TRUE,NA,"hedonism02",FALSE,TRUE,TRUE
+"hedonism03","hedonism","...requires sacrifices in order to use it","hedonism03",TRUE,NA,"hedonism03",FALSE,TRUE,TRUE
+"hedonism04","hedonism","...not in the best interests of my person","hedonism04",TRUE,"hedonism02","hedonism04",TRUE,FALSE,FALSE
+"hedonism05","hedonism","...minimizes / maximizes my pleasure","hedonism05",TRUE,"hedonism03","hedonism05",TRUE,FALSE,FALSE
+"hedonism06","hedonism","...hindrance / promotes a good personal life","hedonism06",TRUE,"hedonism04","hedonism06",TRUE,FALSE,FALSE
+"hedonism07","hedonism","...harms / promotes my health","hedonism07",TRUE,"hedonism05","hedonism07",TRUE,FALSE,FALSE
+"hedonism08","hedonism","...harms / promotes my freedom","hedonism08",TRUE,"hedonism06","hedonism08",TRUE,FALSE,FALSE
+"hedonism09","hedonism","...harms / promotes my safety","hedonism09",TRUE,NA,"hedonism09",FALSE,TRUE,TRUE
+"utilitarian01","utilitarian","...least / greatest utility for society","utilitarian01",TRUE,"utilitarian01","utilitarian01",TRUE,FALSE,FALSE
+"utilitarian02","utilitarian","...minimizes / maximizes benefits for society","utilitarian02",TRUE,"utilitarian02","utilitarian02",TRUE,FALSE,FALSE
+"utilitarian03","utilitarian","...maximizes / minimizes harm for society","utilitarian03",TRUE,"utilitarian03","utilitarian03",TRUE,FALSE,FALSE
+"utilitarian04","utilitarian","...bad / good for society overall","utilitarian04",TRUE,"utilitarian04","utilitarian04",TRUE,FALSE,FALSE
+"utilitarian05","utilitarian","...OK if justified by consequences for society","utilitarian05",TRUE,"utilitarian05","utilitarian05",TRUE,FALSE,FALSE
+"utilitarian06","utilitarian","...least / greatest good for greatest number","utilitarian06",TRUE,"utilitarian06","utilitarian06",TRUE,FALSE,FALSE
+"utilitarian07","utilitarian","...greatest / least ill for greatest number","utilitarian07",TRUE,"utilitarian07","utilitarian07",TRUE,FALSE,FALSE
+"utilitarian08","utilitarian","...negative / positive cost-benefit ratio","utilitarian08",TRUE,"utilitarian08","utilitarian08",TRUE,FALSE,FALSE
+"utilitarian09","utilitarian","...inefficient / efficient for society","utilitarian09",TRUE,"utilitarian09","utilitarian09",TRUE,FALSE,FALSE
+"utilitarian10","utilitarian","...future harm / benefit for society",NA,FALSE,NA,NA,FALSE,FALSE,FALSE
+"deontology01","deontology","...moral obligation to act in a certain way","deontology01",TRUE,NA,"deontology01",FALSE,TRUE,TRUE
+"deontology02","deontology","...harms / promotes autonomy of users","deontology02",TRUE,"deontology01","deontology02",TRUE,FALSE,FALSE
+"deontology03","deontology","...obliges immoral / moral behaviour","deontology03",TRUE,"deontology02","deontology03",TRUE,FALSE,FALSE
+"deontology04","deontology","...not morally right / morally right","deontology04",TRUE,"deontology03","deontology04",TRUE,FALSE,FALSE
+"deontology05","deontology","...goes against moral rule by which I live","deontology05",TRUE,"deontology04","deontology05",TRUE,FALSE,FALSE
+"deontology06","deontology","...moral obligation to act otherwise",NA,FALSE,"deontology05",NA,FALSE,FALSE,FALSE
+"deontology07","deontology","PROBING: respect in interactions (deleted before Study 3)",NA,FALSE,NA,NA,FALSE,FALSE,FALSE
+"deontology08","deontology","PROBING: dignity in interactions (deleted before Study 3)",NA,FALSE,NA,NA,FALSE,FALSE,FALSE
+"deontology09","deontology","...intrinsic value of nature","deontology06",TRUE,"deontology06","deontology06",TRUE,FALSE,FALSE
+"deontology10","deontology","...value of the ecological environment","deontology07",TRUE,NA,"deontology07",FALSE,TRUE,TRUE
+"deontology11","deontology","...value of the cultural environment","deontology08",TRUE,"deontology07","deontology08",TRUE,FALSE,FALSE
+"virtue01","virtue","...wrong / good motivations (developer)","virtue01",TRUE,"virtue01","virtue01",TRUE,FALSE,FALSE
+"virtue02","virtue","...wrong / good desires (developer)","virtue02",TRUE,"virtue02","virtue02",TRUE,FALSE,FALSE
+"virtue03","virtue","...bad / good character (developer)","virtue03",TRUE,"virtue03","virtue03",TRUE,FALSE,FALSE
+"virtue04","virtue","...not prudent / prudent (developer)","virtue04",TRUE,"virtue04","virtue04",TRUE,FALSE,FALSE
+"virtue05","virtue","...not reasonable / reasonable (developer)","virtue05",TRUE,"virtue05","virtue05",TRUE,FALSE,FALSE
+"virtue06","virtue","...not striving for professional excellence","virtue06",TRUE,NA,"virtue06",FALSE,TRUE,TRUE
+"virtue07","virtue","...indifferent / respectful towards nature","virtue07",TRUE,NA,"virtue07",FALSE,TRUE,TRUE
+"virtue08","virtue","...insensitive / sensitive to society","virtue08",TRUE,"virtue06","virtue08",TRUE,FALSE,FALSE
+"virtue09","virtue","...ill / good intentions (developer)","virtue09",TRUE,"virtue07","virtue09",TRUE,FALSE,FALSE
